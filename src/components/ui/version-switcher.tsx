@@ -14,6 +14,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { LogOut } from 'lucide-react';
+
+
 
 export function VersionSwitcher({
   versions,
@@ -27,7 +30,7 @@ export function VersionSwitcher({
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <DropdownMenu>
+        <DropdownMenu> 
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
@@ -40,7 +43,7 @@ export function VersionSwitcher({
                 <span className="font-semibold">Documentation</span>
                 <span className="">v{selectedVersion}</span>
               </div>
-              <ChevronsUpDown className="ml-auto" />
+              <LogOut className="ml-auto h-6 w-6" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
