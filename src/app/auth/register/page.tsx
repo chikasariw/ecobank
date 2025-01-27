@@ -11,8 +11,8 @@ export default function RegisterPage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col lg:flex-row items-center lg:items-stretch lg:bg-primary300 ">
-            <div className="radial-dots hidden lg:flex"></div>
+        <div className="min-h-screen flex flex-col lg:flex-row items-center lg:items-stretch lg:bg-eb-primary-green-700 ">
+            <div className="radial-dots-right hidden lg:flex"></div>
             <div className="radial-green-right hidden lg:flex"></div>
             {/* left column */}
             <div className="flex flex-col justify-center items-center w-full lg:w-1/2">
@@ -27,10 +27,10 @@ export default function RegisterPage() {
                         priority
                     />
                     <form className="max-w-xl w-full">
-                        <h3 className="text-gray800 font-semibold text-3xl text-center lg:text-start">
-                            Register
+                        <h3 className="text-eb-primary-gray-800 font-semibold text-3xl text-center lg:text-start">
+                            Buat Akun
                         </h3>
-                        <p className="text-sm text-gray500 mt-3 mb-10 text-center lg:text-start">
+                        <p className="text-sm text-eb-primary-gray-500 mt-3 mb-10 text-center lg:text-start">
                         Masukkan data dirimu untuk bergabung dengan EcoBank.  
                         </p>
 
@@ -39,19 +39,19 @@ export default function RegisterPage() {
                                 <label
                                     htmlFor="email"
                                     typeof="email"
-                                    className="block text-sm/6 font-medium text-gray600"
+                                    className="block text-sm/6 font-medium text-eb-primary-gray-600"
                                 >
                                     Email
                                 </label>
                                 <div className="mt-2">
-                                    <div className="flex items-center rounded-xl bg-white pl-3 outline outline-1 outline-gray300 focus-within:outline-2 focus-within:outline-primary200">
+                                    <div className="flex items-center rounded-xl bg-white pl-3 outline outline-1  outline-eb-primary-gray-400 focus-within:outline-2 focus-within:outline-eb-primary-ygreen-500">
                                         <input
                                             required
                                             id="email"
                                             name="email"
                                             type="text"
                                             placeholder="Masukkan Emailmu"
-                                            className="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray900 placeholder:text-gray400 focus:outline-none sm:text-sm/6"
+                                            className="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-eb-primary-gray-900 placeholder:text-eb-primary-gray-400 focus:outline-none sm:text-sm/6"
                                         />
                                     </div>
                                 </div>
@@ -59,24 +59,24 @@ export default function RegisterPage() {
                             <div>
                                 <label
                                     htmlFor="sandi"
-                                    className="block text-sm/6 font-medium text-gray600"
+                                    className="block text-sm/6 font-medium text-eb-primary-gray-600"
                                 >
                                     Kata Sandi
                                 </label>
                                 <div className="mt-2 relative">
-                                    <div className="flex items-center rounded-xl bg-white pl-3 outline outline-1 outline-gray300 focus-within:outline-2 focus-within:outline-primary200">
+                                    <div className="flex items-center rounded-xl bg-white pl-3 outline outline-1  outline-eb-primary-gray-400 focus-within:outline-2 focus-within:outline-eb-primary-ygreen-500">
                                         <input
                                             required
                                             id="sandi"
                                             name="sandi"
                                             type={showPassword ? "text" : "password"}
                                             placeholder="Masukkan Kata Sandi"
-                                            className="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray900 placeholder:text-gray400 focus:outline-none sm:text-sm/6"
+                                            className="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-eb-primary-gray-900 placeholder:text-eb-primary-gray-400 focus:outline-none sm:text-sm/6"
                                         />
                                         <button
                                             type="button"
                                             onClick={togglePassword}
-                                            className="absolute right-3 text-gray600"
+                                            className="absolute right-3 text-eb-primary-gray-600"
                                         >
                                             {showPassword ? (
                                             <EyeOff aria-label="show"/>
@@ -93,9 +93,9 @@ export default function RegisterPage() {
                                         id="remember-me"
                                         name="remember-me"
                                         type="checkbox"
-                                        className="h-4 w-4 accent-primary300 focus:ring-primaccent-primary300 border-gray300 rounded-xl"
+                                        className="h-4 w-4 accent-eb-primary-green-800 focus:ring-eb-primary-green-800 border-eb-primary-gray-200 rounded-xl"
                                     />
-                                    <label className="ml-3 block text-sm text-gray800">
+                                    <label className="ml-3 block text-sm text-eb-primary-gray-800">
                                         Ingat Saya
                                     </label>
                                 </div>
@@ -103,15 +103,15 @@ export default function RegisterPage() {
                         </div>
 
                         <div className="mt-8">
-                            <button type="button" className="w-full py-2.5 px-4 text-sm font-semibold rounded text-white rounded-3xl bg-primary300 hover:bg-primary400 focus:outline-none transition duration-200 ease-in-out">
+                            <button type="button" className="w-full py-2.5 px-4 text-sm font-semibold rounded text-white rounded-3xl bg-eb-primary-green-700 hover:bg-eb-primary-green-800 focus:outline-none transition duration-200 ease-in-out">
                                 Register
                             </button>
                         </div>
 
                         <div className="my-4 flex justify-center">
-                            <p className="text-sm font-semibold text-gray800 text-center">
+                            <p className="text-sm font-semibold text-eb-primary-gray-800 text-center">
                                 Sudah memiliki akun?{" "}
-                                <a className="text-primary300" href="/auth/login">
+                                <a className="text-eb-primary-green-800" href="/auth/login">
                                     Masuk{" "}
                                 </a>
                             </p>
@@ -141,6 +141,6 @@ export default function RegisterPage() {
             </div>
         </div>
     );
-}
+} 
 
 
