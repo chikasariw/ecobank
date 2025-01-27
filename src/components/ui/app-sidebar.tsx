@@ -24,7 +24,7 @@ const data = {
   },
   teams: [
     {
-      name: "EcoBank",
+      name: "EcoBank.",
     }
   ],
   navMain: [
