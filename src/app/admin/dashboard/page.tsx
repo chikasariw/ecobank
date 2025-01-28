@@ -1,8 +1,9 @@
-export default function Home() {
-    return (
-      <div>
-        huuuuuhahaha
-      </div>
-    );
-  }
-  
+import React from 'react'
+
+export default function Dashboard() {
+  return (
+    <div>
+      
+    </div>
+  )
+}

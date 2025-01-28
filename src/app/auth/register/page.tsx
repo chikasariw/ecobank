@@ -104,7 +104,7 @@ export default function RegisterPage() {
 
                         <div className="mt-8">
                             <button type="button" className="w-full py-2.5 px-4 text-sm font-semibold rounded text-white rounded-3xl bg-eb-primary-green-700 hover:bg-eb-primary-green-800 focus:outline-none transition duration-200 ease-in-out">
-                                Register
+                                Daftar
                             </button>
                         </div>
 
