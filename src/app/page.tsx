@@ -65,8 +65,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ABOUT */}
-      <div className="flex flex-row bg-eb-primary-green-600 max-w-screen-auto items-center justify-center mx-auto py-4 my-4 lg:my-4">
+      {/* BRAND */}
+      <div className="flex flex-row bg-eb-primary-green-700 max-w-screen-auto items-center justify-center mx-auto my-4 lg:my-4">
         <div className="flex flex-1 relative items-center ">
           <InfiniteScroll />
         </div>
@@ -127,7 +127,7 @@ export default function Home() {
         </div>
         <div className="flex flex-1 relative items-center w-full mt-12">
           <div className="grid grid-cols-5 gap-4 w-full">
-            <div className="col-span-3 bg-eb-primary-yellow-100 px-6 py-4 rounded-3xl backdrop-blur-md py-6 px-6">
+            <div className="col-span-3 bg-eb-primary-green-900 px-6 py-4 rounded-3xl backdrop-blur-md py-6 px-6">
               <h4 className="font-bold text-xl text-eb-primary-gray-800 ">
                 Data Katalog Produk
               </h4>
@@ -138,29 +138,29 @@ export default function Home() {
               </p>
               <div className="bg-white/20 px-6 py-4 rounded-3xl backdrop-blur-md h-40 mt-4"></div>
             </div>
-            <div className="col-span-2 bg-gradient-to-r from-eb-primary-green-600 to-eb-primary-green-500 rounded-3xl backdrop-blur-md py-6 px-6">
+            <div className="col-span-2 bg-eb-primary-green-900 rounded-3xl backdrop-blur-md py-6 px-6">
               <div className="bg-white/20 px-6 py-4 rounded-2xl backdrop-blur-md h-36"></div>
-              <h4 className="font-bold text-xl text-eb-primary-gray-100 mt-4">
+              <h4 className="font-bold text-xl text-eb-primary-gray-800 mt-4">
                 Data Katalog Produk
               </h4>
-              <p className="text-base text-eb-primary-gray-300 mt-2">
+              <p className="text-base text-eb-primary-gray-700 mt-2">
                 Upgrade to a modern cashier system that helps you streamline
                 operations, enhance customer experience, and boost revenue with
                 ease. boost revenue with ease.
               </p>
             </div>
-            <div className="col-span-2 bg-gradient-to-r from-eb-primary-green-600 to-eb-primary-green-500 rounded-3xl backdrop-blur-md py-6 px-6">
+            <div className="col-span-2 bg-eb-primary-green-900  rounded-3xl backdrop-blur-md py-6 px-6">
               <div className="bg-white/20 px-6 py-4 rounded-2xl backdrop-blur-md h-36"></div>
-              <h4 className="font-bold text-xl text-eb-primary-gray-100 mt-4">
+              <h4 className="font-bold text-xl text-eb-primary-gray-800 mt-4">
                 Data Katalog Produk
               </h4>
-              <p className="text-base text-eb-primary-gray-300 mt-2">
+              <p className="text-base text-eb-primary-gray-700 mt-2">
                 Upgrade to a modern cashier system that helps you streamline
                 operations, enhance customer experience, and boost revenue with
                 ease. boost revenue with ease.
               </p>
             </div>
-            <div className="col-span-3 bg-eb-primary-yellow-100 px-6 py-4 rounded-3xl backdrop-blur-md py-6 px-6">
+            <div className="col-span-3 bg-eb-primary-green-900  px-6 py-4 rounded-3xl backdrop-blur-md py-6 px-6">
               <h4 className="font-bold text-xl text-eb-primary-gray-800 ">
                 Data Katalog Produk
               </h4>
@@ -192,32 +192,32 @@ export default function Home() {
         </div>
         <div className="flex flex-1 relative items-center w-full mt-12">
           <div className="grid grid-cols-2 gap-4 w-full">
-            <div className="bg-eb-primary-yellow-100 border-2 border-eb-primary-yellow-300 rounded-3xl px-6 py-4">
+            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4">
               <h5 className="font-semibold text-eb-primary-green-700">
                 Bagaimana cara mulai jual sampah di Cofika?
               </h5>
             </div>
-            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-yellow-300 rounded-3xl px-6 py-4">
+            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4">
               <h5 className="font-semibold text-eb-primary-green-700">
                 Apakah ada jenis sampah tertentu yang tidak diterima di Cofika?
               </h5>
             </div>
-            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-yellow-300 rounded-3xl px-6 py-4">
+            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4">
               <h5 className="font-semibold text-eb-primary-green-700">
                 Berapa lama proses pembayaran setelah sampah dijual?
               </h5>
             </div>
-            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-yellow-300 rounded-3xl px-6 py-4">
+            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4">
               <h5 className="font-semibold text-eb-primary-green-700">
                 Apakah saya bisa melihat harga sampah sebelum menjualnya?
               </h5>
             </div>
-            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-yellow-300 rounded-3xl px-6 py-4">
+            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4">
               <h5 className="font-semibold text-eb-primary-green-700">
                 Apakah saya perlu memilah sampah sebelum dijual di Cofika?
               </h5>
             </div>
-            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-yellow-300 rounded-3xl px-6 py-4">
+            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4">
               <h5 className="font-semibold text-eb-primary-green-700">
                 Apakah ada batas minimal jumlah sampah yang bisa dijual?
               </h5>
@@ -228,7 +228,11 @@ export default function Home() {
 
       {/* CTA */}
       <div className="flex flex-col max-w-screen-xl items-center justify-center mx-auto p-10 my-4 lg:my-24">
-        <div className="flex items-center justify-center bg-eb-primary-green-800 rounded-3xl w-full py-20">
+        <div className="flex items-center justify-center bg-eb-primary-green-800 rounded-3xl w-full py-20 relative overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="radial-green-cta"></div>
+            <div className="radial-green-right-cta "></div>
+          </div>
           <div className="flex flex-col justify-center items-center">
             <h1 className="text-eb-primary-gray-100 font-bold text-3xl mt-2 text-center">
               Cari Tahu Sampah yang Dapat Ditukar di Cofika
@@ -245,11 +249,6 @@ export default function Home() {
                 </span>
               </Link>
             </Button>
-            <div className="hidden ">
-            <div className="radial-dots-right hidden lg:flex"></div>
-            <div className="radial-green-right hidden lg:flex"></div>
-
-            </div>
           </div>
         </div>
       </div>

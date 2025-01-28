@@ -6,10 +6,10 @@ import { Separator } from "../ui/separator";
 
 export default function Footer() {
   return (
-    <footer className="bg-background border-t-2">
+    <footer className=" border-t-2 border-eb-primary-gray-200">
       <div className="flex flex-col max-w-screen-xl mx-auto px-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 py-10">
-          <div className="col-start-1 row-start-1 lg:col-span-3 flex flex-col gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-20">
+          <div className="col-start-1 row-start-1 lg:col-span-2 flex flex-col gap-5">
             <Link href="/">
               <Image
                 src="/logo/ecobank-logo.svg"
@@ -19,7 +19,7 @@ export default function Footer() {
               />
             </Link>
 
-            <p className="text-eb-primary-gray-600 max-w-80">
+            <p className="text-eb-primary-gray-600 max-w-md">
                 Let technology do the heavy lifting! Automate your sales processes and focus 
                 on what truly matters—growing your business.
             </p>
@@ -40,16 +40,12 @@ export default function Footer() {
             <p className="font-black">Ikuti Kami</p>
 
             <div className="text-sm text-eb-primary-gray-600 flex flex-col gap-3">
-              <p>Jangan Ketinggalan! Lihat Serunya MejaKita di Sini</p>
+              <p>Jangan Ketinggalan! </p>
             </div>
           </div>
         </div>
 
-        <Separator />
 
-        <div className="py-8 text-center">
-          © 2016 - 2024 PT MejaKita Edunusa Mandiri
-        </div>
       </div>
     </footer>
   );
