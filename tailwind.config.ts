@@ -89,22 +89,6 @@ export default {
 					'container-foreground': 'var(--eb-primary-gray-700)'
 			},
 
-			'eb-primary-gray': {
-					'100': 'var(--eb-primary-gray-100)',
-					'200': 'var(--eb-primary-gray-200)',
-					'300': 'var(--eb-primary-gray-300)',
-					'400': 'var(--eb-primary-gray-400)',
-					'500': 'var(--eb-primary-gray-500)',
-					'600': 'var(--eb-primary-gray-600)',
-					'700': 'var(--eb-primary-gray-700)',
-					'800': 'var(--eb-primary-gray-800)',
-					'900': 'var(--eb-primary-gray-900)',
-					DEFAULT: 'var(--eb-primary-gray-800)',
-					foreground: 'var(--eb-primary-gray-100)',
-					container: 'var(--eb-primary-gray-200)',
-					'container-foreground': 'var(--eb-primary-gray-700)'
-			},
-
 			background: 'hsl(var(--background))',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
@@ -159,7 +143,16 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+		  animation: {
+			scroll: "scroll 24s linear infinite", // Atur durasi animasi
+		  },
+		  keyframes: {
+			scroll: {
+			  "0%": { transform: "translateX(0)" },
+			  "100%": { transform: "translateX(-100%)" },
+			},
+		  },
   	}
   },
   plugins: [require("tailwindcss-animate")],
