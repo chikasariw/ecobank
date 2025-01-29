@@ -40,6 +40,7 @@ body,
     --eb-primary-green-600: #126D37;
     --eb-primary-green-700: #0F572C;
     --eb-primary-green-800: #0B4221;
+    --eb-primary-green-900: #f0f4f0;
 
     /* PRIMARY COLORS BASE 05*/
 		--eb-primary-tosca-100: #E7FEF7;
@@ -201,7 +202,10 @@ body,
   height: 100vh; 
 }
 
+<<<<<<< HEAD
 /* gradient  */
+=======
+>>>>>>> 9624f306efeeb122979fa63c03ef72f87c18890e
 .radial-green {
   width: 700px;
   height: 600px;
@@ -255,3 +259,77 @@ body,
   opacity: 0.2;
 }
 
+<<<<<<< HEAD
+=======
+/* CTA */
+.radial-green-cta {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgb(221, 248, 19), rgba(221, 248, 19, 0.447), rgba(221, 248, 19, 0.238), rgba(12, 66, 33, 0), rgba(12, 66, 33, 0), rgba(12, 66, 33, 0));
+  border-radius: 50%;
+  position: absolute;
+  top: 20%;
+  left: 3%;
+  transform: translate(-50%, -50%) scale(1.5);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+.radial-green-right-cta {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgb(221, 248, 19), rgba(221, 248, 19, 0.447), rgba(221, 248, 19, 0.238), rgba(12, 66, 33, 0), rgba(12, 66, 33, 0), rgba(12, 66, 33, 0));
+  border-radius: 50%;
+  position: absolute;
+  top: 80%;
+  right: -20%;
+  transform: translate(-50%, -50%) scale(1.5);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+.radial-dots-cta {
+  width: 195px;
+  height: 195px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 10%, rgba(255, 255, 255, 0) 20%),
+              radial-gradient(circle, rgba(255, 255, 255, 0.8) 10%, rgba(255, 255, 255, 0) 20%) ;
+  background-size: 20px 20px;
+  border-radius: 50%;
+  position: absolute;
+  top: -12%;
+  left: -5%;
+  transform: translateX(-10%);
+  opacity: 0.2;
+}
+.radial-dots-right-cta {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 10%, rgba(255, 255, 255, 0) 20%),
+              radial-gradient(circle, rgba(255, 255, 255, 0.8) 10%, rgba(255, 255, 255, 0) 20%) ;
+  background-size: 20px 20px;
+  border-radius: 50%;
+  position: absolute;
+  filter: blur(2px);
+  top: 80%;
+  right: -18%;
+  transform: translateX(-10%);
+  opacity: 0.2;
+}
+
+@layer utilities {
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 16s linear infinite; /* Durasi scrolling */
+    display: flex;
+    width: 200%; /* Double content width for seamless looping */
+  }
+}
+>>>>>>> 9624f306efeeb122979fa63c03ef72f87c18890e
