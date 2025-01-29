@@ -1,9 +1,8 @@
 "use client"
 
-import {
-  LogOut,
-} from "lucide-react"
-
+import Link from "next/link";
+import { LogOut } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import {
   Avatar,
   AvatarFallback,
@@ -15,7 +14,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import {
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
@@ -36,20 +34,25 @@ export function NavUser({
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SidebarMenuButton
-              size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground md:hidden"
+            <div
+              className="flex w-full items-center gap-5 overflow-hidden rounded-3xl p-2 text-left text-sm outline-none md:hidden bg-eb-primary-gray-100"
             >
-              <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-              </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
-              </div>
-              <LogOut className="ml-auto h-6 w-6" />
-            </SidebarMenuButton>
+              <Link className="flex gap-5" href="/admin/profile">
+
+                <Avatar className="h-10 w-10 rounded-3xl">
+                  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                  <AvatarFallback>CN</AvatarFallback>
+                  <AvatarFallback className="rounded-lg">Chika</AvatarFallback>
+                </Avatar>
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-semibold">{user.name}</span>
+                  <span className="truncate text-xs">{user.email}</span>
+                </div>
+              </Link>
+              <Button size="icon" variant="outline" className="ml-auto">
+                <LogOut className="h-6 w-6" />
+              </Button>
+            </div>
           </DropdownMenuTrigger>
         </DropdownMenu>
       </SidebarMenuItem>

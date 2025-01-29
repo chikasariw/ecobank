@@ -5,6 +5,7 @@ import * as React from "react"
 import { NavMain } from "@/components/ui/nav-main"
 import { NavUser } from "@/components/ui/nav-user"
 import { TeamSwitcher } from "@/components/ui/team-switcher"
+import { Separator } from "@/components/ui/separator"
 import {
   Sidebar,
   SidebarContent,
@@ -30,9 +31,8 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/admin/dashboard",
       icon: Home,
-      isActive: true
     },
     {
       title: "Data Pengguna",
@@ -68,6 +68,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
+      <Separator className="mb-3"/>
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>
