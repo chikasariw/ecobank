@@ -56,7 +56,7 @@ export default function DatePicker() {
                 <Button
                     variant={"outline"}
                     className={cn(
-                        "w-full justify-start text-left font-normal rounded",
+                        "w-full justify-start text-left font-normal rounded p-3",
                         !date && "text-muted-foreground"
                     )}
                 >
@@ -108,7 +108,7 @@ export default function DatePicker() {
                     month={currentMonth}
                     onMonthChange={setCurrentMonth}
                     initialFocus
-                    disabled={(date) => date > new Date()} // Nonaktifkan tanggal setelah hari ini
+                    disabled={(date) => date > new Date()} 
                 />
             </PopoverContent>
         </Popover>

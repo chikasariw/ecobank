@@ -8,7 +8,7 @@ import {
     SidebarInset,
     SidebarProvider,
 } from "@/components/ui/sidebar";
-import Header from "@/components/ui/header";
+import HeaderAdmin from "@/components/ui/header-admin";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     return (
@@ -21,7 +21,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <SidebarProvider>
                 <AppSidebar />
                 <SidebarInset>
-                    <Header/>
+                    <HeaderAdmin/>
                     <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
                     {children}
                     </div>

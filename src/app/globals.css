@@ -202,10 +202,6 @@ body,
   height: 100vh; 
 }
 
-<<<<<<< HEAD
-/* gradient  */
-=======
->>>>>>> 9624f306efeeb122979fa63c03ef72f87c18890e
 .radial-green {
   width: 700px;
   height: 600px;
@@ -259,8 +255,6 @@ body,
   opacity: 0.2;
 }
 
-<<<<<<< HEAD
-=======
 /* CTA */
 .radial-green-cta {
   width: 300px;
@@ -332,4 +326,3 @@ body,
     width: 200%; /* Double content width for seamless looping */
   }
 }
->>>>>>> 9624f306efeeb122979fa63c03ef72f87c18890e
