@@ -41,7 +41,7 @@ const data = {
     },
     {
       title: "Data Barang",
-      url: "#",
+      url: "/admin/data-barang",
       icon: SquareChartGantt
     },
     {

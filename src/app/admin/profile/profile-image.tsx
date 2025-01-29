@@ -27,7 +27,6 @@ export default function ProfileImage() {
     return (
         <div className="flex justify-center lg:block">
             <div className="relative w-3/4 sm:w-1/3 md:w-1/2 lg:w-full aspect-square overflow-hidden rounded-lg border bg-muted">
-                {/* Tampilkan gambar yang dipilih */}
                 {imageSrc ? (
                     <img
                         src={imageSrc} 
@@ -46,7 +45,6 @@ export default function ProfileImage() {
                     />
                 )}
                 
-                {/* Button untuk membuka file input */}
                 <Button
                     size="icon"
                     variant="ghost"

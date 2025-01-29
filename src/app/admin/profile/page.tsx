@@ -13,6 +13,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+
 import DatePicker from "./date-picker";
 import Password from "./password";
 import RadioGender from "./radio-gender";
@@ -23,15 +32,26 @@ export default function ProfileDetail() {
     <Card>
       <form>
         <CardHeader>
-          <CardTitle>
-            Profil <span className="text-eb-primary-green-800">Pengguna</span>
+          <CardTitle className="flex justify-between">
+            <p>Data <span className="text-eb-primary-green-800">Barang</span></p>
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/admin/dashboard">EcoBank.</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Profile</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="rounded-xl border border-eb-primary-gray-200 p-4">
             <div className="grid gap-8 lg:grid-cols-[240px,1fr]">
               {/* Profile Image */}
-              <ProfileImage/>
+              <ProfileImage />
 
               {/* Form */}
               <div className="grid gap-5">
@@ -92,7 +112,7 @@ export default function ProfileDetail() {
                   >
                     Jenis Kelamin
                   </Label>
-                  <RadioGender/>
+                  <RadioGender />
                 </div>
               </div>
             </div>
@@ -100,10 +120,10 @@ export default function ProfileDetail() {
         </CardContent>
         <CardFooter>
           <div className=" flex gap-2">
-            <Button variant="ghost" className="px-5">
+            <Button variant="ghost">
               Batalkan Perubahan
             </Button>
-            <Button className="px-5">Simpan Perubahan</Button>
+            <Button>Simpan Perubahan</Button>
           </div>
         </CardFooter>
       </form>

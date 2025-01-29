@@ -10,21 +10,23 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-gradient-to-r from-eb-primary-green-600 to-eb-primary-green-400 text-eb-primary-green-100 font-bold hover:from-eb-primary-green-700 hover:to-eb-primary-green-600 rounded-3xl",
+          "bg-gradient-to-r from-eb-primary-green-600 to-eb-primary-green-400 text-eb-primary-green-100 font-bold hover:from-eb-primary-green-700 hover:to-eb-primary-green-600 rounded-3xl px-3",
         secondary:
-          "bg-gradient-to-r from-eb-primary-yellow-600 to-eb-primary-yellow-400 text-eb-primary-green-700 font-bold hover:from-eb-primary-yellow-700 hover:to-eb-primary-yellow-600 rounded-3xl",
+          "bg-gradient-to-r from-eb-primary-yellow-600 to-eb-primary-yellow-400 text-eb-primary-green-700 font-bold hover:from-eb-primary-yellow-700 hover:to-eb-primary-yellow-600 rounded-3xl px-3",
         primarycustom:
-          "bg-eb-primary-green-100 text-eb-primary-green-800 font-bold hover:eb-primary-yellow-700 rounded-3xl",
+          "bg-eb-primary-green-100 text-eb-primary-green-800 font-bold hover:eb-primary-yellow-700 rounded-3xl px-3",
         destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 rounded-3xl",
+          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/70 rounded-3xl px-3",
+        prominent:
+          "bg-eb-primary-gray-200 text-eb-primary-green-800 hover:bg-eb-primary-gray-300 rounded-3xl px-3",
         outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-        ghost: "bg-eb-primary-gray-100 text-eb-primary-gray-500 hover:bg-eb-primary-gray-300 rounded-3xl",
-        link: "text-primary underline-offset-4 hover:underline",
+          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground rounded-3xl",
+        ghost: "bg-eb-primary-gray-100 text-eb-primary-gray-500 hover:bg-eb-primary-gray-300 rounded-3xl px-3",
+        link: "text-eb-primary-green-800",
       },
       size: {
         default: "h-10",
-        sm: "h-8 rounded-3xl px-3 text-xs",
+        sm: "h-8 rounded-xl px-2 text-xs",
         lg: "h-10 rounded-3xl px-8",
         icon: "h-9 w-9",
       },

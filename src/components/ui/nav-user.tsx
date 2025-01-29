@@ -40,7 +40,7 @@ export function NavUser({
               <Link className="flex gap-5" href="/admin/profile">
 
                 <Avatar className="h-10 w-10 rounded-3xl">
-                  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                  <AvatarImage src="/content/profile-default.jpg" alt="@shadcn" />
                   <AvatarFallback>CN</AvatarFallback>
                   <AvatarFallback className="rounded-lg">Chika</AvatarFallback>
                 </Avatar>

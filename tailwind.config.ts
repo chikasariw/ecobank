@@ -11,85 +11,81 @@ export default {
   	extend: {
   		colors: {
   			'eb-primary-ygreen': {
-					'100': 'var(--eb-primary-ygreen-100)',
-					'200': 'var(--eb-primary-ygreen-200)',
-					'300': 'var(--eb-primary-ygreen-300)',
-					'400': 'var(--eb-primary-ygreen-400)',
-					'500': 'var(--eb-primary-ygreen-500)',
-					'600': 'var(--eb-primary-ygreen-600)',
-					'700': 'var(--eb-primary-ygreen-700)',
-					'800': 'var(--eb-primary-ygreen-800)',
-					'900': 'var(--eb-primary-ygreen-900)',
-					DEFAULT: 'var(--eb-primary-ygreen-500)',
-					foreground: 'var(--eb-primary-ygreen-100)',
-					container: 'var(--eb-primary-ygreen-200)',
-					'container-foreground': 'var(--eb-primary-ygreen-700)'
-			},
-
-			'eb-primary-yellow': {
-					'100': 'var(--eb-primary-yellow-100)',
-					'200': 'var(--eb-primary-yellow-200)',
-					'300': 'var(--eb-primary-yellow-300)',
-					'400': 'var(--eb-primary-yellow-400)',
-					'500': 'var(--eb-primary-yellow-500)',
-					'600': 'var(--eb-primary-yellow-600)',
-					'700': 'var(--eb-primary-yellow-700)',
-					'800': 'var(--eb-primary-yellow-800)',
-					'900': 'var(--eb-primary-yellow-900)',
-					DEFAULT: 'var(--eb-primary-yellow-500)',
-					foreground: 'var(--eb-primary-yellow-100)',
-					container: 'var(--eb-primary-yellow-200)',
-					'container-foreground': 'var(--eb-primary-yellow-700)'
-			},
-
-			'eb-primary-green': {
-					'100': 'var(--eb-primary-green-100)',
-					'200': 'var(--eb-primary-green-200)',
-					'300': 'var(--eb-primary-green-300)',
-					'400': 'var(--eb-primary-green-400)',
-					'500': 'var(--eb-primary-green-500)',
-					'600': 'var(--eb-primary-green-600)',
-					'700': 'var(--eb-primary-green-700)',
-					'800': 'var(--eb-primary-green-800)',
-					'900': 'var(--eb-primary-green-900)',
-					DEFAULT: 'var(--eb-primary-green-800)',
-					foreground: 'var(--eb-primary-green-100)',
-					container: 'var(--eb-primary-green-200)',
-					'container-foreground': 'var(--eb-primary-green-700)'
-			},
-
-			'eb-primary-tosca': {
-					'100': 'var(--eb-primary-tosca-100)',
-					'200': 'var(--eb-primary-tosca-200)',
-					'300': 'var(--eb-primary-tosca-300)',
-					'400': 'var(--eb-primary-tosca-400)',
-					'500': 'var(--eb-primary-tosca-500)',
-					'600': 'var(--eb-primary-tosca-600)',
-					'700': 'var(--eb-primary-tosca-700)',
-					'800': 'var(--eb-primary-tosca-800)',
-					'900': 'var(--eb-primary-tosca-900)',
-					DEFAULT: 'var(--eb-primary-tosca-800)',
-					foreground: 'var(--eb-primary-tosca-100)',
-					container: 'var(--eb-primary-tosca-200)',
-					'container-foreground': 'var(--eb-primary-tosca-700)'
-			},
-			'eb-primary-gray': {
-					'100': 'var(--eb-primary-gray-100)',
-					'200': 'var(--eb-primary-gray-200)',
-					'300': 'var(--eb-primary-gray-300)',
-					'400': 'var(--eb-primary-gray-400)',
-					'500': 'var(--eb-primary-gray-500)',
-					'600': 'var(--eb-primary-gray-600)',
-					'700': 'var(--eb-primary-gray-700)',
-					'800': 'var(--eb-primary-gray-800)',
-					'900': 'var(--eb-primary-gray-900)',
-					DEFAULT: 'var(--eb-primary-gray-800)',
-					foreground: 'var(--eb-primary-gray-100)',
-					container: 'var(--eb-primary-gray-200)',
-					'container-foreground': 'var(--eb-primary-gray-700)'
-			},
-
-			background: 'hsl(var(--background))',
+  				'100': 'var(--eb-primary-ygreen-100)',
+  				'200': 'var(--eb-primary-ygreen-200)',
+  				'300': 'var(--eb-primary-ygreen-300)',
+  				'400': 'var(--eb-primary-ygreen-400)',
+  				'500': 'var(--eb-primary-ygreen-500)',
+  				'600': 'var(--eb-primary-ygreen-600)',
+  				'700': 'var(--eb-primary-ygreen-700)',
+  				'800': 'var(--eb-primary-ygreen-800)',
+  				'900': 'var(--eb-primary-ygreen-900)',
+  				DEFAULT: 'var(--eb-primary-ygreen-500)',
+  				foreground: 'var(--eb-primary-ygreen-100)',
+  				container: 'var(--eb-primary-ygreen-200)',
+  				'container-foreground': 'var(--eb-primary-ygreen-700)'
+  			},
+  			'eb-primary-yellow': {
+  				'100': 'var(--eb-primary-yellow-100)',
+  				'200': 'var(--eb-primary-yellow-200)',
+  				'300': 'var(--eb-primary-yellow-300)',
+  				'400': 'var(--eb-primary-yellow-400)',
+  				'500': 'var(--eb-primary-yellow-500)',
+  				'600': 'var(--eb-primary-yellow-600)',
+  				'700': 'var(--eb-primary-yellow-700)',
+  				'800': 'var(--eb-primary-yellow-800)',
+  				'900': 'var(--eb-primary-yellow-900)',
+  				DEFAULT: 'var(--eb-primary-yellow-500)',
+  				foreground: 'var(--eb-primary-yellow-100)',
+  				container: 'var(--eb-primary-yellow-200)',
+  				'container-foreground': 'var(--eb-primary-yellow-700)'
+  			},
+  			'eb-primary-green': {
+  				'100': 'var(--eb-primary-green-100)',
+  				'200': 'var(--eb-primary-green-200)',
+  				'300': 'var(--eb-primary-green-300)',
+  				'400': 'var(--eb-primary-green-400)',
+  				'500': 'var(--eb-primary-green-500)',
+  				'600': 'var(--eb-primary-green-600)',
+  				'700': 'var(--eb-primary-green-700)',
+  				'800': 'var(--eb-primary-green-800)',
+  				'900': 'var(--eb-primary-green-900)',
+  				DEFAULT: 'var(--eb-primary-green-800)',
+  				foreground: 'var(--eb-primary-green-100)',
+  				container: 'var(--eb-primary-green-200)',
+  				'container-foreground': 'var(--eb-primary-green-700)'
+  			},
+  			'eb-primary-tosca': {
+  				'100': 'var(--eb-primary-tosca-100)',
+  				'200': 'var(--eb-primary-tosca-200)',
+  				'300': 'var(--eb-primary-tosca-300)',
+  				'400': 'var(--eb-primary-tosca-400)',
+  				'500': 'var(--eb-primary-tosca-500)',
+  				'600': 'var(--eb-primary-tosca-600)',
+  				'700': 'var(--eb-primary-tosca-700)',
+  				'800': 'var(--eb-primary-tosca-800)',
+  				'900': 'var(--eb-primary-tosca-900)',
+  				DEFAULT: 'var(--eb-primary-tosca-800)',
+  				foreground: 'var(--eb-primary-tosca-100)',
+  				container: 'var(--eb-primary-tosca-200)',
+  				'container-foreground': 'var(--eb-primary-tosca-700)'
+  			},
+  			'eb-primary-gray': {
+  				'100': 'var(--eb-primary-gray-100)',
+  				'200': 'var(--eb-primary-gray-200)',
+  				'300': 'var(--eb-primary-gray-300)',
+  				'400': 'var(--eb-primary-gray-400)',
+  				'500': 'var(--eb-primary-gray-500)',
+  				'600': 'var(--eb-primary-gray-600)',
+  				'700': 'var(--eb-primary-gray-700)',
+  				'800': 'var(--eb-primary-gray-800)',
+  				'900': 'var(--eb-primary-gray-900)',
+  				DEFAULT: 'var(--eb-primary-gray-800)',
+  				foreground: 'var(--eb-primary-gray-100)',
+  				container: 'var(--eb-primary-gray-200)',
+  				'container-foreground': 'var(--eb-primary-gray-700)'
+  			},
+  			background: 'hsl(var(--background))',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
@@ -144,15 +140,37 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-		  animation: {
-			scroll: "scroll 24s linear infinite", 
-		  },
-		  keyframes: {
-			scroll: {
-			  "0%": { transform: "translateX(0)" },
-			  "100%": { transform: "translateX(-50%)" },
-			},
-		  },
+  		animation: {
+  			scroll: 'scroll 24s linear infinite',
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
+  		},
+  		keyframes: {
+  			scroll: {
+  				'0%': {
+  					transform: 'translateX(0)'
+  				},
+  				'100%': {
+  					transform: 'translateX(-50%)'
+  				}
+  			},
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		}
   	}
   },
   plugins: [require("tailwindcss-animate")],

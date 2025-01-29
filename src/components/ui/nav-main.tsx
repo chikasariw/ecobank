@@ -22,13 +22,13 @@ export function NavMain({
     icon?: LucideIcon;
   }[];
 }) {
-  const pathname = usePathname(); // Ambil path saat ini
+  const pathname = usePathname(); 
 
   return (
     <SidebarGroup>
       <SidebarMenu>
         {items.map((item) => {
-          const isActive = pathname === item.url; // Cek apakah URL sekarang sama dengan item menu
+          const isActive = pathname === item.url; 
 
           return (
             <Collapsible
@@ -47,7 +47,7 @@ export function NavMain({
                   </SidebarMenuButton>
                 </Link>
                 {isActive && (
-                  <div className="absolute -left-2 top-0 h-full w-1.5 bg-eb-primary-green-800 rounded-r-lg"></div>
+                  <div className="absolute -left-2 top-0 h-full w-1 bg-eb-primary-green-800 rounded-r-lg"></div>
                 )}
               </SidebarMenuItem>
             </Collapsible>
