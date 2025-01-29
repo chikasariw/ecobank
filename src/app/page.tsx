@@ -2,9 +2,11 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import Header from "@/components/ui/header";
 import InfiniteScroll from "@/components/ui/infinite-carousel";
 import Footer from "@/components/ui/footer";
+import FAQ from "./faq";
 
 export default function Home() {
   return (
@@ -34,7 +36,11 @@ export default function Home() {
             Tukar, kelola, dan manfaatkan sampahmu dengan mudah melalui Cofika.
             Yuk, mulai aksi nyatamu hari ini!
           </h5>
-          <Button className="w-44 mt-12 ps-4 py-2" variant="primary" asChild>
+          <Button
+            className="w-44 mt-12 ps-4 py-4"
+            variant="primarycustom"
+            asChild
+          >
             <Link href="">
               Mulai Sekarang
               <span className="flex h-8 w-8 ms-2 items-center justify-center rounded-3xl bg-white/20">
@@ -98,7 +104,11 @@ export default function Home() {
             Tukarkan sampah anorganikmu jadi uang dan bersama-sama kita wujudkan
             lingkungan yang lebih bersih serta bermanfaat untuk semua.
           </h5>
-          <Button className="w-44 mt-4 ps-4 py-2" variant="primary" asChild>
+          <Button
+            className="w-44 mt-4 ps-4 py-4"
+            variant="primarycustom"
+            asChild
+          >
             <Link href="">
               Mulai Sekarang
               <span className="flex h-8 w-8 ms-2 items-center justify-center rounded-3xl bg-white/20">
@@ -139,8 +149,7 @@ export default function Home() {
               <div className="bg-white/20 px-6 py-4 rounded-3xl backdrop-blur-md h-40 mt-4"></div>
             </div>
             <div className="col-span-2 bg-eb-primary-green-900 rounded-3xl backdrop-blur-md py-6 px-6">
-              <div className="bg-white/20 px-6 py-4 rounded-2xl backdrop-blur-md h-36"></div>
-              <h4 className="font-bold text-xl text-eb-primary-gray-800 mt-4">
+              <h4 className="font-bold text-xl text-eb-primary-gray-800">
                 Data Katalog Produk
               </h4>
               <p className="text-base text-eb-primary-gray-700 mt-2">
@@ -148,10 +157,10 @@ export default function Home() {
                 operations, enhance customer experience, and boost revenue with
                 ease. boost revenue with ease.
               </p>
+              <div className="bg-white/20 px-6 py-4 rounded-2xl backdrop-blur-md h-36 mt-4"></div>
             </div>
             <div className="col-span-2 bg-eb-primary-green-900  rounded-3xl backdrop-blur-md py-6 px-6">
-              <div className="bg-white/20 px-6 py-4 rounded-2xl backdrop-blur-md h-36"></div>
-              <h4 className="font-bold text-xl text-eb-primary-gray-800 mt-4">
+              <h4 className="font-bold text-xl text-eb-primary-gray-800">
                 Data Katalog Produk
               </h4>
               <p className="text-base text-eb-primary-gray-700 mt-2">
@@ -159,6 +168,7 @@ export default function Home() {
                 operations, enhance customer experience, and boost revenue with
                 ease. boost revenue with ease.
               </p>
+              <div className="bg-white/20 px-6 py-4 rounded-2xl backdrop-blur-md h-36 mt-4"></div>
             </div>
             <div className="col-span-3 bg-eb-primary-green-900  px-6 py-4 rounded-3xl backdrop-blur-md py-6 px-6">
               <h4 className="font-bold text-xl text-eb-primary-gray-800 ">
@@ -175,7 +185,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* FAQ */}
+      {/* FAQ 
       <div className="flex flex-col max-w-screen-xl items-center justify-center mx-auto p-10 my-4 lg:my-24">
         <div className="flex flex-1 relative items-center ">
           <div className="flex flex-1 flex-col justify-center">
@@ -192,47 +202,67 @@ export default function Home() {
         </div>
         <div className="flex flex-1 relative items-center w-full mt-12">
           <div className="grid grid-cols-2 gap-4 w-full">
-            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4">
+            <div className="flex flex-row bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4 items-center justify-between">
               <h5 className="font-semibold text-eb-primary-green-700">
                 Bagaimana cara mulai jual sampah di Cofika?
               </h5>
+              <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200">
+                <ChevronDown className="h-4" />
+              </div>
             </div>
-            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4">
+            <div className="flex flex-row bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4 items-center justify-between">
               <h5 className="font-semibold text-eb-primary-green-700">
                 Apakah ada jenis sampah tertentu yang tidak diterima di Cofika?
               </h5>
+              <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200">
+                <ChevronDown className="h-4" />
+              </div>
             </div>
-            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4">
+            <div className="flex flex-row bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4 items-center justify-between">
               <h5 className="font-semibold text-eb-primary-green-700">
                 Berapa lama proses pembayaran setelah sampah dijual?
               </h5>
+              <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200">
+                <ChevronDown className="h-4" />
+              </div>
             </div>
-            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4">
+            <div className="flex flex-row bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4 items-center justify-between">
               <h5 className="font-semibold text-eb-primary-green-700">
                 Apakah saya bisa melihat harga sampah sebelum menjualnya?
               </h5>
+              <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200">
+                <ChevronDown className="h-4" />
+              </div>
             </div>
-            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4">
+            <div className="flex flex-row bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4 items-center justify-between">
               <h5 className="font-semibold text-eb-primary-green-700">
                 Apakah saya perlu memilah sampah sebelum dijual di Cofika?
               </h5>
+              <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200">
+                <ChevronDown className="h-4" />
+              </div>
             </div>
-            <div className="bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4">
+            <div className="flex flex-row bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4 items-center justify-between">
               <h5 className="font-semibold text-eb-primary-green-700">
                 Apakah ada batas minimal jumlah sampah yang bisa dijual?
               </h5>
+              <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200">
+                <ChevronDown className="h-4" />
+              </div>
             </div>
           </div>
         </div>
       </div>
+        */}
+
+      
+      {/* FAQ */}
+      <FAQ />
+      
 
       {/* CTA */}
       <div className="flex flex-col max-w-screen-xl items-center justify-center mx-auto p-10 my-4 lg:my-24">
         <div className="flex items-center justify-center bg-eb-primary-green-800 rounded-3xl w-full py-20 relative overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="radial-green-cta"></div>
-            <div className="radial-green-right-cta "></div>
-          </div>
           <div className="flex flex-col justify-center items-center">
             <h1 className="text-eb-primary-gray-100 font-bold text-3xl mt-2 text-center">
               Cari Tahu Sampah yang Dapat Ditukar di Cofika
@@ -241,14 +271,22 @@ export default function Home() {
               Pelajari sampah yang dapat ditukar di Cofika dan cari tahu
               keuntungan yang bisa kamu peroleh!
             </p>
-            <Button className="w-44 mt-4 ps-4 py-2" variant="secondary" asChild>
+            <Button
+              className="w-44 mt-4 ps-4 py-2"
+              variant="secondarycustom"
+              asChild
+            >
               <Link href="">
                 Mulai Sekarang
-                <span className="flex h-8 w-8 ms-2 items-center justify-center rounded-3xl bg-white/20">
+                <span className="flex h-8 w-8 ms-2 items-center justify-center rounded-3xl bg-white/50">
                   <ArrowUpRight />
                 </span>
               </Link>
             </Button>
+          </div>
+          <div className="absolute inset-0">
+            <div className="radial-green-cta"></div>
+            <div className="radial-green-right-cta "></div>
           </div>
         </div>
       </div>
