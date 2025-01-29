@@ -51,7 +51,7 @@ const data = {
     },
     {
       title: "Data Sampah Ditukar",
-      url: "#",
+      url: "/admin/data-sampah-ditukar",
       icon: ScrollText 
     },
     {
