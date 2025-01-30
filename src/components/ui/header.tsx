@@ -40,7 +40,7 @@ export default function Header() {
 
         {/* Buttons */}
         <div className="flex space-x-4">
-          <Button className="w-auto px-6 py-2" variant="primarycustom" asChild>
+          <Button className="w-auto px-6 py-2" variant="default" asChild>
             <Link href="">Daftar</Link>
           </Button>
           <Button className="w-auto px-6 py-2" variant="primary" asChild>

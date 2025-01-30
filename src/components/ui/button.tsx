@@ -14,6 +14,10 @@ const buttonVariants = cva(
         secondary:
           "bg-gradient-to-r from-eb-primary-yellow-600 to-eb-primary-yellow-400 text-eb-primary-green-700 font-bold hover:from-eb-primary-yellow-700 hover:to-eb-primary-yellow-600 rounded-3xl px-3",
         primarycustom:
+          "bg-gradient-to-r from-eb-primary-green-600 to-eb-primary-green-400 text-eb-primary-green-100 font-bold hover:from-eb-primary-green-700 hover:to-eb-primary-green-600 rounded-3xl",
+        secondarycustom: 
+          "bg-gradient-to-r from-eb-primary-yellow-600 to-eb-primary-yellow-400 text-eb-primary-green-800 font-bold hover:from-eb-primary-green-700 hover:to-eb-primary-green-600 rounded-3xl",
+        default:
           "bg-eb-primary-green-100 text-eb-primary-green-800 font-bold hover:eb-primary-yellow-700 rounded-3xl px-3",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/70 rounded-3xl px-3",

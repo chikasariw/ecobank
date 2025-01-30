@@ -310,6 +310,7 @@ body,
   opacity: 0.2;
 }
 
+/* Animasi Scroll Brand */
 @layer utilities {
   @keyframes scroll {
     0% {
@@ -321,8 +322,8 @@ body,
   }
 
   .animate-scroll {
-    animation: scroll 16s linear infinite; /* Durasi scrolling */
+    animation: scroll 20s linear infinite; 
     display: flex;
-    width: 200%; /* Double content width for seamless looping */
+    width: 200%; 
   }
 }
