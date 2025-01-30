@@ -10,7 +10,7 @@ import FAQ from "./faq";
 
 export default function Home() {
   return (
-    <main>
+    <main className="bg-white">
       <Header />
 
       {/* HERO */}
