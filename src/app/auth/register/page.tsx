@@ -26,7 +26,7 @@ export default function RegisterPage() {
             <div className="radial-green-right hidden lg:flex"></div>
             <div className="radial-green-right-md hidden md:flex lg:hidden"></div>
             {/* Kiri: Formulir Pendaftaran */}
-            <div className="flex flex-1 flex-col justify-center items-center bg-white rounded-none sm:rounded-3xl p-10 md:px-24 lg:px-28 xl:px-36 xl:max-w-[50%] md:m-12 sm:m-5 xl:m-5 z-10">
+            <div className="flex flex-1 flex-col justify-center items-center bg-white rounded-none sm:rounded-3xl p-10 md:px-24 lg:px-28 xl:px-28 xl:max-w-[50%] md:m-12 sm:m-5 xl:m-5 z-10">
                 <Image
                     className="flex lg:hidden my-10 "
                     src="/logo/ecobank-logo-icon.svg"
@@ -171,7 +171,7 @@ export default function RegisterPage() {
             </div>
 
             {/* Kanan: Branding EcoBank */}
-            <div className="hidden lg:flex flex-1 flex-col items-center justify-center text-white text-center w-1/2 px-20 z-10">
+            <div className="hidden lg:flex flex-1 flex-col items-center justify-center text-white text-center w-1/2 px-40 z-10">
                 <Image src="/logo/ecobank-logo-icon.svg" alt="EcoBank Logo" width={160} height={100} priority />
                 <h2 className="text-4xl font-bold mt-4">EcoBank.</h2>
                 <p className="text-sm mt-6">Tukar sampahmu dengan mudah melalui EcoBank. <br />Yuk, mulai aksi nyatamu hari ini!</p>
