@@ -55,7 +55,7 @@ const FAQ = () => {
       </div>
 
       {/* FAQ Section */}
-      <div className="flex flex-1 relative items-s w-full">
+      <div className="flex flex-1 relative items-s w-full pt-10 md:pt-10 lg:pt-0">
         <div className="grid grid-row gap-4 w-full">
           {faqData.map((item, index) => (
             <div
