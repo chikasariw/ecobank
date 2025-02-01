@@ -36,7 +36,7 @@ const data = {
     },
     {
       title: "Data Pengguna",
-      url: "#",
+      url: "/admin/data-pengguna",
       icon: UsersRound
     },
     {

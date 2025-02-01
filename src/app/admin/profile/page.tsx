@@ -27,13 +27,13 @@ import Password from "./password";
 import RadioGender from "./radio-gender";
 import ProfileImage from "./profile-image";
 
-export default function ProfileDetail() {
+export default function ProfilePage() {
   return (
     <Card>
       <form>
         <CardHeader>
           <CardTitle className="flex justify-between">
-            <p>Data <span className="text-eb-primary-green-800">Barang</span></p>
+            <p>Data <span className="text-eb-primary-green-800">Pengguna</span></p>
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>

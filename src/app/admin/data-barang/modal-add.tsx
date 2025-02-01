@@ -38,26 +38,26 @@ export function ModalAdd() {
             <Label htmlFor="namabarang">
               Nama Barang
             </Label>
-            <Input id="namabarang" placeholder="Masukkan Nama Barang" className="mt-1" />
+            <Input id="namabarang" placeholder="Masukkan Nama Barang" className="mt-2" />
           </div>
           <div>
             <Label htmlFor="gambar">
               Foto Barang
             </Label>
-            <Input id="gambar" type="file" className="mt-1" />
+            <Input id="gambar" type="file" className="mt-2" />
           </div>
           <div className="flex gap-5">
             <div className="w-1/2">
                 <Label htmlFor="hargabeli">
                 Harga Beli
                 </Label>
-                <Input id="hargabeli" placeholder="Masukkan Harga Beli" className="mt-1" />
+                <Input id="hargabeli" placeholder="Masukkan Harga Beli" className="mt-2" />
             </div>
             <div className="w-1/2">
                 <Label htmlFor="hargajual">
                 Harga Jual
                 </Label>
-                <Input id="hargajual" placeholder="Masukkan Harga Jual" className="mt-1" />
+                <Input id="hargajual" placeholder="Masukkan Harga Jual" className="mt-2" />
           </div>
           </div>
         </div>
