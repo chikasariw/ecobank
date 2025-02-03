@@ -293,6 +293,41 @@ body,
   pointer-events: none;
 }
 
+/* Responsif */
+@media (max-width: 768px) {
+  .radial-green-cta {
+    width: 250px;
+    height: 250px;
+    top: 15%;
+    right: -2%;
+  }
+
+  .radial-green-right-cta {
+    width: 25vw;
+    height: 25vw;
+    top: 85%;
+    right: -20%;
+  }
+}
+
+@media (max-width: 480px) {
+  .radial-green-cta,
+  .radial-green-right-cta {
+    width: 40vw;
+    height: 40vw;
+  }
+
+  .radial-green-cta {
+    top: 10%;
+    left: 10%;
+  }
+
+  .radial-green-right-cta {
+    top: 90%;
+    right: 10%;
+  }
+}
+
 .radial-dots-cta {
   width: 195px;
   height: 195px;

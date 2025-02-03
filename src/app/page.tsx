@@ -149,7 +149,7 @@ export default function Home() {
               </p>
               <div className="bg-white/20 px-6 py-4 rounded-3xl backdrop-blur-md h-40 mt-4"></div>
             </div>
-            <div className="col-span-2 bg-eb-primary-green-900 rounded-3xl backdrop-blur-md py-6 px-6">
+            <div className="lg:col-span-2 col-span-3 bg-eb-primary-green-900 rounded-3xl backdrop-blur-md py-6 px-6">
               <h4 className="font-bold text-xl text-eb-primary-gray-800">
                 Data Katalog Produk
               </h4>
@@ -160,7 +160,7 @@ export default function Home() {
               </p>
               <div className="bg-white/20 px-6 py-4 rounded-2xl backdrop-blur-md h-36 mt-4"></div>
             </div>
-            <div className="col-span-2 bg-eb-primary-green-900  rounded-3xl backdrop-blur-md py-6 px-6">
+            <div className="lg:col-span-2 col-span-3 bg-eb-primary-green-900  rounded-3xl backdrop-blur-md py-6 px-6">
               <h4 className="font-bold text-xl text-eb-primary-gray-800">
                 Data Katalog Produk
               </h4>
@@ -265,10 +265,10 @@ export default function Home() {
       <div className="flex flex-col max-w-screen-xl items-center justify-center mx-auto p-10 my-4 lg:my-24">
         <div className="flex items-center justify-center bg-eb-primary-green-800 rounded-3xl w-full py-20 relative overflow-hidden">
           <div className="flex flex-col justify-center items-center">
-            <h1 className="text-eb-primary-gray-100 font-bold text-3xl mt-2 text-center">
+            <h1 className="text-eb-primary-gray-100 font-bold text-3xl mt-2 text-center md:max-w-sm ">
               Cari Tahu Sampah yang Dapat Ditukar di EcoBank
             </h1>
-            <p className="max-w-xl text-eb-primary-gray-100 text-base font-regular text-center mt-4">
+            <p className="md:max-w-md lg:max-w-lg text-eb-primary-gray-100 text-base font-regular text-center mt-4">
               Pelajari sampah yang dapat ditukar di EcoBank dan cari tahu
               keuntungan yang bisa kamu peroleh!
             </p>
