@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import type { Metadata } from "next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,19 +17,28 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
 });
 
+export const metadata: Metadata = {
+  title: "EcoBank.",
+  description: "EcoBank Website",
+  keywords: ["Eco", "Recycle", "Sampah", "Penukaran Sampah"],
+  authors: [{ name: "EcoBank Team" }],
+  applicationName: "EcoBank",
+  icons: {
+    icon: "/logo/ecobank-logo-icon.svg",
+  },
+};
+
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="id" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${plusJakartaSans.variable} antialiased bg-eb-primary-gray-100`}
+        suppressHydrationWarning
       >
-          <main>
-            {children}
-          </main>
+
+        <main>{children}</main>
       </body>
     </html>
   );

@@ -46,7 +46,7 @@ const data = {
     },
     {
       title: "Data Keuangan",
-      url: "#",
+      url: "/admin/data-keuangan",
       icon: BadgeDollarSign
     },
     {
@@ -56,7 +56,7 @@ const data = {
     },
     {
       title: "Penukaran",
-      url: "#",
+      url: "/admin/penukaran",
       icon: Handshake
     }
   ]

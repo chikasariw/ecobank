@@ -1,22 +1,12 @@
-"use client";
-import * as React from "react";
+import DashboardClient from "./client";
 
-import { WelcomeSection } from "./welcome-card"
-import { BalanceCard } from "./balance-card"
-import { TransactionHistory } from "./transaction-history"
-import { StatsSection } from "./chart-card"
+export async function generateMetadata() {
+    return {
+        title: "Dashboard - EcoBank.",
+        description: "Halaman Dashboard Barang EcoBank.",
+    };
+}
 
 export default function DashboardPage() {
-  return (
-    <div>
-      <div className="lg:flex gap-3">
-        <WelcomeSection />
-        <BalanceCard />
-      </div>
-      <div className="lg:flex gap-3">
-        <TransactionHistory />
-        <StatsSection />
-      </div>
-    </div>
-  )
+    return <DashboardClient />;
 }

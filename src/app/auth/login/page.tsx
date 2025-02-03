@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Eye, EyeOff } from 'lucide-react';
 
-export default function RegisterPage() {
+export default function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
     const [password, setPassword] = useState("");

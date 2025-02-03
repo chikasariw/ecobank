@@ -4,13 +4,10 @@ import * as React from "react";
 import {
     Card,
     CardContent,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import {
@@ -29,7 +26,7 @@ export default function ProfileDetail() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle className="flex justify-between">
+                <CardTitle className="flex md:justify-start lg:justify-between">
                     <p>Detail <span className="text-eb-primary-green-800">Pengguna</span></p>
                     <Breadcrumb>
                         <BreadcrumbList>
@@ -55,65 +52,55 @@ export default function ProfileDetail() {
                         <ProfileImage />
 
                         {/* Form */}
-                        <div className="grid gap-5">
-                            <div className="md:flex gap-2">
+                        <div className="grid gap-5 mt-3">
+                            <div className="flex gap-2 md:justify-between lg:justify-start">
                                 <Label
                                     htmlFor="nama_pengguna"
-                                    className="w-full md:w-1/2 xl:w-1/5 mb-1"
+                                    className="w-full md:w-1/3 xl:w-1/5 mb-1"
                                 >
                                     Nama Pengguna
                                 </Label>
-                                <Input defaultValue="Park Jisung" />
+                                <p className="text-sm text-eb-primary-green-800 font-medium text-nowrap">Park Jisung</p>
                             </div>
 
-                            <div className="md:flex gap-2">
+                            <div className="flex gap-2 md:justify-between lg:justify-start">
                                 <Label
                                     htmlFor="email"
-                                    className="w-full md:w-1/2 xl:w-1/5 mb-1"
+                                    className="w-full md:w-1/3 xl:w-1/5 mb-1"
                                 >
                                     Email
                                 </Label>
-                                <Input type="email" defaultValue="parkjisung@gmail.com" />
+                                <p className="text-sm text-eb-primary-green-800 font-medium text-nowrap">parkjisung@gmail.com</p>
                             </div>
 
-                            <div className="md:flex gap-2">
+                            <div className="flex gap-2 md:justify-between lg:justify-start">
                                 <Label
                                     htmlFor="nomor_telepon"
-                                    className="w-full md:w-1/2 xl:w-1/5 mb-1"
+                                    className="w-full md:w-1/3 xl:w-1/5 mb-1"
                                 >
                                     Nomor Telepon
                                 </Label>
-                                <Input defaultValue="0828376847563" />
+                                <p className="text-sm text-eb-primary-green-800 font-medium text-nowrap">0828376847563</p>
                             </div>
 
-                            <div className="md:flex gap-2">
-                                <Label
-                                    htmlFor="kata_sandi"
-                                    className="w-full md:w-1/2 xl:w-1/5 mb-1"
-                                >
-                                    Kata Sandi
-                                </Label>
-                                {/* <Password /> */}
-                            </div>
-
-                            <div className="md:flex gap-2">
+                            <div className="flex gap-2 md:justify-between lg:justify-start">
                                 <Label
                                     htmlFor="tanggal_lahir"
-                                    className="w-full md:w-1/2 xl:w-1/5 mb-1"
+                                    className="w-full md:w-1/3 xl:w-1/5 mb-1"
                                 >
                                     Tanggal Lahir
                                 </Label>
-                                {/* <DatePicker /> */}
+                                <p className="text-sm text-eb-primary-green-800 font-medium text-nowrap">5 Februari 2002</p>
                             </div>
 
-                            <div className="md:flex gap-2">
+                            <div className="flex gap-2 md:justify-between lg:justify-start">
                                 <Label
                                     htmlFor="jenis_kelamin"
-                                    className="w-full md:w-1/2 xl:w-1/5 mb-1"
+                                    className="w-full md:w-1/3 xl:w-1/5 mb-1"
                                 >
                                     Jenis Kelamin
                                 </Label>
-                                {/* <RadioGender /> */}
+                                <p className="text-sm text-eb-primary-green-800 font-medium text-nowrap">Laki-laki</p>
                             </div>
                         </div>
                     </div>

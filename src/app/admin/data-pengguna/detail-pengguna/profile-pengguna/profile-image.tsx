@@ -1,8 +1,6 @@
 "use client"
 import React, { useState } from 'react'
 
-import { Pencil } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export default function ProfileImage() {
     const [imageSrc, setImageSrc] = useState<string | null>(null); 
@@ -25,8 +23,8 @@ export default function ProfileImage() {
     };
 
     return (
-        <div className="flex justify-center lg:block">
-            <div className="relative w-3/4 sm:w-1/3 md:w-1/2 lg:w-full aspect-square overflow-hidden rounded-lg border bg-muted">
+        <div className="flex justify-center">
+            <div className="relative w-1/2 sm:w-1/3 md:w-1/5 lg:w-full aspect-square overflow-hidden rounded-lg border bg-muted">
                 {imageSrc ? (
                     <img
                         src={imageSrc} 
@@ -44,23 +42,6 @@ export default function ProfileImage() {
                         className="h-full w-full object-cover"
                     />
                 )}
-                
-                <Button
-                    size="icon"
-                    variant="ghost"
-                    className="absolute right-2 top-2"
-                    type="button" 
-                    onClick={handleButtonClick} 
-                >
-                    <Pencil />
-                </Button>
-                <input
-                    type="file"
-                    accept="image/jpeg, image/png, image/jpg" 
-                    ref={fileInputRef}
-                    className="hidden" 
-                    onChange={handleImageUpload} 
-                />
             </div>
         </div>
     )

@@ -1,16 +1,21 @@
-import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
-import { useState } from "react";
+"use client"; // wajib jika pakai useRouter
 
-export function DetailButton() {
-  const [isOpen, setIsOpen] = useState(false);
+import { useRouter } from "next/navigation";
+import { ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+export function UserDetailButton({ userId }: { userId: string }) {
+  const router = useRouter();
 
   return (
-    <div className="flex gap-2">
-      <Button size="sm" variant="prominent" onClick={() => setIsOpen(true)} className="flex items-center gap-1">
-        Detail Pengguna
-        <ChevronRight />
-      </Button>
-    </div>
+    <Button
+      size="sm"
+      variant="prominent"
+      onClick={() => router.push(`/admin/data-pengguna/detail-pengguna/`)}
+      className="flex items-center gap-1"
+    >
+      Detail Pengguna
+      <ChevronRight />
+    </Button>
   );
 }

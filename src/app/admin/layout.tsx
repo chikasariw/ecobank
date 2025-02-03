@@ -21,9 +21,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <SidebarProvider>
                 <AppSidebar />
                 <SidebarInset>
-                    <HeaderAdmin/>
+                    <HeaderAdmin />
                     <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-                    {children}
+                        {children}
                     </div>
                 </SidebarInset>
             </SidebarProvider>
