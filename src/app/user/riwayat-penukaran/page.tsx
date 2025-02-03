@@ -16,7 +16,10 @@ import {
 
 const data = [
     { id: "1", tipetransaksi: "nabung", nominaltransaksi: 100000, tanggaltransaksi: "2024-02-03" },
-    { id: "2", tipetransaksi: "ambil", nominaltransaksi: 50000, tanggaltransaksi: "2024-02-04" }
+    { id: "2", tipetransaksi: "ambil", nominaltransaksi: 50000, tanggaltransaksi: "2024-02-04" },
+    { id: "3", tipetransaksi: "ambil", nominaltransaksi: 50000, tanggaltransaksi: "2022-08-03" },
+    { id: "4", tipetransaksi: "nabung", nominaltransaksi: 100000, tanggaltransaksi: "2024-02-03" },
+    { id: "5", tipetransaksi: "ambil", nominaltransaksi: 50000, tanggaltransaksi: "2024-02-04" },
 ];
 
 
@@ -40,6 +43,7 @@ export default function DataBarang() {
                         </Breadcrumb>
                     </CardTitle>
                 </CardHeader>
+                
                 <CardContent>
                     <div className="rounded-xl border border-eb-primary-gray-200 p-4">
                         <DataTable columns={columns} data={data} />

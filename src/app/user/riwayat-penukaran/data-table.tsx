@@ -64,20 +64,20 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
   return (
     <div className="w-full">
       <div className="flex items-center justify-between py-4">
-        <div className="relative max-w-md">
+        <div className="relative justify-between w-full max-w-lg">
           <Search
             className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
             size={18}
           />
           <Input
-            placeholder="Cari Tanggal..."
+            placeholder="Cari Tanggal Transaksi..."
             value={
               (table.getColumn("tanggaltransaksi")?.getFilterValue() as string) ?? ""
             }
             onChange={(event) =>
               table.getColumn("tanggaltransaksi")?.setFilterValue(event.target.value)
             }
-            className="w-full pl-12 pr-4 py-2 rounded-3xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-eb-primary-green-800 focus:border-eb-primary-green-800"
+            className="w-full pl-12 pr-4 py-5 rounded-3xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-eb-primary-green-800 focus:border-eb-primary-green-800"
           />
         </div>
         
