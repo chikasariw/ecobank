@@ -2,7 +2,7 @@
 import * as React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DataTable } from "./data-table";
-import { columns, Barang } from "./columns";
+import { columns, Keuangan } from "./columns";
 
 import {
     Breadcrumb,
@@ -14,15 +14,18 @@ import {
 } from "@/components/ui/breadcrumb"
 
 
-const data: Barang[] = [
+const data: Keuangan[] = [
     {
-        id: "m5gr84i9",
-        namabarang: "Lorem Ipsum",
-        penukar: "parkjisung@gmail.com",
-        totalpenukaran: 90,
-        satuan: "gram",
-        hargapenukaran: 90.000,
-        waktupenukaran: "12.00, 12 Januari 2025",
+        id: "1",
+        tipetransaksi: "masuk",
+        nominaltransaksi: 20,
+        tanggaltransaksi: "12:00, 01/02/2025",
+    },
+    {
+        id: "1",
+        tipetransaksi: "keluar",
+        nominaltransaksi: 30,
+        tanggaltransaksi: "12:00, 02/02/2025",
     },
 ];
 
@@ -32,7 +35,7 @@ export default function DataKeuanganClient() {
             <Card>
                 <CardHeader>
                     <CardTitle className="flex justify-between">
-                        <p>Data <span className="text-eb-primary-green-800">Sampah Ditukar</span></p>
+                        <p>Data <span className="text-eb-primary-green-800">Keuangan</span></p>
                         <Breadcrumb>
                             <BreadcrumbList>
                                 <BreadcrumbItem>
@@ -40,7 +43,7 @@ export default function DataKeuanganClient() {
                                 </BreadcrumbItem>
                                 <BreadcrumbSeparator />
                                 <BreadcrumbItem>
-                                    <BreadcrumbPage>Data Sampah Ditukar</BreadcrumbPage>
+                                    <BreadcrumbPage>Data Keuangan</BreadcrumbPage>
                                 </BreadcrumbItem>
                             </BreadcrumbList>
                         </Breadcrumb>
@@ -48,7 +51,7 @@ export default function DataKeuanganClient() {
                 </CardHeader>
                 <CardContent>
                     <div className="rounded-xl border border-eb-primary-gray-200 p-4">
-                        <DataTable columns={columns} data={data} />
+                        <DataTable data={data} />
                     </div>
                 </CardContent>
             </Card>

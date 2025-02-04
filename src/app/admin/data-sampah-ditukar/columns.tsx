@@ -5,7 +5,6 @@ export type Barang = {
     namabarang: string;
     penukar: string;
     totalpenukaran: number;
-    satuan: string;
     hargapenukaran: number;
     waktupenukaran: string;
 };
@@ -31,13 +30,12 @@ export const columns: ColumnDef<Barang>[] = [
     {
         accessorKey: "totalpenukaran",
         header: () => <div className="text-left">Total Penukaran</div>,
-        cell: ({ row }) => <div className="lowercase text-left">{row.getValue("totalpenukaran")}</div>,
-    },
-    {
-        accessorKey: "satuan",
-        header: () => <div className="text-left">Satuan</div>,
-        cell: ({ row }) => <div className="lowercase text-left">{row.getValue("satuan")}</div>,
-    },   
+        cell: ({ row }) => (
+            <div className="lowercase text-left">
+                {row.getValue("totalpenukaran")} gram
+            </div>
+        ),
+    },    
     {
         accessorKey: "hargapenukaran",
         header: () => <div className="text-left">Harga Penukaran</div>,

@@ -20,7 +20,6 @@ const data: Barang[] = [
         namabarang: "Lorem Ipsum",
         penukar: "parkjisung@gmail.com",
         totalpenukaran: 90,
-        satuan: "gram",
         hargapenukaran: 90.000,
         waktupenukaran: "12.00, 12 Januari 2025",
     },

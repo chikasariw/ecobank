@@ -2,8 +2,8 @@ import DataKeuanganClient from "./client";
 
 export async function generateMetadata() {
     return {
-        title: "Data Sampah Ditukar - EcoBank.",
-        description: "Halaman Data Sampah Ditukar EcoBank.",
+        title: "Data Keuangan - EcoBank.",
+        description: "Halaman Data Keuangan EcoBank.",
     };
 }
 
