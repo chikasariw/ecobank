@@ -26,6 +26,7 @@ const buttonVariants = cva(
         outline:
           "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground rounded-3xl",
         ghost: "bg-eb-primary-gray-100 text-eb-primary-gray-500 hover:bg-eb-primary-gray-300 rounded-3xl px-3",
+        backdrop: "bg-white/10 hover:bg-white/20 items-center justify-center rounded-3xl px-5",
         link: "text-eb-primary-green-800",
       },
       size: {
