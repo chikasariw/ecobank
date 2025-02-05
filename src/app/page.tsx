@@ -14,8 +14,8 @@ export default function Home() {
       <Header />
 
       {/* HERO */}
-      <div className="flex flex-col lg:flex-row max-w-screen-xl items-center justify-center mx-auto p-10 my-4 lg:my-6">
-        <div className="flex-1 w-full items-start justify-start">
+      <div className="flex flex-col lg:flex-row max-w-screen-xl items-center justify-center scroll-mt-[100px] mx-auto p-10 my-4 lg:my-10 lg:mt-20" id="beranda">
+        <div className="flex-1 w-full items-start justify-start" id="beranda">
           <h4 className="text-eb-primary-gray-600 text-sm font-medium uppercase tracking-wide">
             Langkah kecil manfaat besar
           </h4>
@@ -73,14 +73,14 @@ export default function Home() {
       </div>
 
       {/* BRAND */}
-      <div className="flex flex-row bg-eb-primary-green-700 max-w-screen-auto items-center justify-center mx-auto my-4 lg:my-4">
+      <div className="flex flex-row max-w-screen-auto items-center justify-center mx-auto my-4 ">
         <div className="flex flex-1 relative items-center ">
           <InfiniteScroll />
         </div>
       </div>
 
       {/* ABOUT */}
-      <div className="flex flex-col-reverse lg:flex-row max-w-screen-xl items-center justify-center mx-auto p-10 my-4 lg:my-24">
+      <div className="flex flex-col-reverse lg:flex-row max-w-screen-xl items-center justify-center scroll-mt-[120px] mx-auto p-10 my-4 lg:my-16" id="tentang-kami">
         <div className="flex flex-1 w-full relative items-center md:items-end md:justify-end lg:justify-start pt-10 md:pt-10 lg:pt-0">
           <Image
             src="/content/about-image.png"
@@ -121,7 +121,7 @@ export default function Home() {
       </div>
 
       {/* FITUR */}
-      <div className="flex flex-col max-w-screen-xl items-center justify-center mx-auto p-10 my-4 lg:my-24">
+      <div className="flex flex-col max-w-screen-xl items-center justify-center scroll-mt-[110px] mx-auto p-10 my-4 lg:my-16" id="fitur">
         <div className="flex flex-1 relative items-center ">
           <div className="flex flex-1 flex-col justify-center">
             <h4 className="text-eb-primary-gray-600 text-sm font-medium uppercase tracking-wide text-center">
@@ -185,84 +185,13 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      {/* FAQ 
-      <div className="flex flex-col max-w-screen-xl items-center justify-center mx-auto p-10 my-4 lg:my-24">
-        <div className="flex flex-1 relative items-center ">
-          <div className="flex flex-1 flex-col justify-center">
-            <h4 className="text-eb-primary-gray-600 text-sm font-medium uppercase tracking-wide text-center">
-              Faq Ecobank
-            </h4>
-            <h1 className="text-eb-primary-gray-800 font-bold text-4xl mt-2 text-center">
-              Ada pertanyaan? Kami Punya Jawabannya!
-            </h1>
-            <h5 className="text-eb-primary-gray-600 text-base font-medium text-center mt-4">
-              Temukan jawaban cepat untuk pertanyaan umum tentang EcoBank kami.
-            </h5>
-          </div>
-        </div>
-        <div className="flex flex-1 relative items-center w-full mt-12">
-          <div className="grid grid-cols-2 gap-4 w-full">
-            <div className="flex flex-row bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4 items-center justify-between">
-              <h5 className="font-semibold text-eb-primary-green-700">
-                Bagaimana cara mulai jual sampah di EcoBank?
-              </h5>
-              <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200">
-                <ChevronDown className="h-4" />
-              </div>
-            </div>
-            <div className="flex flex-row bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4 items-center justify-between">
-              <h5 className="font-semibold text-eb-primary-green-700">
-                Apakah ada jenis sampah tertentu yang tidak diterima di EcoBank?
-              </h5>
-              <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200">
-                <ChevronDown className="h-4" />
-              </div>
-            </div>
-            <div className="flex flex-row bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4 items-center justify-between">
-              <h5 className="font-semibold text-eb-primary-green-700">
-                Berapa lama proses pembayaran setelah sampah dijual?
-              </h5>
-              <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200">
-                <ChevronDown className="h-4" />
-              </div>
-            </div>
-            <div className="flex flex-row bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4 items-center justify-between">
-              <h5 className="font-semibold text-eb-primary-green-700">
-                Apakah saya bisa melihat harga sampah sebelum menjualnya?
-              </h5>
-              <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200">
-                <ChevronDown className="h-4" />
-              </div>
-            </div>
-            <div className="flex flex-row bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4 items-center justify-between">
-              <h5 className="font-semibold text-eb-primary-green-700">
-                Apakah saya perlu memilah sampah sebelum dijual di EcoBank?
-              </h5>
-              <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200">
-                <ChevronDown className="h-4" />
-              </div>
-            </div>
-            <div className="flex flex-row bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4 items-center justify-between">
-              <h5 className="font-semibold text-eb-primary-green-700">
-                Apakah ada batas minimal jumlah sampah yang bisa dijual?
-              </h5>
-              <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200">
-                <ChevronDown className="h-4" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-        */}
-
       
       {/* FAQ */}
       <FAQ />
       
 
       {/* CTA */}
-      <div className="flex flex-col max-w-screen-xl items-center justify-center mx-auto p-10 my-4 lg:my-24">
+      <div className="flex flex-col max-w-screen-xl items-center justify-center scroll-mt-[120px] mx-auto p-10 my-4 lg:my-16">
         <div className="flex items-center justify-center bg-eb-primary-green-800 rounded-3xl w-full py-20 relative overflow-hidden">
           <div className="flex flex-col justify-center items-center">
             <h1 className="text-eb-primary-gray-100 font-bold text-3xl mt-2 text-center md:max-w-sm ">

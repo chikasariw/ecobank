@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="w-full bg-white border-b-2 border-eb-primary-gray-100">
+    <header className="fixed top-0 w-full bg-white/70 backdrop-blur-md z-50">
       <div className="max-w-screen-xl mx-auto flex items-center justify-between px-10 py-4">
         {/* Logo */}
         <div className="flex items-center">
