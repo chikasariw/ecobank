@@ -13,7 +13,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { Home, UsersRound, ScrollText , BadgeDollarSign, SquareChartGantt, Handshake } from 'lucide-react';
+import { Home, UsersRound, ScrollText , BadgeDollarSign, SquareChartGantt, Handshake, HandCoins, Store, PackageSearch, PackagePlus } from 'lucide-react';
 
 
 // This is sample data.
@@ -42,7 +42,7 @@ const data = {
     {
       title: "Data Barang",
       url: "/admin/data-barang",
-      icon: SquareChartGantt
+      icon: PackageSearch
     },
     {
       title: "Data Keuangan",
@@ -55,9 +55,14 @@ const data = {
       icon: ScrollText 
     },
     {
-      title: "Penukaran",
-      url: "/admin/penukaran",
-      icon: Handshake
+      title: "Setor",
+      url: "/admin/setor",
+      icon: PackagePlus
+    },
+    {
+      title: "Tarik Tunai",
+      url: "/admin/tarik-tunai",
+      icon: HandCoins
     }
   ]
 }

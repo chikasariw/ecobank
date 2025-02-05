@@ -2,7 +2,7 @@
 import * as React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DataTable } from "./data-table";
-import { columns, Keuangan } from "./columns";
+import { Keuangan } from "./columns";
 
 import {
     Breadcrumb,

@@ -4,7 +4,6 @@ import * as React from "react";
 import { WelcomeSection } from "./welcome-card"
 import { BalanceCard } from "./balance-card"
 import { TransactionHistory } from "./transaction-history"
-import { StatsSection } from "./chart-card"
 import { Barchart } from "./barchart";
 
 export default function DashboardClient() {

@@ -13,7 +13,7 @@ export function BalanceCard() {
           Total Uang
         </h2>
         <p className="text-xs text-eb-primary-green-200">
-          Poin Coika ditukarkan pengguna
+          Poin yang dapat ditukarkan pengguna
         </p>
       </div>
       <div className="text-4xl font-bold mt-4 mb-5">Rp. 210.000</div>

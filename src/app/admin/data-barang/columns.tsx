@@ -1,5 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { ActionButtons } from "./action-buttons"; 
+import { ActionButtons } from "./action-buttons";
 
 export type Barang = {
     id: string;
@@ -7,38 +7,25 @@ export type Barang = {
     namabarang: string;
     hargajual: number;
     hargabeli: number;
-    satuan: string;
 };
 
 export const columns: ColumnDef<Barang>[] = [
     {
         id: "no",
-        header: () => <div className="text-center">No.</div>, 
-        cell: ({ row }) => <div className="text-center">{row.index + 1}</div>, 
+        header: () => <div className="text-center">No.</div>,
+        cell: ({ row }) => <div className="text-center">{row.index + 1}</div>,
         enableSorting: false,
         enableHiding: false,
-    },  
+    },
     {
         accessorKey: "gambar",
         header: "Gambar",
         cell: ({ row }) => <div className="capitalize">{row.getValue("gambar")}</div>,
-    },    
+    },
     {
         accessorKey: "namabarang",
         header: "Nama Barang",
         cell: ({ row }) => <div className="capitalize">{row.getValue("namabarang")}</div>,
-    },    
-    {
-        accessorKey: "hargajual",
-        header: () => <div className="text-left">Harga Jual</div>,
-        cell: ({ row }) => {
-            const hargajual = parseFloat(row.getValue("hargajual"));
-            const formatted = new Intl.NumberFormat("id-ID", {
-                style: "currency",
-                currency: "IDR",
-            }).format(hargajual);
-            return <div className="text-left font-medium">{formatted}</div>;
-        },
     },
     {
         accessorKey: "hargabeli",
@@ -49,13 +36,20 @@ export const columns: ColumnDef<Barang>[] = [
                 style: "currency",
                 currency: "IDR",
             }).format(hargabeli);
-            return <div className="text-left font-medium">{formatted}</div>;
+            return <div className="text-left font-medium">{formatted} /gram</div>;
         },
     },
     {
-        accessorKey: "satuan",
-        header: () => <div className="text-center">Satuan</div>,
-        cell: ({ row }) => <div className="lowercase text-center">{row.getValue("satuan")}</div>,
+        accessorKey: "hargajual",
+        header: () => <div className="text-left">Harga Jual</div>,
+        cell: ({ row }) => {
+            const hargajual = parseFloat(row.getValue("hargajual"));
+            const formatted = new Intl.NumberFormat("id-ID", {
+                style: "currency",
+                currency: "IDR",
+            }).format(hargajual);
+            return <div className="text-left font-medium">{formatted} /gram</div>;
+        },
     },
     {
         id: "actions",

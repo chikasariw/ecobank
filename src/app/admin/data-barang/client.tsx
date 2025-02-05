@@ -21,7 +21,6 @@ const data: Barang[] = [
         namabarang: "Lorem Ipsum",
         hargajual: 316,
         hargabeli: 316,
-        satuan: "gram",
     },
     {
         id: "m5gr84i9",
@@ -29,7 +28,6 @@ const data: Barang[] = [
         namabarang: "Lorem Ipsum",
         hargajual: 316,
         hargabeli: 316,
-        satuan: "gram",
     },
 ];
 

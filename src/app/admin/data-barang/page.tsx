@@ -1,4 +1,4 @@
-import DataSBarangClient from "./client";
+import DataBarangClient from "./client";
 
 export async function generateMetadata() {
     return {
@@ -7,6 +7,6 @@ export async function generateMetadata() {
     };
 }
 
-export default function DataSBarangPage() {
-    return <DataSBarangClient />;
+export default function DataBarangPage() {
+    return <DataBarangClient />;
 }
