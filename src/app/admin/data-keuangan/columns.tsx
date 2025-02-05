@@ -1,59 +1,60 @@
 import { ColumnDef } from "@tanstack/react-table";
 
-export type Barang = {
-    id: string;
-    namabarang: string;
-    penukar: string;
-    totalpenukaran: number;
-    satuan: string;
-    hargapenukaran: number;
-    waktupenukaran: string;
+export type Keuangan = {
+  id: string;
+  tipetransaksi: string;
+  nominaltransaksi: number;
+  tanggaltransaksi: string;
 };
 
-export const columns: ColumnDef<Barang>[] = [
-    {
-        id: "no",
-        header: () => <div className="text-center">No.</div>, 
-        cell: ({ row }) => <div className="text-center">{row.index + 1}</div>, 
-        enableSorting: false,
-        enableHiding: false,
-    },   
-    {
-        accessorKey: "namabarang",
-        header: "Nama Barang Ditukar",
-        cell: ({ row }) => <div className="capitalize">{row.getValue("namabarang")}</div>,
-    },    
-    {
-        accessorKey: "penukar",
-        header: "Penukar",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("penukar")}</div>,
-    }, 
-    {
-        accessorKey: "totalpenukaran",
-        header: () => <div className="text-left">Total Penukaran</div>,
-        cell: ({ row }) => <div className="lowercase text-left">{row.getValue("totalpenukaran")}</div>,
+export const columns: ColumnDef<Keuangan>[] = [
+  {
+    id: "no",
+    header: () => <div className="text-center">No.</div>,
+    cell: ({ row }) => <div className="text-center">{row.index + 1}</div>,
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
+    accessorKey: "tipetransaksi",
+    header: "Tipe Transaksi",
+    cell: ({ row }) => {
+      const type = row.original.tipetransaksi;
+      console.log("Tipe Transaksi:", type);
+      const badgeColor =
+        type === "masuk"
+          ? "flex items-center bg-eb-primary-green-200 text-eb-primary-green-700"
+          : type === "keluar"
+          ? "bg-eb-primary-yellow-200 text-eb-primary-yellow-800"
+          : "bg-gray-500";
+      return (
+        <div
+          className={`capitalize px-3 py-1 rounded-3xl text-center text-sm font-medium w-fit ${badgeColor}`}
+        >
+          {type}
+        </div>
+      );
     },
-    {
-        accessorKey: "satuan",
-        header: () => <div className="text-left">Satuan</div>,
-        cell: ({ row }) => <div className="lowercase text-left">{row.getValue("satuan")}</div>,
-    },   
-    {
-        accessorKey: "hargapenukaran",
-        header: () => <div className="text-left">Harga Penukaran</div>,
-        cell: ({ row }) => {
-            const hargapenukaran = parseFloat(row.getValue("hargapenukaran"));
-            const formatted = new Intl.NumberFormat("id-ID", {
-                style: "currency",
-                currency: "IDR",
-            }).format(hargapenukaran);
-            return <div className="text-left font-medium">{formatted}</div>;
-        },
+  },
+  {
+    accessorKey: "nominaltransaksi",
+    header: () => <div className="text-left">Nominal Transaksi</div>,
+    cell: ({ row }) => {
+      const nominaltransaksi = parseFloat(row.getValue("nominaltransaksi"));
+      const formatted = new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+      }).format(nominaltransaksi);
+      return <div className="text-left font-medium">{formatted}</div>;
     },
-    {
-        accessorKey: "waktupenukaran",
-        header: () => <div className="text-left">Waktu, Tanggal Penukaran</div>,
-        cell: ({ row }) => <div className="capitalize text-left">{row.getValue("waktupenukaran")}</div>,
-    },  
+  },
+  {
+    accessorKey: "tanggaltransaksi",
+    header: () => <div className="text-left">Tanggal Transaksi</div>,
+    cell: ({ row }) => (
+      <div className="lowercase text-left">
+        {row.getValue("tanggaltransaksi")}
+      </div>
+    ),
+  },
 ];
-

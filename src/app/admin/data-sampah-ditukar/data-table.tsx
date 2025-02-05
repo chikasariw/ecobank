@@ -62,17 +62,17 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
     return (
         <div className="w-full">
             <div className="flex items-center justify-between gap-4 py-4">
-                <Input
+                {/* <Input
                     placeholder="Cari Nama Barang..."
                     value={(table.getColumn("namabarang")?.getFilterValue() as string) ?? ""}
                     onChange={(event) => table.getColumn("namabarang")?.setFilterValue(event.target.value)}
                     className="rounded-3xl"
-                />
+                /> */}
                 <Input
                     placeholder="Cari Penukar..."
                     value={(table.getColumn("penukar")?.getFilterValue() as string) ?? ""}
                     onChange={(event) => table.getColumn("penukar")?.setFilterValue(event.target.value)}
-                    className="rounded-3xl"
+                    className="rounded-3xl max-w-sm"
                 />
             </div>
             <div className="rounded-xl border">

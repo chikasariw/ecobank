@@ -28,36 +28,19 @@ export function ModalAdd() {
       </DialogTrigger>
       <DialogContent className="max-w-[425px] md:max-w-[600px] rounded-xl">
         <DialogHeader>
-          <DialogTitle>Tambah Data</DialogTitle>
+          <DialogTitle>Tambah Data Uang Masuk</DialogTitle>
           <DialogDescription>
           </DialogDescription>
         </DialogHeader>
         <hr className="mx-0 px-0" />
         <div className="grid gap-5">
           <div>
-            <Label htmlFor="namabarang">
-              Nama Barang
+            <Label htmlFor="nominaltransaksi">
+              Nominal Transaksi Masuk
             </Label>
-            <Input id="namabarang" placeholder="Masukkan Nama Barang" className="mt-2" />
-          </div>
-          <div>
-            <Label htmlFor="gambar">
-              Foto Barang
-            </Label>
-            <Input id="gambar" type="file" className="mt-2" />
-          </div>
-          <div className="flex gap-5">
-            <div className="w-1/2">
-                <Label htmlFor="hargabeli">
-                Harga Beli
-                </Label>
-                <Input id="hargabeli" placeholder="Masukkan Harga Beli" className="mt-2" />
-            </div>
-            <div className="w-1/2">
-                <Label htmlFor="hargajual">
-                Harga Jual
-                </Label>
-                <Input id="hargajual" placeholder="Masukkan Harga Jual" className="mt-2" />
+            <div className="relative mt-2">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-eb-primary-gray-500 text-sm pl-3">Rp.</span>
+              <Input id="nominaltransaksi" placeholder="Masukkan Nominal Transaksi Masuk" type="number" className="pl-16" />
             </div>
           </div>
         </div>
