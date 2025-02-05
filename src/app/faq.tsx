@@ -38,7 +38,7 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="flex flex-col lg:flex-row max-w-screen-xl items-start justify-center mx-auto p-10 my-4 lg:my-24">
+    <div className="flex flex-col lg:flex-row max-w-screen-xl items-start justify-center scroll-mt-[120px] mx-auto p-10 my-4 lg:my-16" id="faq">
       {/* Left Section */}
       <div className="flex flex-1 relative">
         <div className="flex flex-1 flex-col justify-center">

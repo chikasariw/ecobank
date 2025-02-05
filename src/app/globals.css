@@ -7,6 +7,7 @@ body,
 :root{
   height: 100%;
   font-family: var(--font-jakarta), sans-serif;
+  scroll-behavior: smooth;
 }
 
 @layer base {
@@ -368,7 +369,7 @@ body,
   }
 
   .animate-scroll {
-    animation: scroll 20s linear infinite; 
+    animation: scroll 40s linear infinite; 
     display: flex;
     width: 200%; 
   }
