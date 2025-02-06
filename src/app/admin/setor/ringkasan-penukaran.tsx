@@ -8,16 +8,15 @@ import { Trash } from "lucide-react";
 
 export default function RingkasanPenukaran() {
   return (
-    <Card className="max-w-2xl mx-auto p-4 rounded-3xl">
-      <CardHeader>
+    <div className="rounded-3xl sticky top-4 self-start border border-eb-primary-gray-300 p-4">
+      <div>
         <div className="flex justify-between items-center">
-          <CardTitle className="text-green-900">Ringkasan Penukaran</CardTitle>
+          <div className="text-green-900">Ringkasan Penukaran</div>
           <Button variant="destructive" className="flex gap-2">
             <Trash size={16} /> Hapus Semua
           </Button>
         </div>
-      </CardHeader>
-      <CardContent>
+      </div>
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium">Nama Admin</label>
@@ -41,7 +40,7 @@ export default function RingkasanPenukaran() {
               </TableRow>
             </TableHeader>
             <TableBody>
-                <TableRow>
+                <TableRow className="text-nowrap">
                   <TableCell>
                     <Button variant="ghost" size="icon">
                       <Trash className="text-red-500" size={18} />
@@ -64,7 +63,6 @@ export default function RingkasanPenukaran() {
         <Button className="w-full mt-4">
           Proses Penukaran
         </Button>
-      </CardContent>
-    </Card>
+    </div>
   );
 }
