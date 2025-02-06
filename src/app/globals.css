@@ -402,3 +402,17 @@ body,
   filter: blur(30px);
   pointer-events: none;
 }
+
+/* CARD FITUR */
+.radial-green-card {
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgb(195, 231, 210), rgba(33, 197, 98, 0.447), rgba(33, 197, 98, 0.238), rgba(140, 221, 171, 0), rgba(39, 121, 71, 0), rgba(39, 121, 71, 0));
+  border-radius: 50%;
+  position: absolute;
+  top: 40%;
+  right: 10%;
+  transform: translate(-50%, -50%) scale(1.5);
+  filter: blur(30px);
+  pointer-events: none;
+}
