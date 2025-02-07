@@ -76,10 +76,10 @@ export default function Header() {
         {/* Buttons */}
         <div className="flex space-x-2">
           <Button className="w-auto px-6 py-2" variant="default" asChild>
-            <Link href="">Daftar</Link>
+            <Link href="auth/login">Daftar</Link>
           </Button>
           <Button className="w-auto px-6 py-2" variant="primary" asChild>
-            <Link href="">Masuk</Link>
+            <Link href="auth/register">Masuk</Link>
           </Button>
         </div>
       </div>

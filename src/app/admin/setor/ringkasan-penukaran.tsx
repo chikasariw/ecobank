@@ -10,8 +10,8 @@ export default function RingkasanPenukaran() {
   return (
     <div className="rounded-3xl sticky top-4 self-start border border-eb-primary-gray-300 p-4">
       <div>
-        <div className="flex justify-between items-center">
-          <div className="text-green-900">Ringkasan Penukaran</div>
+        <div className="flex justify-between items-center mb-4">
+          <div className="text-eb-primary-green-800 font-bold text-lg">Ringkasan Penukaran</div>
           <Button variant="destructive" className="flex gap-2">
             <Trash size={16} /> Hapus Semua
           </Button>
@@ -19,11 +19,11 @@ export default function RingkasanPenukaran() {
       </div>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium">Nama Admin</label>
+            <label className="block text-sm font-medium my-2">Nama Admin</label>
             <Input defaultValue="Park Jisung" disabled />
           </div>
           <div>
-            <label className="block text-sm font-medium">Nama Penukar</label>
+            <label className="block text-sm font-medium my-2">Nama Penukar</label>
             <Input placeholder="Masukkan nama penukar" />
           </div>
         </div>
