@@ -14,7 +14,7 @@ const transactions: Transaction[] = [
     { type: "Ambil", amount: -2000, date: "Minggu, 26/1/2025", time: "16:00" },
     { type: "Nabung", amount: 2000, date: "Minggu, 26/1/2025", time: "16:00" },
     { type: "Nabung", amount: 2000, date: "Minggu, 26/1/2025", time: "16:00" },
-   
+    
 ]
 
 export function TransactionHistory() {

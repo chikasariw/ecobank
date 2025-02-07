@@ -14,7 +14,10 @@ export default function Home() {
       <Header />
 
       {/* HERO */}
-      <div className="flex flex-col lg:flex-row max-w-screen-xl items-center justify-center scroll-mt-[100px] mx-auto p-10 my-4 lg:my-10 lg:mt-20" id="beranda">
+      <div
+        className="flex flex-col lg:flex-row max-w-screen-xl items-center justify-center scroll-mt-[100px] mx-auto px-10 pt-24 pb-10 my-4 lg:my-10 "
+        id="beranda"
+      >
         <div className="flex-1 w-full items-start justify-start" id="beranda">
           <h4 className="text-eb-primary-gray-600 text-sm font-medium uppercase tracking-wide">
             Langkah kecil manfaat besar
@@ -49,7 +52,7 @@ export default function Home() {
             </Link>
           </Button>
         </div>
-        
+
         <div className="flex flex-1 w-full relative justify-end pt-10 md:pt-10 lg:pt-0">
           <Image
             src="/content/hero-image.png"
@@ -80,7 +83,10 @@ export default function Home() {
       </div>
 
       {/* ABOUT */}
-      <div className="flex flex-col-reverse lg:flex-row max-w-screen-xl items-center justify-center scroll-mt-[120px] mx-auto p-10 my-4 lg:my-16" id="tentang-kami">
+      <div
+        className="flex flex-col-reverse lg:flex-row max-w-screen-xl items-center justify-center scroll-mt-[120px] mx-auto p-10 my-4 lg:my-12"
+        id="tentang-kami"
+      >
         <div className="flex flex-1 w-full relative items-center md:items-end md:justify-end lg:justify-start pt-10 md:pt-10 lg:pt-0">
           <Image
             src="/content/about-image.png"
@@ -101,9 +107,9 @@ export default function Home() {
             Sampahmu Berharga, Yuk Tukarkan di EcoBank!
           </h1>
           <h5 className="text-eb-primary-gray-600 text-base font-medium max-w-md mt-4">
-            Dengan inovasi digital, EcoBank bikin urusan sampah jadi lebih mudah!
-            Tukarkan sampah anorganikmu jadi uang dan bersama-sama kita wujudkan
-            lingkungan yang lebih bersih serta bermanfaat untuk semua.
+            Dengan inovasi digital, EcoBank bikin urusan sampah jadi lebih
+            mudah! Tukarkan sampah anorganikmu jadi uang dan bersama-sama kita
+            wujudkan lingkungan yang lebih bersih serta bermanfaat untuk semua.
           </h5>
           <Button
             className="w-44 mt-4 ps-4 py-4"
@@ -121,7 +127,10 @@ export default function Home() {
       </div>
 
       {/* FITUR */}
-      <div className="flex flex-col max-w-screen-xl items-center justify-center scroll-mt-[110px] mx-auto p-10 my-4 lg:my-16" id="fitur">
+      <div
+        className="flex flex-col max-w-screen-xl items-center justify-center scroll-mt-[110px] mx-auto p-10 my-4 lg:my-12"
+        id="fitur"
+      >
         <div className="flex flex-1 relative items-center ">
           <div className="flex flex-1 flex-col justify-center">
             <h4 className="text-eb-primary-gray-600 text-sm font-medium uppercase tracking-wide text-center">
@@ -137,78 +146,108 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-1 relative items-center w-full mt-12">
-          <div className="grid lg:grid-cols-5 md:grid-cols-1 gap-4 w-full">
-            <div className="col-span-3 bg-eb-primary-green-900 px-6 py-4 rounded-3xl backdrop-blur-md py-6 px-6">
-              <h4 className="font-bold text-xl text-eb-primary-gray-800 ">
-                Data Katalog Produk
-              </h4>
-              <p className="text-base text-eb-primary-gray-600 mt-2">
-                Upgrade to a modern cashier system that helps you streamline
-                operations, enhance customer experience, and boost revenue with
-                ease. boost revenue with ease.
-              </p>
-              <div className="bg-white/20 px-6 py-4 rounded-3xl backdrop-blur-md h-40 mt-4"></div>
+          <div className="grid lg:grid-cols-7 md:grid-cols-1 gap-4 w-full">
+            <div className="col-span-4 relative bg-gradient-to-r from-eb-primary-gray-200 via-eb-primary-green-100 to-eb-primary-gray-200 rounded-3xl backdrop-blur-lg overflow-hidden py-6 px-6 ">
+              {/* Konten */}
+              <div className="relative z-10">
+                <h4 className="font-bold text-xl text-eb-primary-gray-800 ">
+                  Data Katalog Produk
+                </h4>
+                <p className="text-base text-eb-primary-gray-600 mt-2">
+                  Upgrade to a modern cashier system that helps you streamline
+                  operations, enhance customer experience, and boost revenue
+                  with ease. boost revenue with ease.
+                </p>
+                <div className="bg-white/20 px-6 py-4 rounded-3xl backdrop-blur-md h-40 mt-4"></div>
+              </div>
             </div>
-            <div className="lg:col-span-2 col-span-3 bg-eb-primary-green-900 rounded-3xl backdrop-blur-md py-6 px-6">
-              <h4 className="font-bold text-xl text-eb-primary-gray-800">
-                Data Katalog Produk
-              </h4>
-              <p className="text-base text-eb-primary-gray-700 mt-2">
-                Upgrade to a modern cashier system that helps you streamline
-                operations, enhance customer experience, and boost revenue with
-                ease. boost revenue with ease.
-              </p>
-              <div className="bg-white/20 px-6 py-4 rounded-2xl backdrop-blur-md h-36 mt-4"></div>
+            <div className="lg:col-span-3 col-span-4 relative bg-gradient-to-r from-eb-primary-green-700 via-eb-primary-green-600 to-eb-primary-green-500 rounded-3xl backdrop-blur-md overflow-hidden py-6 px-6">
+              {/* Radial Background */}
+              <div className="absolute inset-0 w-full h-full z-0">
+                <div className="radial-yellow-card-right w-full h-full"></div>
+              </div>
+
+              {/* Konten */}
+              <div className="relative z-10">
+                <div className="bg-white/20 px-6 py-4 rounded-2xl backdrop-blur-md h-36"></div>
+                <h4 className="font-bold text-xl text-eb-primary-gray-200 mt-4">
+                  Data Katalog Produk
+                </h4>
+                <p className="text-base text-eb-primary-gray-200 mt-2">
+                  Upgrade to a modern cashier system that helps you streamline
+                  operations, enhance customer experience, and boost revenue
+                  with ease.
+                </p>
+              </div>
             </div>
-            <div className="lg:col-span-2 col-span-3 bg-eb-primary-green-900  rounded-3xl backdrop-blur-md py-6 px-6">
-              <h4 className="font-bold text-xl text-eb-primary-gray-800">
-                Data Katalog Produk
-              </h4>
-              <p className="text-base text-eb-primary-gray-700 mt-2">
-                Upgrade to a modern cashier system that helps you streamline
-                operations, enhance customer experience, and boost revenue with
-                ease. boost revenue with ease.
-              </p>
-              <div className="bg-white/20 px-6 py-4 rounded-2xl backdrop-blur-md h-36 mt-4"></div>
+
+            <div className="lg:col-span-3 col-span-4 relative bg-gradient-to-r from-eb-primary-green-700 via-eb-primary-green-600 to-eb-primary-green-500 rounded-3xl backdrop-blur-md py-6 px-6 overflow-hidden">
+              {/* Radial Background */}
+              <div className="absolute inset-0 w-full h-full z-0">
+                <div className="radial-yellow-card-right w-full h-full"></div>
+                <div className="radial-yellow-card w-full h-full"></div>
+              </div>
+
+              {/* Konten */}
+              <div className="relative z-10">
+                <div className="bg-white/20 px-6 py-4 rounded-2xl backdrop-blur-md h-36"></div>
+                <h4 className="font-bold text-xl text-eb-primary-gray-200 mt-4">
+                  Data Katalog Produk
+                </h4>
+                <p className="text-base text-eb-primary-gray-200 mt-2">
+                  Upgrade to a modern cashier system that helps you streamline
+                  operations, enhance customer experience, and boost revenue
+                  with ease.
+                </p>
+              </div>
             </div>
-            <div className="col-span-3 bg-eb-primary-green-900  px-6 py-4 rounded-3xl backdrop-blur-md py-6 px-6">
-              <h4 className="font-bold text-xl text-eb-primary-gray-800 ">
-                Data Katalog Produk
-              </h4>
-              <p className="text-base text-eb-primary-gray-600 mt-2">
-                Upgrade to a modern cashier system that helps you streamline
-                operations, enhance customer experience, and boost revenue with
-                ease. boost revenue with ease.
-              </p>
-              <div className="bg-white/20 px-6 py-4 rounded-3xl backdrop-blur-md h-40 mt-4"></div>
+
+            <div className="col-span-4 relative bg-gradient-to-r from-eb-primary-green-100 via-eb-primary-gray-100 to-eb-primary-green-100 rounded-3xl backdrop-blur-md overflow-hidden py-6 px-6">
+              {/* Radial Background */}
+              {/* <div className="absolute inset-0 w-full h-full z-0">
+                <div className="radial-green-card w-full h-full"></div>
+                <div className="radial-yellow-card w-full h-full"></div>
+              </div> */}
+
+              {/* Konten */}
+              <div className="relative z-10">
+                <h4 className="font-bold text-xl text-eb-primary-gray-800 ">
+                  Data Katalog Produk
+                </h4>
+                <p className="text-base text-eb-primary-gray-600 mt-2">
+                  Upgrade to a modern cashier system that helps you streamline
+                  operations, enhance customer experience, and boost revenue
+                  with ease. boost revenue with ease.
+                </p>
+                <div className="bg-white/20 px-6 py-4 rounded-3xl backdrop-blur-md h-40 mt-4"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      
+
       {/* FAQ */}
       <FAQ />
-      
 
       {/* CTA */}
-      <div className="flex flex-col max-w-screen-xl items-center justify-center scroll-mt-[120px] mx-auto p-10 my-4 lg:my-16">
-        <div className="flex items-center justify-center bg-eb-primary-green-800 rounded-3xl w-full py-20 relative overflow-hidden">
+      <div className="flex flex-col max-w-screen-xl items-center justify-center scroll-mt-[120px] mx-auto p-10 my-4 lg:my-12">
+        <div className="flex items-center justify-center bg-eb-primary-green-800 rounded-3xl w-full py-16 relative overflow-hidden">
           <div className="flex flex-col justify-center items-center">
-            <h1 className="text-eb-primary-gray-100 font-bold text-3xl mt-2 text-center md:max-w-sm ">
+            <h1 className="text-eb-primary-gray-100 font-bold text-3xl/9 mt-2 text-center tracking-wide md:max-w-md ">
               Cari Tahu Sampah yang Dapat Ditukar di EcoBank
             </h1>
-            <p className="md:max-w-md lg:max-w-lg text-eb-primary-gray-100 text-base font-regular text-center mt-4">
+            <p className="md:max-w-md lg:max-w-lg text-eb-primary-gray-100 text-base font-regular text-center mt-5">
               Pelajari sampah yang dapat ditukar di EcoBank dan cari tahu
               keuntungan yang bisa kamu peroleh!
             </p>
             <Button
-              className="w-44 mt-4 ps-4 py-2"
+              className="w-44 mt-4 ps-4 py-4 z-10"
               variant="secondarycustom"
               asChild
             >
               <Link href="">
                 Mulai Sekarang
-                <span className="flex h-8 w-8 ms-2 items-center justify-center rounded-3xl bg-white/50">
+                <span className="flex h-8 w-8 ms-2 items-center justify-center rounded-3xl bg-white/20">
                   <ArrowUpRight />
                 </span>
               </Link>
