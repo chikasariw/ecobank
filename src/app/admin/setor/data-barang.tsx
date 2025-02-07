@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { AddProductButton } from "./tambah-barang";
 
 const products = [
     { id: 1, image: "/content/sampah-botol.jpg", name: "Botol Plastik", price: "Rp 1.000 / gram" },
@@ -47,18 +48,19 @@ export default function DataBarang() {
                 {filteredProducts.length > 0 ? (
                     filteredProducts.map((product) => (
                         <Card key={product.id} className="rounded-3xl border border-eb-primary-gray-300 ">
-                            <div className="p-4">
+                            <div className="p-4 grid gap-1">
                                 <img
                                     src={product.image}
                                     alt={product.name}
-                                    className="w-full h-40 object-cover rounded-lg mb-3"
+                                    className="w-full h-40 object-cover rounded-lg mb-2"
                                 />
                                 <h5 className="text-lg font-semibold text-eb-primary-gray-800">
                                     {product.name}
                                 </h5>
-                                <p className="text-eb-primary-gray-600 text-md">
+                                <p className="text-eb-primary-gray-600 text-md mb-2">
                                     {product.price}
                                 </p>
+                                <AddProductButton/>
                             </div>
                         </Card>
                     ))

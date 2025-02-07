@@ -17,9 +17,6 @@ export function BalanceCard() {
         </p>
       </div>
       <div className="text-4xl font-bold mt-4 mb-5 text-eb-primary-green-100">Rp. 210.000</div>
-      {/* <Button className="text-sm font-medium inset-0" variant="backdrop">
-        Ambil Uang
-      </Button> */}
     </div>
   );
 }

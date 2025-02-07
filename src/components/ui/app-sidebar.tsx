@@ -13,10 +13,9 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { Home, UsersRound, ScrollText , BadgeDollarSign, SquareChartGantt, Handshake, HandCoins, Store, PackageSearch, PackagePlus } from 'lucide-react';
+import { Home, UsersRound, ScrollText , BadgeDollarSign, HandCoins, PackageSearch, PackagePlus } from 'lucide-react';
 
 
-// This is sample data.
 const data = {
   user: {
     name: "shadcn",
