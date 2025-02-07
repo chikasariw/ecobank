@@ -3,7 +3,7 @@ import SetorClient from "./client";
 
 export async function generateMetadata() {
     return {
-        title: "Profile - EcoBank.",
+        title: "Setor - EcoBank.",
         description: "Halaman Profile EcoBank.",
     };
 }

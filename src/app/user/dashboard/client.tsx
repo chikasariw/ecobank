@@ -17,7 +17,6 @@ export default function DashboardClient() {
         <TransactionHistory />
         <div className="flex flex-col w-full lg:w-1/3 ">
           <Barchart />
-          {/* <StatsSection /> */}
         </div>
       </div>
     </div>

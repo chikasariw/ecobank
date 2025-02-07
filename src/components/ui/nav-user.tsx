@@ -35,7 +35,7 @@ export function NavUser({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <div
-              className="flex w-full items-center gap-5 overflow-hidden rounded-3xl p-2 text-left text-sm outline-none md:hidden bg-eb-primary-gray-100"
+              className="flex w-full items-center gap-5 overflow-hidden rounded-3xl p-2 text-left text-sm outline-none md:hidden bg-eb-primary-gray-200"
             >
               <Link className="flex gap-5" href="/admin/profile">
 
