@@ -325,7 +325,7 @@ body,
 
   .radial-green-right-cta {
     top: 90%;
-    right: 10%;
+    right: -36%;
   }
 }
 
@@ -356,6 +356,7 @@ body,
   transform: translateX(-10%);
   opacity: 0.2;
 }
+
 
 /* Animasi Scroll Brand */
 @layer utilities {

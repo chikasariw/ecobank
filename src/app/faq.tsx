@@ -52,7 +52,7 @@ const FAQ = () => {
           <h4 className="text-eb-primary-gray-600 text-sm font-medium uppercase tracking-wide">
             Faq Ecobank
           </h4>
-          <h1 className="text-eb-primary-gray-800 font-bold text-4xl max-w-md mt-2">
+          <h1 className="text-eb-primary-gray-800 font-bold text-3xl md:text-4xl max-w-md mt-2">
             Ada pertanyaan? Kami Punya Jawabannya!
           </h1>
           <h5 className="text-eb-primary-gray-600 text-base font-medium max-w-sm mt-4">
