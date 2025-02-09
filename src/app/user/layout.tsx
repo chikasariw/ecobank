@@ -18,7 +18,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             enableSystem
             disableTransitionOnChange
         >
-            <SidebarProvider>
+            <SidebarProvider className="bg-eb-primary-gray-100">
                 <AppSidebar />
                 <SidebarInset>
                     <HeaderAdmin/>

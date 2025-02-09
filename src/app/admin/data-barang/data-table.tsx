@@ -63,8 +63,8 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
 
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between py-4">
-        <div className="relative justify-between w-full max-w-lg">
+      <div className="sm:flex sm:justify-between items-center gap-2 py-4">
+        <div className="relative justify-between w-full max-w-sm mb-3 sm:mb-0">
           <Search
             className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
             size={18}

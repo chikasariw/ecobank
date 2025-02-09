@@ -12,6 +12,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import GradientText from "@/components/ui/gradient-text";
 
 
 const data = [
@@ -26,7 +27,7 @@ export default function RiwayatPenukaran() {
             <Card>
                 <CardHeader>
                     <CardTitle className="lg:flex lg:justify-between">
-                        <p>Riwayat <span className="text-eb-primary-green-800">Transaksi Penukaran</span></p>
+                        <p>Riwayat <GradientText>Transaksi Penukaran</GradientText></p>
                         <Breadcrumb>
                             <BreadcrumbList>
                                 <BreadcrumbItem>

@@ -32,8 +32,8 @@ export default function ProfileClient() {
     <Card>
       <form>
         <CardHeader>
-          <CardTitle className="flex justify-between">
-            <p>Data <span className="text-eb-primary-green-800">Pengguna</span></p>
+          <CardTitle className="lg:flex lg:justify-between">
+            <p>Data <span className="text-eb-primary-tosca-700">Pengguna</span></p>
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>

@@ -34,8 +34,8 @@ export default function DataKeuanganClient() {
         <div>
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex justify-between">
-                        <p>Data <span className="text-eb-primary-green-800">Keuangan</span></p>
+                    <CardTitle className="lg:flex lg:justify-between">
+                        <p>Data <span className="text-eb-primary-tosca-700">Keuangan</span></p>
                         <Breadcrumb>
                             <BreadcrumbList>
                                 <BreadcrumbItem>

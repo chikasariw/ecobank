@@ -12,6 +12,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import GradientText from "@/components/ui/gradient-text";
 
 
 const data: Barang[] = [
@@ -36,8 +37,8 @@ export default function DataBarangClient() {
         <div>
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex justify-between">
-                        <p>Data <span className="text-eb-primary-green-800">Barang</span></p>
+                    <CardTitle className="lg:flex lg:justify-between">
+                        <p>Data <GradientText>Barang</GradientText></p>
                         <Breadcrumb>
                             <BreadcrumbList>
                                 <BreadcrumbItem>

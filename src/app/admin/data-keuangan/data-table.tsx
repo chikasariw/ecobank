@@ -113,7 +113,7 @@ export function DataTable({ data }: DataTableProps) {
 
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between py-4">
+      <div className="flex flex-col items-start justify-start sm:flex-row sm:justify-between sm:items-center gap-2 py-4">
         <div className="flex items-center space-x-8">
           <div className="flex items-center space-x-2">
             <span className="text-sm font-medium">Periode:</span>

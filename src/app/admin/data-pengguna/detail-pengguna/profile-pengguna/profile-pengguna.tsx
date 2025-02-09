@@ -26,8 +26,8 @@ export default function ProfileDetail() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle className="flex md:justify-start lg:justify-between">
-                    <p>Detail <span className="text-eb-primary-green-800">Pengguna</span></p>
+                <CardTitle className="lg:flex lg:justify-between">
+                    <p>Detail <span className="text-eb-primary-tosca-700">Pengguna</span></p>
                     <Breadcrumb>
                         <BreadcrumbList>
                             <BreadcrumbItem>

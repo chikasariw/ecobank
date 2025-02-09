@@ -30,8 +30,8 @@ export default function DataSampahDitukarClient() {
         <div>
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex justify-between">
-                        <p>Data <span className="text-eb-primary-green-800">Sampah Ditukar</span></p>
+                    <CardTitle className="lg:flex lg:justify-between">
+                        <p>Data <span className="text-eb-primary-tosca-700">Sampah Ditukar</span></p>
                         <Breadcrumb>
                             <BreadcrumbList>
                                 <BreadcrumbItem>

@@ -28,8 +28,8 @@ export default function DataBarang() {
         <div>
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex justify-between">
-                        <p>Riwayat <span className="text-eb-primary-green-800">Transaksi Penukaran</span></p>
+                    <CardTitle className="lg:flex lg:justify-between">
+                        <p>Riwayat <span className="text-eb-primary-tosca-700">Transaksi Penukaran</span></p>
                         <Breadcrumb>
                             <BreadcrumbList>
                                 <BreadcrumbItem>
