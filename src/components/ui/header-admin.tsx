@@ -52,7 +52,7 @@ export default function Header() {
                                 <Button variant="ghost" className="ps-0">
                                     <div className="flex items-center gap-2 ps-1 pe-2 py-2">
                                         <Avatar>
-                                            <AvatarImage src="/content/profile-default.jpg" alt="@shadcn" />
+                                            <AvatarImage src="/content/profile-jisung.jpg" alt="@shadcn" />
                                             <AvatarFallback>CN</AvatarFallback>
                                         </Avatar>
                                         <p>Park Jisung</p>

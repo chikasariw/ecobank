@@ -17,7 +17,7 @@ import {
 const data: Pengguna[] = [
     {
         id: "1",
-        gambar: "",
+        gambar: "/content/profile-jisung.jpg",
         email: "parkjisung@gmail.com",
         nama: "Park Jisung",
     },
