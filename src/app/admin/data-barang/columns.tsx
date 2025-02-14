@@ -1,5 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ActionButtons } from "./action-buttons";
+import { ModalImage } from "./modal-image";
 
 export type Barang = {
     id: string;
@@ -18,9 +19,12 @@ export const columns: ColumnDef<Barang>[] = [
         enableHiding: false,
     },
     {
-        accessorKey: "gambar",
-        header: "Gambar",
-        cell: ({ row }) => <div className="capitalize">{row.getValue("gambar")}</div>,
+        id: "modalimage",
+        header: () => <div className="text-left">Gambar</div>,
+        cell: ({ row }) => {
+            console.log("Gambar URL:", row.original.gambar); // Debugging
+            return <ModalImage src={row.original.gambar} />;
+        },
     },
     {
         accessorKey: "namabarang",

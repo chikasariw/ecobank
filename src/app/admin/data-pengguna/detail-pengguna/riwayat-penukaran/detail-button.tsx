@@ -8,8 +8,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Table, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Plus, ChevronRight } from "lucide-react"
+import { Input } from "@/components/ui/input";
+
 
 
 
@@ -23,7 +25,7 @@ export function DetailButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-      <Button variant="prominent" size="sm">Detail Transaksi <ChevronRight />  </Button>
+        <Button variant="prominent" size="sm">Detail Transaksi <ChevronRight />  </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[425px] md:max-w-[600px] rounded-xl">
         <DialogHeader>
@@ -31,63 +33,45 @@ export function DetailButton() {
           <DialogDescription>
           </DialogDescription>
         </DialogHeader>
-        <hr className="mx-0 px-0" />
-        <div className="space-y-6">
-          {/* Struk Section */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-green-700">Struk Penukaran</h3>
-            <div className="space-y-2">
-              <div className="grid grid-cols-2 gap-2">
-                <span className="text-gray-600">Nama Admin</span>
-                {/* <span>: {data.adminName}</span> */}
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <span className="text-gray-600">Nama Penukar</span>
-                {/* <span>: {data.customerName}</span> */}
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <span className="text-gray-600">Tanggal Penukaran</span>
-                {/* <span>: {data.date}</span> */}
-              </div>
-            </div>
+        <hr className="border border-dashed mb-5" />
+        <div className="space-y-5">
+          <div className="flex items-center">
+            <label className="block text-sm font-medium w-1/4">Nama Admin</label>
+            <Input defaultValue="Park Jisung" disabled className="mt-2" />
           </div>
-
-          {/* Items Section */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-green-700">Item Ditukar</h3>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-24">Jumlah</TableHead>
-                  <TableHead>Nama Produk</TableHead>
-                  <TableHead>Harga</TableHead>
-                  <TableHead>Sub-Total</TableHead>
-                </TableRow>
-              </TableHeader>
-              {/* <TableBody>
-                {data.items.map((item, index) => (
-                  <TableRow key={index}>
-                    <TableCell>
-                      {item.quantity} <span className="text-gray-400">×</span>
-                    </TableCell>
-                    <TableCell>{item.name}</TableCell>
-                    <TableCell>Rp. {item.price.toLocaleString()}</TableCell>
-                    <TableCell>Rp. {item.subtotal.toLocaleString()}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody> */}
-            </Table>
-          </div>
-
-          {/* Total */}
-          <div className="flex justify-end text-lg font-semibold">
-            {/* <span>Total: Rp. {data.total.toLocaleString()},00</span> */}
+          <div className="flex items-center">
+            <label className="block text-sm font-medium w-1/4">Nama Penukar</label>
+            <Input defaultValue="Penukar" disabled className="mt-2" />
           </div>
         </div>
-        <hr className="mx-0 px-0" />
-        <DialogFooter>
-          <Button type="submit"><Plus />Tambah Data</Button>
-        </DialogFooter>
+        <hr className="border border-dashed my-5" />
+        <div>
+          <h2 className="font-semibold text-eb-primary-green-800">Item Ditukar</h2>
+          <Table className="mt-2">
+            <TableHeader>
+              <TableRow>
+                <TableHead>Jumlah</TableHead>
+                <TableHead>Nama Produk</TableHead>
+                <TableHead>Harga</TableHead>
+                <TableHead>Sub-Total</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow className="text-nowrap">
+                <TableCell>xx</TableCell>
+                <TableCell>xx /gram</TableCell>
+                <TableCell>Product lorem ipsum</TableCell>
+                <TableCell>Rp. xxx.xxx,xx</TableCell>
+                <TableCell>Rp. xxx.xxx,xx</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </div>
+        <hr className="border border-dashed my-5" />
+        <div className="flex justify-between items-center text-lg font-bold">
+          <span>Total:</span>
+          <span>Rp. xxx.xxx,00</span>
+        </div>
       </DialogContent>
     </Dialog>
   )

@@ -35,7 +35,7 @@ export default function ProfileImage() {
                     />
                 ) : (
                     <img
-                        src="/content/profile-default.jpg" 
+                        src="/content/profile-jisung.jpg" 
                         alt="Profile picture"
                         width={300}
                         height={300}

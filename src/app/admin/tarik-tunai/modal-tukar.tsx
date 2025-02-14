@@ -34,35 +34,18 @@ export function ModalTukar() {
       </DialogTrigger>
       <DialogContent className="max-w-[425px] md:max-w-[600px] rounded-xl">
         <DialogHeader>
-          <DialogTitle>Tambah Data</DialogTitle>
+          <DialogTitle>Tarik Tunai</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
         <hr className="mx-0 px-0" />
         <div className="grid gap-5">
           <div>
-            <Label htmlFor="nama">Nama Pengguna</Label>
-            <Input id="nama" placeholder="Masukkan Nama" className="mt-2" />
-          </div>
-          <div>
-            <Label htmlFor="email">Email Pengguna</Label>
-            <Input id="email" placeholder="Masukkan Email" className="mt-2" />
-          </div>
-          <div className="md:flex gap-5">
-            <div className="w-full md:w-1/2">
-              <Label
-                htmlFor="tanggal_lahir"
-                className="w-full md:w-1/2 xl:w-1/5 mb-1"
-              >
-                Tanggal Lahir
-              </Label>
-            </div>
-            <div className="w-full md:w-1/2">
-              <Label
-                htmlFor="jenis_kelamin"
-                className="w-full md:w-1/2 xl:w-1/5 mb-1"
-              >
-                Jenis Kelamin
-              </Label>
+            <Label htmlFor="nominaltransaksi">
+              Nominal Transaksi
+            </Label>
+            <div className="relative mt-2">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-eb-primary-gray-500 text-sm pl-3">Rp.</span>
+              <Input id="nominaltransaksi" placeholder="Masukkan Nominal Transaksi Masuk" type="number" className="pl-16" />
             </div>
           </div>
         </div>
@@ -70,7 +53,7 @@ export function ModalTukar() {
         <DialogFooter>
           <Button type="submit">
             <Plus />
-            Tambah Data
+            Tarik Tunai
           </Button>
         </DialogFooter>
       </DialogContent>

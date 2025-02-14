@@ -18,14 +18,14 @@ import GradientText from "@/components/ui/gradient-text";
 const data: Barang[] = [
     {
         id: "m5gr84i9",
-        gambar: "",
+        gambar: "/content/sampah-botol.jpg",
         namabarang: "Lorem Ipsum",
         hargajual: 316,
         hargabeli: 316,
     },
     {
         id: "m5gr84i9",
-        gambar: "",
+        gambar: "/content/sampah kardus.jpg",
         namabarang: "Lorem Ipsum",
         hargajual: 316,
         hargabeli: 316,
