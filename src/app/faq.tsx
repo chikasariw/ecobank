@@ -56,7 +56,7 @@ const FAQ = () => {
             Ada pertanyaan? Kami Punya Jawabannya!
           </h1>
           <h5 className="text-eb-primary-gray-600 text-base font-medium max-w-sm mt-4">
-            Temukan jawaban cepat untuk pertanyaan umum tentang Cofika kami.
+            Temukan jawaban cepat untuk pertanyaan umum tentang Ecobank kami.
           </h5>
         </div>
       </div>
