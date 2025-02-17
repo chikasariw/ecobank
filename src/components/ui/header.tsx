@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "./button";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,16 +8,29 @@ import { Menu, X } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true); // Memunculkan header setelah komponen dimuat
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <header className="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50">
+    <header
+      className={`fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 transition-all duration-200 ease-out ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
+      }`}
+    >
       <div className="max-w-screen-xl mx-auto flex items-center justify-between px-6 lg:px-10 py-4">
         {/* Logo */}
-        <div className="flex items-center">
+        <div
+          className={`flex items-center transition-all duration-700 ${
+            isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
+          }`}
+        >
           <Image
             src="/logo/ecobank-logo.svg"
             alt="Ecobank Logo"
@@ -27,7 +40,11 @@ export default function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex space-x-8">
+        <nav
+          className={`hidden lg:flex space-x-8 transition-all duration-700 delay-200 ${
+            isVisible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90"
+          }`}
+        >
           {["Beranda", "Tentang Kami", "Fitur", "FAQ"].map((item, index) => (
             <a
               key={index}
@@ -40,7 +57,11 @@ export default function Header() {
         </nav>
 
         {/* Desktop Buttons */}
-        <div className="hidden lg:flex space-x-2 ">
+        <div
+          className={`hidden lg:flex space-x-2 transition-all duration-700 delay-300 ${
+            isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
+          }`}
+        >
           <Button className="w-auto px-6 py-2" variant="default" asChild>
             <Link href="auth/register">Daftar</Link>
           </Button>
@@ -50,7 +71,6 @@ export default function Header() {
         </div>
 
         {/* Mobile Hamburger Menu */}
-
         <button
           className="lg:hidden p-2 rounded-md focus:outline-none z-50"
           onClick={toggleMenu}
@@ -59,32 +79,32 @@ export default function Header() {
         </button>
 
         {/* Mobile Menu Dropdown */}
-        {isOpen && (
-          <div className="lg:hidden absolute top-16 left-0 w-full bg-white shadow-lg py-4 px-6 space-y-4 z-50">
-            <nav className="flex flex-col space-y-6">
-              {["Beranda", "Tentang Kami", "Fitur", "FAQ"].map(
-                (item, index) => (
-                  <a
-                    key={index}
-                    href={`#${item.toLowerCase().replace(" ", "-")}`}
-                    className="text-base text-center font-medium text-eb-primary-gray-700 hover:font-semibold hover:text-eb-primary-green-700"
-                    onClick={toggleMenu}
-                  >
-                    {item}
-                  </a>
-                )
-              )}
-            </nav>
-            <div className="flex flex-row items-center justify-center gap-2 pt-6 pb-4">
-              <Button className="w-28" variant="default" asChild>
-                <Link href="auth/register">Daftar</Link>
-              </Button>
-              <Button className="w-28" variant="primary" asChild>
-                <Link href="auth/login">Masuk</Link>
-              </Button>
-            </div>
+        <div
+          className={`lg:hidden fixed top-16 left-0 w-full bg-white shadow-lg py-4 px-6 space-y-4 z-50 transition-all duration-500 ${
+            isOpen ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-3 scale-95"
+          }`}
+        >
+          <nav className="flex flex-col space-y-6">
+            {["Beranda", "Tentang Kami", "Fitur", "FAQ"].map((item, index) => (
+              <a
+                key={index}
+                href={`#${item.toLowerCase().replace(" ", "-")}`}
+                className="text-base text-center font-medium text-eb-primary-gray-700 hover:font-semibold hover:text-eb-primary-green-700"
+                onClick={toggleMenu}
+              >
+                {item}
+              </a>
+            ))}
+          </nav>
+          <div className="flex flex-row items-center justify-center gap-2 pt-6 pb-4">
+            <Button className="w-28" variant="default" asChild>
+              <Link href="auth/login">Daftar</Link>
+            </Button>
+            <Button className="w-28" variant="primary" asChild>
+              <Link href="auth/register">Masuk</Link>
+            </Button>
           </div>
-        )}
+        </div>
       </div>
     </header>
   );
