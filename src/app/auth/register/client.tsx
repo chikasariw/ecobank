@@ -1,18 +1,40 @@
 'use client';
 
-import { useState } from "react";
+import { useRouter } from 'next/navigation';
+import { toast } from "sonner";
+import React, { useState } from "react";
 import Image from "next/image";
-import { Eye, EyeOff } from 'lucide-react';
+import { registerAction, RegisterValidationErrors } from "@/app/auth/register/action";
+import { Input } from '@/components/ui/input';
+import { InputPassword } from '@/components/ui/inputpassword';
+import { Button } from '@/components/ui/button';
+import FormButton from '@/components/ui/form-button';
 
-export default function RegisterPage() {
-    const [showPassword, setShowPassword] = useState(false);
-    const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+interface RegisterPageProps {
+    searchParams: {
+        redirect?: string;
+        error?: string;
+    };
+}
+
+export default function RegisterPage({ searchParams }: RegisterPageProps) {
+    const router = useRouter();
+    const [errors, setErrors] = useState<RegisterValidationErrors>({});
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [passwordError, setPasswordError] = useState("");
 
-    const togglePassword = () => setShowPassword(!showPassword);
-    const togglePasswordConfirm = () => setShowPasswordConfirm(!showPasswordConfirm);
+    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        setPassword(value);
+
+        // Perbarui error konfirmasi password jika sudah ada
+        if (confirmPassword && confirmPassword !== value) {
+            setPasswordError("Konfirmasi kata sandi tidak cocok");
+        } else {
+            setPasswordError("");
+        }
+    };
 
     const handleConfirmPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
@@ -20,6 +42,43 @@ export default function RegisterPage() {
         setPasswordError(value !== password ? "Konfirmasi kata sandi tidak cocok" : "");
     };
 
+    async function handleSubmit(formData: FormData) {
+        const name = formData.get('name') as string;
+        const email = formData.get('email') as string;
+        const password = formData.get('password') as string;
+    
+        if (confirmPassword !== password) {
+            setPasswordError("Konfirmasi kata sandi tidak cocok");
+            return;
+        }
+    
+        const result = await registerAction(name, email, password);
+    
+        if (result && "error" in result) {
+            setErrors(result);
+        } else if (result && "role" in result) { // Periksa apakah role ada
+            const role = result.role;
+            const redirectUrl = role === "Admin" ? "/admin/dashboard" : "/user/dashboard";
+    
+            toast("Selamat datang di EcoBank! 🎉🥳", {
+                description: "Yuk lengkapi data dirimu!",
+                duration: Infinity,
+                action: {
+                    label: "Verifikasi 👌",
+                    onClick: () => {
+                        router.push("/profile/edit");
+                    }
+                },
+                cancel: {
+                    label: "Nanti Aja",
+                    onClick: () => {}
+                }
+            });
+    
+            router.replace(redirectUrl);
+        }
+    }
+    
     return (
         <div className="min-h-screen flex flex-col lg:flex-row items-center lg:items-stretch bg-white sm:bg-eb-primary-green-700">
             <div className="radial-dots-right hidden lg:flex"></div>
@@ -35,7 +94,7 @@ export default function RegisterPage() {
                     height={100}
                     priority
                 />
-                <form className="max-w-xl w-full">
+                <form action={handleSubmit} className="max-w-xl w-full">
                     <h4 className="text-eb-primary-gray-800 font-bold text-3xl text-center lg:text-start">
                         Buat Akun
                     </h4>
@@ -45,117 +104,55 @@ export default function RegisterPage() {
 
                     <div className="space-y-4">
                         <div>
-                            <label
-                                htmlFor="nama"
-                                className="block text-sm font-medium text-eb-primary-gray-700"
-                            >
-                                Nama
-                            </label>
-                            <div className="mt-2">
-                                <div className="flex items-center rounded-md bg-white pl-3 outline outline-1  outline-eb-primary-gray-400 focus-within:outline-2 focus-within:outline-eb-primary-ygreen-500">
-                                    <input
-                                        required
-                                        id="nama"
-                                        name="nama"
-                                        type="text"
-                                        placeholder="Masukkan Namamu"
-                                        className="block text-sm min-w-0 grow py-1.5 pl-1 pr-2 text-eb-primary-gray-900 placeholder:text-eb-primary-gray-400 focus:outline-none sm:text-sm/6 placeholder:text-sm h-9"
-                                    />
-                                </div>
-                            </div>
+                            <Input
+                                type="name"
+                                label="Name"
+                                name="name"
+                                placeholder="Masukkan Nama Anda"
+                                error={!!errors.name}
+                                errorMessage={errors.name || ""}
+                            />
                         </div>
                         <div>
-                            <label
-                                htmlFor="email"
-                                typeof="email"
-                                className="block text-sm font-medium text-eb-primary-gray-700"
-                            >
-                                Email
-                            </label>
-                            <div className="mt-2">
-                                <div className="flex items-center rounded-md bg-white pl-3 outline outline-1  outline-eb-primary-gray-400 focus-within:outline-2 focus-within:outline-eb-primary-ygreen-500">
-                                    <input
-                                        required
-                                        id="email"
-                                        name="email"
-                                        type="text"
-                                        placeholder="Masukkan Emailmu"
-                                        className="block text-sm min-w-0 grow py-1.5 pl-1 pr-2 text-eb-primary-gray-900 placeholder:text-eb-primary-gray-400 focus:outline-none sm:text-sm/6 placeholder:text-sm h-9"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        {/* <div>
-                            <label
-                                htmlFor="nomortelepon"
-                                className="block text-sm font-medium text-eb-primary-gray-700"
-                            >
-                                Nomor Telepon
-                            </label>
-                            <div className="mt-2">
-                                <div className="flex items-center rounded-md bg-white pl-3 outline outline-1  outline-eb-primary-gray-400 focus-within:outline-2 focus-within:outline-eb-primary-ygreen-500">
-                                    <input
-                                        required
-                                        id="nomortelepon"
-                                        name="nomortelepon"
-                                        type="number"
-                                        placeholder="Masukkan nomorteleponmu"
-                                        className="block text-sm min-w-0 grow py-1.5 pl-1 pr-2 text-eb-primary-gray-900 placeholder:text-eb-primary-gray-400 focus:outline-none sm:text-sm/6 placeholder:text-sm h-9"
-                                    />
-                                </div>
-                            </div>
-                        </div> */}
-                        <div>
-                            <label htmlFor="sandi" className="block text-sm font-medium text-eb-primary-gray-700">
-                                Kata Sandi
-                            </label>
-                            <div className="mt-2 relative">
-                                <div className="flex items-center rounded-md bg-white pl-3 outline outline-1  outline-eb-primary-gray-400 focus-within:outline-2 focus-within:outline-eb-primary-ygreen-500">
-                                    <input
-                                        required
-                                        id="sandi"
-                                        name="sandi"
-                                        type={showPassword ? "text" : "password"}
-                                        placeholder="Masukkan Kata Sandi"
-                                        className="block text-sm min-w-0 grow py-1.5 pl-1 pr-2 text-eb-primary-gray-900 placeholder:text-eb-primary-gray-400 focus:outline-none sm:text-sm/6 placeholder:text-sm h-9"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                    />
-                                    <button type="button" onClick={togglePassword} className="absolute right-3 text-eb-primary-gray-600">
-                                        {showPassword ? <EyeOff className="h-5 w-5" aria-label="show" /> : <Eye className="h-5 w-5" aria-label="hide" />}
-                                    </button>
-                                </div>
-                            </div>
+                            <Input
+                                type="email"
+                                label="Email"
+                                name="email"
+                                placeholder="Masukkan Email Anda"
+                                error={!!errors.email}
+                                errorMessage={errors.email || ""}
+                            />
                         </div>
                         <div>
-                            <label htmlFor="konfirmasiSandi" className="block text-sm font-medium text-eb-primary-gray-700">
-                                Konfirmasi Kata Sandi
-                            </label>
-                            <div className="mt-2 relative">
-                                <div className="flex items-center rounded-md bg-white pl-3 outline outline-1  outline-eb-primary-gray-400 focus-within:outline-2 focus-within:outline-eb-primary-ygreen-500">
-                                    <input
-                                        required
-                                        id="konfirmasiSandi"
-                                        name="konfirmasiSandi"
-                                        type={showPasswordConfirm ? "text" : "password"}
-                                        placeholder="Konfirmasi Kata Sandi"
-                                        className="block text-sm min-w-0 grow py-1.5 pl-1 pr-2 text-eb-primary-gray-900 placeholder:text-eb-primary-gray-400 focus:outline-none sm:text-sm/6 placeholder:text-sm h-9"
-                                        value={confirmPassword}
-                                        onChange={handleConfirmPasswordChange}
-                                    />
-                                    <button type="button" onClick={togglePasswordConfirm} className="absolute right-3 text-eb-primary-gray-600">
-                                        {showPasswordConfirm ? <EyeOff className="h-5 w-5" aria-label="show" /> : <Eye className="h-5 w-5" aria-label="hide" />}
-                                    </button>
-                                </div>
-                                {passwordError && <p className="text-sm text-red-500 mt-1">{passwordError}</p>}
-                            </div>
+                            <InputPassword
+                                label="Password"
+                                name="password"
+                                placeholder="Masukkan Password Anda"
+                                value={password}
+                                onChange={handlePasswordChange}
+                                error={!!errors.password || !!passwordError}
+                                errorMessage={errors.password || passwordError}
+                            />
+                        </div>
+                        <div>
+                            <InputPassword
+                                label="Konfirmasi Password"
+                                name="confirmPassword"
+                                placeholder="Masukkan Konfirmasi Password Anda"
+                                value={confirmPassword}
+                                onChange={handleConfirmPasswordChange}
+                                error={!!passwordError}
+                                errorMessage={passwordError}
+                            />
                         </div>
                     </div>
 
                     <div className="mt-8">
-                        <button type="submit" className="w-full py-2.5 px-4 text-sm font-semibold text-white rounded-3xl bg-eb-primary-green-700 hover:bg-eb-primary-green-800 focus:outline-none transition duration-200 ease-in-out">
-                            Daftar
-                        </button>
+                        <FormButton>
+                            <Button type="submit" variant="primary" className="w-full py-2.5 px-4 text-sm font-semibold text-white rounded-3xl bg-eb-primary-green-700 hover:bg-eb-primary-green-800 focus:outline-none transition duration-200 ease-in-out">
+                                Register
+                            </Button>
+                        </FormButton>
                     </div>
 
                     <div className="my-4 lg:mb-0 flex justify-center">
@@ -166,7 +163,6 @@ export default function RegisterPage() {
                             </a>
                         </p>
                     </div>
-
                 </form>
             </div>
 

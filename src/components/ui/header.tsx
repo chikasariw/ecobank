@@ -42,10 +42,10 @@ export default function Header() {
         {/* Desktop Buttons */}
         <div className="hidden lg:flex space-x-2 ">
           <Button className="w-auto px-6 py-2" variant="default" asChild>
-            <Link href="auth/login">Daftar</Link>
+            <Link href="auth/register">Daftar</Link>
           </Button>
           <Button className="w-auto px-6 py-2" variant="primary" asChild>
-            <Link href="auth/register">Masuk</Link>
+            <Link href="auth/login">Masuk</Link>
           </Button>
         </div>
 
@@ -77,10 +77,10 @@ export default function Header() {
             </nav>
             <div className="flex flex-row items-center justify-center gap-2 pt-6 pb-4">
               <Button className="w-28" variant="default" asChild>
-                <Link href="auth/login">Daftar</Link>
+                <Link href="auth/register">Daftar</Link>
               </Button>
               <Button className="w-28" variant="primary" asChild>
-                <Link href="auth/register">Masuk</Link>
+                <Link href="auth/login">Masuk</Link>
               </Button>
             </div>
           </div>
