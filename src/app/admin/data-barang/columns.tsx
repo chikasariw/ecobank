@@ -1,13 +1,13 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ActionButtons } from "./action-buttons";
-import { ModalImage } from "./modal-image";
+// import { ModalImage } from "./modal-image";
 
 export type Barang = {
-    id: string;
-    gambar: string;
-    namabarang: string;
-    hargajual: number;
-    hargabeli: number;
+    item_id: string;
+    name: string;
+    unit: string;
+    purchase_price: number;
+    selling_price: number;
 };
 
 export const columns: ColumnDef<Barang>[] = [
@@ -18,21 +18,22 @@ export const columns: ColumnDef<Barang>[] = [
         enableSorting: false,
         enableHiding: false,
     },
+    // {
+    //     id: "modalimage",
+    //     header: () => <div className="text-left">Gambar</div>,
+    //     cell: ({ row }) => {
+    //         const gambarUrl = row.original.gambar;
+    //         return gambarUrl ? <ModalImage src={gambarUrl} /> : null;
+    //     },
+    // },
     {
-        id: "modalimage",
-        header: () => <div className="text-left">Gambar</div>,
-        cell: ({ row }) => {
-            console.log("Gambar URL:", row.original.gambar); // Debugging
-            return <ModalImage src={row.original.gambar} />;
-        },
-    },
-    {
-        accessorKey: "namabarang",
+        accessorKey: "name",
         header: "Nama Barang",
-        cell: ({ row }) => <div className="capitalize">{row.getValue("namabarang")}</div>,
+        cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
     },
     {
-        accessorKey: "hargabeli",
+        accessorFn: (row: Barang) => row.purchase_price, // Explicit accessor
+        id: "hargabeli",
         header: () => <div className="text-left">Harga Beli</div>,
         cell: ({ row }) => {
             const hargabeli = parseFloat(row.getValue("hargabeli"));
@@ -44,7 +45,8 @@ export const columns: ColumnDef<Barang>[] = [
         },
     },
     {
-        accessorKey: "hargajual",
+        accessorFn: (row: Barang) => row.selling_price, // Explicit accessor
+        id: "hargajual",
         header: () => <div className="text-left">Harga Jual</div>,
         cell: ({ row }) => {
             const hargajual = parseFloat(row.getValue("hargajual"));
@@ -60,8 +62,8 @@ export const columns: ColumnDef<Barang>[] = [
         header: () => <div className="text-center">Aksi</div>,
         cell: ({ row }) => (
             <ActionButtons
-                onEdit={() => console.log("Edit", row.original.id)}
-                onDelete={() => console.log("Delete", row.original.id)}
+                onEdit={() => console.log("Edit", row.original.item_id)}
+                onDelete={() => console.log("Delete", row.original.item_id)}
             />
         ),
     },

@@ -18,34 +18,40 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { getBarang } from "./action"
-import type { Barang } from "./columns"
+import type { ItemData } from "./action"
 
-export default function DataBarangClient() {
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+interface ItemClientProps {
+  itemData: ItemData[];
+}
+
+export default function DataBarangClient({ itemData }: ItemClientProps) {
+  const [data, setData] = useState<ItemData[]>(itemData)  // Menggunakan data awal jika ada
+  const [loading, setLoading] = useState<boolean>(false)  // Mengatur loading state
+  const [error, setError] = useState<string | null>(null)  // State error untuk menangani kesalahan
   const { toast } = useToast()
 
+  // Fetching data barang
   useEffect(() => {
     async function fetchData() {
+      setLoading(true)
       try {
-        const result = await getBarang()
-        setData(result)
-        setError(null)
+        const result = await getBarang()  // Memanggil fungsi untuk fetch data
+        setData(result)  // Menyimpan data yang berhasil diambil
+        setError(null)  // Menghapus error jika berhasil
       } catch (error) {
         console.error("Failed to fetch data:", error)
-        setError("Gagal mengambil data barang. Silakan coba lagi nanti.")
+        setError("Gagal mengambil data barang. Silakan coba lagi nanti.")  // Menampilkan pesan error
         toast({
           title: "Gagal mengambil data",
           description: "Terjadi kesalahan saat mengambil data barang.",
           variant: "destructive",
         })
       } finally {
-        setLoading(false)
+        setLoading(false)  // Mengubah state loading menjadi false setelah selesai
       }
     }
-    fetchData()
-  }, [toast])
+    fetchData()  // Memanggil fungsi fetchData saat komponen pertama kali dirender
+  }, [toast]) // Menambahkan toast sebagai dependency untuk penggunaan yang benar
 
   return (
     <Card>
@@ -82,7 +88,7 @@ export default function DataBarangClient() {
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           ) : (
-            <DataTable columns={columns} data={data} />
+            <DataTable columns={columns} data={data} />  // Menampilkan data yang sudah diambil
           )}
         </div>
       </CardContent>

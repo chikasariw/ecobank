@@ -1,3 +1,6 @@
+"use server";
+
+import { getBarang } from "./action";
 import DataBarangClient from "./client";
 
 export async function generateMetadata() {
@@ -7,6 +10,12 @@ export async function generateMetadata() {
     };
 }
 
-export default function DataBarangPage() {
-    return <DataBarangClient />;
-}
+export default async function DataBarangPage() {
+    const itemData = await getBarang();
+  
+    return (
+    <DataBarangClient
+        itemData={itemData}
+    />
+    );
+  }
