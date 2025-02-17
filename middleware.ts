@@ -1,23 +1,22 @@
-import { NextResponse } from "next/server"
-import type { NextRequest } from "next/server"
+import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(req: NextRequest) {
-  const userRole = req.cookies.get("user_role")?.value
+  const role = req.cookies.get("user_role") || req.headers.get("user-role"); // Bisa pakai session juga
+  const url = req.nextUrl.clone();
 
-  const adminRoutes = ["/admin/dashboard"]
-  const userRoutes = ["/user/dashboard"]
+  console.log(role);
 
-  if (adminRoutes.includes(req.nextUrl.pathname) && userRole !== "admin") {
-    return NextResponse.redirect(new URL("/auth/login", req.url))
+  if (role === "User" && url.pathname.startsWith("/admin")) {
+    url.pathname = "/user/dashboard";
+    return NextResponse.redirect(url);
+  } else if (role === "Admin" && url.pathname.startsWith("/user")) {
+    url.pathname = "/admin/dashboard";
+    return NextResponse.redirect(url);
   }
 
-  if (userRoutes.includes(req.nextUrl.pathname) && userRole !== "user") {
-    return NextResponse.redirect(new URL("/auth/login", req.url))
-  }
-
-  return NextResponse.next()
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/user/:path*"],
-}
+  matcher: ["/user/:path*"], // Cek hanya di halaman dashboard
+};
