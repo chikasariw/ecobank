@@ -59,7 +59,7 @@ export default function Header() {
                                     </div>
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
+                            <DropdownMenuContent className="rounded-2xl" align="end">
                                 <DropdownMenuLabel>
                                 <div className="grid flex-1 text-left text-sm leading-tight">
                                     <span className="truncate font-medium">Park Jisung</span>
@@ -67,13 +67,13 @@ export default function Header() {
                                 </div>
                                 </DropdownMenuLabel>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem asChild>
+                                <DropdownMenuItem className="rounded-2xl" asChild>
                                     <Link href="/admin/profile">
                                         Profile
                                     </Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem>
+                                <DropdownMenuItem  className="rounded-2xl">
                                     Log out
                                     <LogOut className="ml-auto h-6 w-6" />
                                 </DropdownMenuItem>

@@ -40,7 +40,7 @@ export default function DataBarang() {
     <div>
       <Card>
         <CardHeader>
-          <CardTitle className="flex justify-between items-center gap-10">
+          <CardTitle className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
             <p>
               Data <span className="text-eb-primary-tosca-700">Barang</span>
             </p>
