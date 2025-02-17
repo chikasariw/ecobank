@@ -81,9 +81,9 @@ export default function RegisterPage({ searchParams }: RegisterPageProps) {
     
     return (
         <div className="min-h-screen flex flex-col lg:flex-row items-center lg:items-stretch bg-white sm:bg-eb-primary-green-700">
-            <div className="radial-dots-right hidden lg:flex"></div>
-            <div className="radial-green-right hidden lg:flex"></div>
-            <div className="radial-green-right-md hidden md:flex lg:hidden"></div>
+            <div className="radial-dots hidden lg:flex"></div>
+            <div className="radial-green hidden lg:flex"></div>
+            <div className="radial-green-md hidden md:flex lg:hidden"></div>
             {/* Kiri: Formulir Pendaftaran */}
             <div className="flex flex-1 flex-col justify-center items-center bg-white rounded-none sm:rounded-3xl p-10 md:px-24 lg:px-28 xl:px-28 xl:max-w-[50%] md:m-12 sm:m-5 xl:m-5 z-10">
                 <Image

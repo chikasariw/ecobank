@@ -1,41 +1,54 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Plus } from "lucide-react"
-import { addBarang } from "./action"
-import { useToast } from "@/hooks/use-toast"
-import { useState } from "react"
+import type React from "react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Plus } from "lucide-react";
+import { addBarang } from "./action";
+import { useToast } from "@/hooks/use-toast";
 
 export function ModalAdd() {
-  const { toast } = useToast()
-  const [open, setOpen] = useState(false)
+  const { toast } = useToast();
+  const [open, setOpen] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget)
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    // Pastikan nama field sesuai dengan DTO
+    const rawData = {
+      name: formData.get("name")?.toString(),
+      unit: Number(formData.get("unit")),
+      purchase_price: Number(formData.get("purchase_price")),
+      selling_price: Number(formData.get("selling_price")),
+    };
 
     try {
-      await addBarang(formData)
-      console.log("Data berhasil ditambahkan") 
+      await addBarang(formData);
       toast({
         title: "Data berhasil ditambahkan",
         description: "Data barang baru telah berhasil disimpan.",
-      })
-      setOpen(false) 
+      });
+      setOpen(false);
     } catch (error) {
-      console.error("Error saat menambahkan data:", error)
+      console.error("Error saat menambahkan data:", error);
       toast({
         title: "Gagal menambahkan data",
-        description: "Terjadi kesalahan saat menyimpan data barang.",
+        description: error.message || "Terjadi kesalahan saat menyimpan data barang.",
         variant: "destructive",
-      })
+      });
     }
-  }
+  };
 
   return (
     <>
@@ -53,21 +66,33 @@ export function ModalAdd() {
           <form onSubmit={handleSubmit}>
             <div className="grid gap-5">
               <div>
-                <Label htmlFor="namabarang">Nama Barang</Label>
-                <Input name="namabarang" placeholder="Masukkan Nama Barang" className="mt-2" required />
+                <Label htmlFor="name">Nama Barang</Label>
+                <Input name="name" placeholder="Masukkan Nama Barang" className="mt-2" required />
               </div>
               <div>
-                <Label htmlFor="gambar">Foto Barang</Label>
-                <Input name="gambar" type="file" className="mt-2" />
+                <Label htmlFor="unit">Jumlah Unit</Label>
+                <Input name="unit" type="number" placeholder="Masukkan Jumlah Unit" className="mt-2" required />
               </div>
               <div className="flex gap-5">
                 <div className="w-1/2">
-                  <Label htmlFor="hargabeli">Harga Beli</Label>
-                  <Input name="hargabeli" type="number" placeholder="Masukkan Harga Beli" className="mt-2" required />
+                  <Label htmlFor="purchase_price">Harga Beli</Label>
+                  <Input
+                    name="purchase_price"
+                    type="number"
+                    placeholder="Masukkan Harga Beli"
+                    className="mt-2"
+                    required
+                  />
                 </div>
                 <div className="w-1/2">
-                  <Label htmlFor="hargajual">Harga Jual</Label>
-                  <Input name="hargajual" type="number" placeholder="Masukkan Harga Jual" className="mt-2" required />
+                  <Label htmlFor="selling_price">Harga Jual</Label>
+                  <Input
+                    name="selling_price"
+                    type="number"
+                    placeholder="Masukkan Harga Jual"
+                    className="mt-2"
+                    required
+                  />
                 </div>
               </div>
             </div>
@@ -81,5 +106,5 @@ export function ModalAdd() {
         </DialogContent>
       </Dialog>
     </>
-  )
+  );
 }
