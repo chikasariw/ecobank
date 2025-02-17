@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import React, { useState } from "react";
 import Image from "next/image";
 import { registerAction, RegisterValidationErrors } from "@/app/auth/register/action";
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/inputauth';
 import { InputPassword } from '@/components/ui/inputpassword';
 import { Button } from '@/components/ui/button';
 import FormButton from '@/components/ui/form-button';
