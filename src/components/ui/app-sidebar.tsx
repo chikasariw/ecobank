@@ -34,9 +34,9 @@ const data = {
       icon: Home,
     },
     {
-      title: "Data Pengguna",
+      title: "Data Warga Hijau",
       url: "/admin/data-pengguna",
-      icon: UsersRound
+      icon: UsersRound,
     },
     {
       title: "Data Barang",
