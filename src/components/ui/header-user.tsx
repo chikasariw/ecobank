@@ -68,7 +68,7 @@ export default function Header() {
                                 </DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem asChild>
-                                    <Link href="/admin/profile">
+                                    <Link href="/user/profile">
                                         Profile
                                     </Link>
                                 </DropdownMenuItem>

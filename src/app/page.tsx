@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { ChevronDown } from "lucide-react";
 import Header from "@/components/ui/header";
 import InfiniteScroll from "@/components/ui/infinite-scroll";
 import Footer from "@/components/ui/footer";

@@ -63,10 +63,10 @@ export default function Header() {
           }`}
         >
           <Button className="w-auto px-6 py-2" variant="default" asChild>
-            <Link href="auth/login">Daftar</Link>
+            <Link href="auth/register">Daftar</Link>
           </Button>
           <Button className="w-auto px-6 py-2" variant="primary" asChild>
-            <Link href="auth/register">Masuk</Link>
+            <Link href="auth/login">Masuk</Link>
           </Button>
         </div>
 
