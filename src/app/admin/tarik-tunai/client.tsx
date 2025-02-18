@@ -20,6 +20,11 @@ const data: Pengguna[] = [
         email: "parkjisung@gmail.com",
         nama: "Park Jisung",
     },
+    {
+        id: "2",
+        email: "alnena11@gmail.com",
+        nama: "Alnena",
+    },
 ];
 
 export default function DataPenggunaClient() {
