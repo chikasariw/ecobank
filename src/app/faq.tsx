@@ -50,7 +50,7 @@ const FAQ = () => {
       <div className="flex flex-1 relative">
         <div className="flex flex-1 flex-col justify-center">
           <h4 className="text-eb-primary-gray-600 text-sm font-medium uppercase tracking-wide">
-            Faq Ecobank
+            Faq EcoBank
           </h4>
           <h1 className="text-eb-primary-gray-800 font-bold text-3xl md:text-4xl max-w-md mt-2">
             Ada pertanyaan? Kami Punya Jawabannya!
