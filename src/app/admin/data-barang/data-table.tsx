@@ -107,10 +107,10 @@ export const DataTable = <TData extends ItemData>({ data, columns }: DataTablePr
       </div>
       <div className="rounded-xl border">
         {loading ? (
-          <div className="space-y-2">
-            <Skeleton className="h-4 w-[250px]" />
-            <Skeleton className="h-4 w-[200px]" />
-            <Skeleton className="h-4 w-[300px]" />
+          <div className="p-3 space-y-2">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
           </div>
         ) : error ? (
           <Alert variant="destructive">

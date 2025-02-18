@@ -33,27 +33,27 @@ export const columns: ColumnDef<Barang>[] = [
     },
     {
         accessorFn: (row: Barang) => row.purchase_price, // Explicit accessor
-        id: "hargabeli",
+        id: "purchase_price",
         header: () => <div className="text-left">Harga Beli</div>,
         cell: ({ row }) => {
-            const hargabeli = parseFloat(row.getValue("hargabeli"));
+            const purchase_price = parseFloat(row.getValue("purchase_price"));
             const formatted = new Intl.NumberFormat("id-ID", {
                 style: "currency",
                 currency: "IDR",
-            }).format(hargabeli);
+            }).format(purchase_price);
             return <div className="text-left font-medium">{formatted} /gram</div>;
         },
     },
     {
         accessorFn: (row: Barang) => row.selling_price, // Explicit accessor
-        id: "hargajual",
+        id: "selling_price",
         header: () => <div className="text-left">Harga Jual</div>,
         cell: ({ row }) => {
-            const hargajual = parseFloat(row.getValue("hargajual"));
+            const selling_price = parseFloat(row.getValue("selling_price"));
             const formatted = new Intl.NumberFormat("id-ID", {
                 style: "currency",
                 currency: "IDR",
-            }).format(hargajual);
+            }).format(selling_price);
             return <div className="text-left font-medium">{formatted} /gram</div>;
         },
     },
