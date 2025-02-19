@@ -23,12 +23,12 @@ const chartData = [
   { month: "A", barang: 73 },
   { month: "M", barang: 209 },
   { month: "J", barang: 214 },
-  { month: "J", barang: 214 },
-  { month: "A", barang: 214 },
-  { month: "S", barang: 214 },
+  { month: "J", barang: 130},
+  { month: "A", barang: 114 },
+  { month: "S", barang: 80 },
   { month: "O", barang: 214 },
-  { month: "N", barang: 214 },
-  { month: "D", barang: 214 },
+  { month: "N", barang: 311 },
+  { month: "D", barang: 114 },
 ]
 
 // Warna Gradien untuk Tiap Bar

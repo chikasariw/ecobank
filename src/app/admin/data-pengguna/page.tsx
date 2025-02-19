@@ -1,12 +1,21 @@
+"use server"
+
+import { getUser } from "./action";
 import DataPenggunaClient from "./client";
 
 export async function generateMetadata() {
     return {
-        title: "Data Pengguna - EcoBank.",
-        description: "Halaman Data Pengguna EcoBank.",
+        title: "Data Warga Hijau - EcoBank.",
+        description: "Halaman Data Warga Hijau EcoBank.",
     };
 }
 
-export default function DataPenggunaPage() {
-    return <DataPenggunaClient />;
-}
+export default async function DataPenggunaPage() {
+    const userData = await getUser();
+
+    return (
+        <DataPenggunaClient
+            userData={userData}
+        />
+        );
+    }

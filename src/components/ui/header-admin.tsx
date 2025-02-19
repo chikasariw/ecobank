@@ -74,8 +74,10 @@ export default function Header() {
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem  className="rounded-2xl">
+                                    <Link href="/auth/login" className="flex items-center gap-2">
+                                    <LogOut className="ml-auto h-4 w-4" />
                                     Log out
-                                    <LogOut className="ml-auto h-6 w-6" />
+                                    </Link>
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>

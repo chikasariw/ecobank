@@ -26,6 +26,18 @@ import {
 import { ColumnDef } from "@tanstack/react-table";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { Search } from "lucide-react";
+import { getBarang } from "./action"
+import { useToast } from "@/hooks/use-toast"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { AlertCircle } from "lucide-react"
+
+interface ItemData {
+  item_id: string;
+  name: string;
+  email: string;
+  purchase_price: string;
+  selling_price: string | null;
+}
 
 interface DataTableProps<TData> {
   data: TData[];

@@ -7,7 +7,7 @@ import {
   type VisibilityState,
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
+  getFilteredRowModel, 
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,

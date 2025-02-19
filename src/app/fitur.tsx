@@ -70,7 +70,7 @@ export default function Fitur() {
             <div className="relative z-10">
               <div className="py-6 px-6">
                 <h4 className="font-bold text-xl text-eb-primary-gray-200">
-                  Data Sampah Yang Ditukar
+                  Data Sampah Ditukar
                 </h4>
                 <p className="text-base text-eb-primary-gray-200 mt-2">
                 Pantau total berat sampah anorganik yang telah dikumpulkan dan ditukarkan selama kamu menggunakan EcoBank.
@@ -109,7 +109,7 @@ export default function Fitur() {
                   Data Barang EcoBank
                 </h4>
                 <p className="text-base text-eb-primary-gray-200 mt-2">
-                Lihat kategori dan nilai sampah anorganik sebelum menukarkannya di EcoBank.
+                  Lihat kategori dan nilai sampah anorganik sebelum menukarkannya di EcoBank.
                 </p>
               </div>
               <div className=" backdrop-blur-md h-56 overflow-hidden ">

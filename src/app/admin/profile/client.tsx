@@ -33,7 +33,7 @@ export default function ProfileClient() {
       <form>
         <CardHeader>
           <CardTitle className="lg:flex lg:justify-between">
-            <p>Data <span className="text-eb-primary-tosca-700">Pengguna</span></p>
+            <p>Data <span className="text-eb-primary-tosca-700">Warga Hijau</span></p>
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>

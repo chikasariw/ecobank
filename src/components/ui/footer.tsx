@@ -21,23 +21,23 @@ export default function Footer() {
 
             <p className="text-eb-primary-gray-600 max-w-sm">
               Jangan biarkan sampah menumpuk dan jadi masalah! Segera tukarkan
-              di Ecobank dan dapatkan manfaatnya.
+              di EcoBank dan dapatkan manfaatnya.
             </p>
           </div>
 
           <div className="flex flex-col col-span-4 lg:col-span-1 gap-5">
-            <p className="font-black">Menu Ecobank</p>
+            <p className="font-black">Menu EcoBank</p>
 
-            <div className="text-sm text-eb-primary-gray-600 flex flex-col gap-3">
+            <div className="text-sm text-eb-primary-gray-600 fhover:text-eb-primary-green-800 flex flex-col gap-3">
               <Link href={"/paket-belajar"}>Beranda</Link>
-              <Link href={"/try-out"}>Tentang Ecobank</Link>
+              <Link href={"/try-out"}>Tentang Kami</Link>
               <Link href={"/diskusi"}>Fitur</Link>
               <Link href={"/catatan"}>FAQ</Link>
             </div>
           </div>
 
           <div className="flex flex-col col-span-4 lg:col-span-1 gap-5 ">
-            <p className="font-black">Lokasi Ecobank</p>
+            <p className="font-black">Lokasi EcoBank</p>
 
             <div className="text-sm flex flex-col gap-3">
               <p className="flex text-eb-primary-gray-600 gap-2 mt-2">
