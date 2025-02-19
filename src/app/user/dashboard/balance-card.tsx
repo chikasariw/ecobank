@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import  { ModalTataCara } from "./modal-tatacara";
 
 export function BalanceCard() {
   return (
@@ -13,13 +15,12 @@ export function BalanceCard() {
           Total Uang
         </h2>
         <p className="text-xs text-white">
-          Poin yang dapat ditukarkan pengguna
+          Saldo yang dapat ditukarkan pengguna
         </p>
       </div>
       <div className="text-4xl font-bold mt-6 mb-8">Rp. 210.000</div>
-      <Button className="text-sm font-medium inset-0" variant="backdrop">
-        Ambil Uang
-      </Button>
+      
+      <ModalTataCara />
     </div>
   );
 }

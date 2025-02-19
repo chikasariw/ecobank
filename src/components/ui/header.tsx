@@ -8,11 +8,11 @@ import { Menu, X } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  // const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    setIsVisible(true); // Memunculkan header setelah komponen dimuat
-  }, []);
+  // useEffect(() => {
+  //   setIsVisible(true); // Memunculkan header setelah komponen dimuat
+  // }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -20,17 +20,11 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 transition-all duration-200 ease-out ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
-      }`}
+      className="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50"
     >
       <div className="max-w-screen-xl mx-auto flex items-center justify-between px-6 lg:px-10 py-4">
         {/* Logo */}
-        <div
-          className={`flex items-center transition-all duration-700 ${
-            isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
-          }`}
-        >
+        <div>
           <Image
             src="/logo/ecobank-logo.svg"
             alt="Ecobank Logo"
@@ -41,9 +35,7 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav
-          className={`hidden lg:flex space-x-8 transition-all duration-700 delay-200 ${
-            isVisible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90"
-          }`}
+          className="hidden lg:flex space-x-8"
         >
           {["Beranda", "Tentang Kami", "Fitur", "FAQ"].map((item, index) => (
             <a
@@ -58,9 +50,7 @@ export default function Header() {
 
         {/* Desktop Buttons */}
         <div
-          className={`hidden lg:flex space-x-2 transition-all duration-700 delay-300 ${
-            isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
-          }`}
+          className="hidden lg:flex space-x-2"
         >
           <Button className="w-auto px-6 py-2" variant="default" asChild>
             <Link href="auth/register">Daftar</Link>
