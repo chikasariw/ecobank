@@ -70,7 +70,7 @@ export default function ProfileClient({ userData }: ProfileClientProps) {
         <CardHeader>
           <CardTitle className="flex flex-col lg:flex-row lg:justify-between">
             <p>
-              Data <span className="text-eb-primary-tosca-700">Pengguna</span>
+              Data <span className="text-eb-primary-tosca-700">Warga Hijau</span>
             </p>
             <Breadcrumb>
               <BreadcrumbList>

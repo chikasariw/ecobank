@@ -2,8 +2,8 @@ import DataPenggunaClient from "./client";
 
 export async function generateMetadata() {
     return {
-        title: "Data Pengguna - EcoBank.",
-        description: "Halaman Data Pengguna EcoBank.",
+        title: "Data Warga Hijau - EcoBank.",
+        description: "Halaman Data Warga Hijau EcoBank.",
     };
 }
 
