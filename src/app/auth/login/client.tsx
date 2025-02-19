@@ -21,36 +21,36 @@ export default function LoginPage({ searchParams }: LoginPageProps) {
     const router = useRouter();
     const [errors, setErrors] = useState<LoginValidationErrors>({});
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [passwordError, setPasswordError] = useState("");
+    // const [confirmPassword, setConfirmPassword] = useState("");
+    // const [passwordError, setPasswordError] = useState("");
 
     const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         setPassword(value);
 
-        // Perbarui error konfirmasi password jika sudah ada
-        if (confirmPassword && confirmPassword !== value) {
-            setPasswordError("Konfirmasi kata sandi tidak cocok");
-        } else {
-            setPasswordError("");
-        }
+        // // Perbarui error konfirmasi password jika sudah ada
+        // if (confirmPassword && confirmPassword !== value) {
+        //     setPasswordError("Konfirmasi kata sandi tidak cocok");
+        // } else {
+        //     setPasswordError("");
+        // }
     };
 
-    const handleConfirmPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        setConfirmPassword(value);
-        setPasswordError(value !== password ? "Konfirmasi kata sandi tidak cocok" : "");
-    };
+    // const handleConfirmPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     const value = event.target.value;
+    //     setConfirmPassword(value);
+    //     setPasswordError(value !== password ? "Konfirmasi kata sandi tidak cocok" : "");
+    // };
 
     async function handleSubmit(formData: FormData) {
         const email = formData.get('email') as string;
         const password = formData.get('password') as string;
     
-        if (confirmPassword !== password) {
-            setPasswordError("Konfirmasi kata sandi tidak cocok");
-            return;
-        }
-    
+        // if (confirmPassword !== password) {
+        //     setPasswordError("Konfirmasi kata sandi tidak cocok");
+        //     return;
+        // }
+        
         const result = await loginAction( email, password);
     
         if (result && "error" in result) {
@@ -129,11 +129,11 @@ export default function LoginPage({ searchParams }: LoginPageProps) {
                                 placeholder="Masukkan Password Anda"
                                 value={password}
                                 onChange={handlePasswordChange}
-                                error={!!errors.password || !!passwordError}
-                                errorMessage={errors.password || passwordError}
+                                error={!!errors.password}
+                                errorMessage={errors.password || ""}
                             />
                         </div>
-                        <div>
+                        {/* <div>
                             <InputPassword
                                 label="Konfirmasi Password"
                                 name="confirmPassword"
@@ -143,7 +143,7 @@ export default function LoginPage({ searchParams }: LoginPageProps) {
                                 error={!!passwordError}
                                 errorMessage={passwordError}
                             />
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="mt-8">

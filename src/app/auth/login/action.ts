@@ -79,7 +79,6 @@ export async function loginAction(
           errors.password = error.message;
         }
       });
-
       return errors;
     }
     throw e;
