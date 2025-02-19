@@ -1,3 +1,6 @@
+"use server"
+
+import { getUser } from "./action";
 import DataPenggunaClient from "./client";
 
 export async function generateMetadata() {
@@ -7,6 +10,12 @@ export async function generateMetadata() {
     };
 }
 
-export default function DataPenggunaPage() {
-    return <DataPenggunaClient />;
-}
+export default async function DataPenggunaPage() {
+    const userData = await getUser();
+
+    return (
+        <DataPenggunaClient
+            userData={userData}
+        />
+        );
+    }

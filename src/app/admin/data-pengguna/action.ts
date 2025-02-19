@@ -18,18 +18,34 @@ export interface userData {
 };
 
 export async function getUser() {
-  const response = await fetch(`${apiUrl}/user/all-user`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+try {
+    const token = (await cookies()).get("access_token")?.value;
 
-  const { data, fulfilled, message } = await response.json();
-  if (fulfilled !== 1) {
-    throw new Error(message);
+    if (!token) {
+      console.error("No token found in cookies");
+      throw new Error("No token found");
+    }
+
+    const userResponse = await fetch(`${apiUrl}/user/all-user`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const { data: userData, fulfilled: userFulfilled } =
+      await userResponse.json();
+
+    if (userFulfilled != 1) {
+      throw new Error(
+        `Failed to fetch user data. Status: ${userResponse.status}`
+      );
+    }
+    return userData as userData[];
+  } catch (error) {
+    console.error("Error fetching user data or avatars:", error);
+    throw error;
   }
-  return data as userData[];
 }
 
 // export const addBarang = async (formData: FormData) => {

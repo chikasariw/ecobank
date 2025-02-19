@@ -28,7 +28,7 @@ export default function Footer() {
           <div className="flex flex-col col-span-4 lg:col-span-1 gap-5">
             <p className="font-black">Menu EcoBank</p>
 
-            <div className="text-sm text-eb-primary-gray-600 fhover:text-eb-primary-green-800 lex flex-col gap-3">
+            <div className="text-sm text-eb-primary-gray-600 fhover:text-eb-primary-green-800 flex flex-col gap-3">
               <Link href={"/paket-belajar"}>Beranda</Link>
               <Link href={"/try-out"}>Tentang Kami</Link>
               <Link href={"/diskusi"}>Fitur</Link>

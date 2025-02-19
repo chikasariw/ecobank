@@ -68,7 +68,7 @@ export const DataTable = <TData extends UserData>({ data, columns }: DataTablePr
   
 
   const table = useReactTable({
-    data, // Default ke array kosong jika `tableData` undefined
+    data: tableData || [], // Default ke array kosong jika `tableData` undefined
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
