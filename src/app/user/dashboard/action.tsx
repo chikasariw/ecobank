@@ -16,7 +16,7 @@ export async function getBalance(): Promise<number | null> {
   }
 
   try {
-      const response = await fetch(`${apiUrl}/transactions/user/balance`, {
+      const response = await fetch(`${apiUrl}/transaction/user/balance`, {
           headers: {
               'Authorization': `Bearer ${accessToken}`,
           },

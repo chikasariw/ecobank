@@ -70,7 +70,7 @@ export default function HeaderUser({ user }: { user: User | null }) {
                   </div>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent className="rounded-2xl" align="end">
                 <DropdownMenuLabel>
                   <div className="grid flex-1 text-left text-sm leading-tight">
                     <span className="truncate font-medium">
@@ -82,12 +82,14 @@ export default function HeaderUser({ user }: { user: User | null }) {
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem className="rounded-2xl" asChild>
                   <Link href="/user/profile">Profile</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                <DropdownMenuItem className="rounded-2xl">
+                  <Link href="/auth/login">
                   Log out
+                  </Link>
                   <LogOut className="ml-auto h-6 w-6" />
                 </DropdownMenuItem>
               </DropdownMenuContent>
