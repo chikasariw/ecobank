@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 
-import { WelcomeSection } from "./welcome-card"
+import WelcomeSection from "./welcome-card"; 
 import { BalanceCard } from "./balance-card"
 import { TransactionHistory } from "./transaction-history"
 import { Barchart } from "./barchart";

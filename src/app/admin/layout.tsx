@@ -9,8 +9,22 @@ import {
     SidebarProvider,
 } from "@/components/ui/sidebar";
 import HeaderAdmin from "@/components/ui/header-admin";
+import { getUserData } from "./dashboard/action";
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+interface User {
+    name: string;
+    email: string;
+    profile_url?: string;
+} 
+
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+    let user: User | null = null;
+
+    try {
+        user = await getUserData();
+    } catch (error) {
+        console.error("Failed to fetch user data:", error);
+    }
     return (
         <ThemeProvider
             attribute="class"
@@ -21,7 +35,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <SidebarProvider className="bg-eb-primary-gray-200">
                 <AppSidebar />
                 <SidebarInset>
-                    <HeaderAdmin />
+                    <HeaderAdmin user={user}/>
                     <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
                         {children}
                     </div>

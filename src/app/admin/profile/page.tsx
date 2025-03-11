@@ -1,4 +1,6 @@
+"use server";
 
+import { getUserData } from "./action";
 import ProfileClient from "./client";
 
 export async function generateMetadata() {
@@ -8,6 +10,12 @@ export async function generateMetadata() {
     };
 }
 
-export default function ProfilePage() {
-    return <ProfileClient />;
-}
+export default async function ProfilPage() {
+    const userData = await getUserData();
+  
+    return (
+      <ProfileClient
+        userData={userData}
+        UserDataValidationErrors={[]}    />
+    );
+  }

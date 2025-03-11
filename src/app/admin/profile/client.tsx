@@ -1,5 +1,7 @@
 "use client";
-import * as React from "react";
+
+import { toast } from "sonner";
+import React, { useState } from "react";
 
 import {
   Card,
@@ -12,6 +14,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import FormButton from "@/components/ui/form-button";
+// import Password from "./password";
+import DatePicker from "./date-picker";
+import ProfileImage from "./profile-image";
 
 import {
   Breadcrumb,
@@ -20,24 +27,57 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+} from "@/components/ui/breadcrumb";
 
-import DatePicker from "./date-picker";
-import Password from "./password";
-import RadioGender from "./radio-gender";
-import ProfileImage from "./profile-image";
+import {
+  UserData,
+  updateUserData,
+  UserDataValidationErrors,
+} from "./action";
+// import { InputPassword } from "@/components/ui/inputpassword";
 
-export default function ProfileClient() {
+interface ProfileClientProps {
+  userData: UserData;
+  UserDataValidationErrors: UserDataValidationErrors[];
+}
+
+export default function ProfileClient({ userData }: ProfileClientProps) {
+  const [formError, setErrors] = useState<string | null>(null);
+
+  async function handleEditProfileSubmit(formData: FormData) {
+    setErrors(null);
+
+    const birth_date = formData.get("birth_date") as string | undefined;
+    const gender = formData.get("gender") as string | undefined;
+    const phone_number = formData.get("phone_number") as string | undefined;
+
+    const validationErrors = await updateUserData({
+      ...(birth_date && { birth_date }),
+      ...(gender && { gender }),
+      ...(phone_number && { phone_number }),
+    });
+
+    if (validationErrors) {
+      setErrors(validationErrors);
+    } else {
+      toast.success("Berhasil mengubah data pengguna");
+    }
+  }
+
   return (
     <Card>
-      <form>
+      <form action={handleEditProfileSubmit} className="space-y-6">
         <CardHeader>
-          <CardTitle className="lg:flex lg:justify-between">
-            <p>Data <span className="text-eb-primary-tosca-700">Warga Hijau</span></p>
+          <CardTitle className="flex flex-col lg:flex-row lg:justify-between">
+            <p>
+              Data <span className="text-eb-primary-tosca-700">Warga Hijau</span>
+            </p>
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/admin/dashboard">EcoBank.</BreadcrumbLink>
+                  <BreadcrumbLink href="/admin/dashboard">
+                    EcoBank.
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
@@ -48,83 +88,59 @@ export default function ProfileClient() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="rounded-xl border border-eb-primary-gray-200 p-4">
-            <div className="grid gap-8 lg:grid-cols-[240px,1fr]">
-              {/* Profile Image */}
-              <ProfileImage />
+          <div className="grid gap-8 lg:grid-cols-[240px,1fr] border border-eb-primary-gray-200 p-4 rounded-xl">
+            <ProfileImage defaultValue={userData.name}/>
+            <div className="grid gap-4">
+              <div className="md:flex items-center">
+                <Label htmlFor="name" className="w-full md:w-1/2 xl:w-1/5">Nama Pengguna</Label>
+                <Input type="text" name="name" placeholder="Masukkan nama kamu" defaultValue={userData.name} />
+              </div>
 
-              {/* Form */}
-              <div className="grid gap-5">
-                <div className="md:flex gap-2">
-                  <Label
-                    htmlFor="nama_pengguna"
-                    className="w-full md:w-1/2 xl:w-1/5 mb-1"
-                  >
-                    Nama Pengguna
-                  </Label>
-                  <Input defaultValue="Park Jisung" />
-                </div>
+              <div className="md:flex items-center">
+                <Label htmlFor="email" className="w-full md:w-1/2 xl:w-1/5">Email</Label>
+                <Input type="email" name="email" placeholder="Masukkan email kamu" defaultValue={userData.email} disabled />
+              </div>
 
-                <div className="md:flex gap-2">
-                  <Label
-                    htmlFor="email"
-                    className="w-full md:w-1/2 xl:w-1/5 mb-1"
-                  >
-                    Email
-                  </Label>
-                  <Input type="email" defaultValue="parkjisung@gmail.com" />
-                </div>
+              <div className="md:flex items-center">
+                <Label htmlFor="phone_number" className="w-full md:w-1/2 xl:w-1/5">No. Telpon</Label>
+                <Input type="text" name="phone_number" placeholder="Masukkan No. Telpon kamu" defaultValue={userData.phone_number || ""} />
+              </div>
+{/* 
+              <div className="md:flex items-center">
+              <Label htmlFor="name" className="w-full md:w-1/2 xl:w-1/5">Kata Sandi</Label>
+              <InputPassword type="text" name="phone_number" placeholder="Masukkan No. Telpon kamu" defaultValue={userData.phone_number || ""} />
+              </div> */}
 
-                <div className="md:flex gap-2">
-                  <Label
-                    htmlFor="nomor_telepon"
-                    className="w-full md:w-1/2 xl:w-1/5 mb-1"
-                  >
-                    Nomor Telepon
-                  </Label>
-                  <Input defaultValue="0828376847563" />
-                </div>
+              <div className="md:flex items-center">
+                <Label htmlFor="birth_date" className="w-full md:w-1/2 xl:w-1/5">Tanggal Lahir</Label>
+                <DatePicker defaultValue={userData.birth_date || ""} />
+              </div>
 
-                <div className="md:flex gap-2">
-                  <Label
-                    htmlFor="kata_sandi"
-                    className="w-full md:w-1/2 xl:w-1/5 mb-1"
-                  >
-                    Kata Sandi
-                  </Label>
-                  <Password />
-                </div>
-
-                <div className="md:flex gap-2">
-                  <Label
-                    htmlFor="tanggal_lahir"
-                    className="w-full md:w-1/2 xl:w-1/5 mb-1"
-                  >
-                    Tanggal Lahir
-                  </Label>
-                  <DatePicker />
-                </div>
-
-                <div className="md:flex gap-2">
-                  <Label
-                    htmlFor="jenis_kelamin"
-                    className="w-full md:w-1/2 xl:w-1/5 mb-1"
-                  >
-                    Jenis Kelamin
-                  </Label>
-                  <RadioGender />
-                </div>
+              <div className="md:flex items-center">
+                <Label htmlFor="gender" className="w-full md:w-1/2 xl:w-1/5">Jenis Kelamin</Label>
+                <RadioGroup className="flex gap-4" name="gender" defaultValue={userData.gender || ""}>
+                  <div className="flex items-center gap-2">
+                    <RadioGroupItem value="Laki-Laki" id="Laki-Laki" />
+                    <label htmlFor="Laki-Laki" className="text-sm font-medium text-gray-700 cursor-pointer">
+                      Laki-laki
+                    </label>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <RadioGroupItem value="Perempuan" id="Perempuan" />
+                    <label htmlFor="Perempuan" className="text-sm font-medium text-gray-700 cursor-pointer">
+                      Perempuan
+                    </label>
+                  </div>
+                </RadioGroup>
               </div>
             </div>
           </div>
         </CardContent>
-        <CardFooter>
-          <div className=" flex gap-2">
-            <Button variant="ghost">
-              Batalkan Perubahan
-            </Button>
-            <Button>Simpan Perubahan</Button>
-          </div>
+        <CardFooter className="flex justify-end gap-2">
+          <FormButton>
+            <Button variant="primary">Simpan</Button>
+          </FormButton>
+          <Button variant="ghost" type="reset">Batal</Button>
         </CardFooter>
       </form>
     </Card>

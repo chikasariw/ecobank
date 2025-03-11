@@ -9,7 +9,7 @@ interface User {
     name: string;
     email: string;
     profile_url?: string;
-}
+} 
 
 // Komponen ini server-side (karena tidak ada "use client")
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {

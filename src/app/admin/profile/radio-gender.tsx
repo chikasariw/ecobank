@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 
 export default function RadioGender() {
     return (
-        <RadioGroup defaultValue="laki-laki" className='flex w-full'>
+        <RadioGroup defaultValue="Laki-Laki" className='flex w-full'>
             <div className="flex items-center space-x-3">
                 <RadioGroupItem value="laki-laki" id="laki-laki" />
                 <Label htmlFor="laki-laki">Laki-laki</Label>
