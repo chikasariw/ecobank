@@ -1,13 +1,7 @@
-"use client"
 import * as React from "react"
-
 import { ThemeProvider } from "@/components/ui/theme-provider";
-
 import { AppSidebar } from "@/components/ui/app-sidebar";
-import {
-    SidebarInset,
-    SidebarProvider,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import HeaderAdmin from "@/components/ui/header-admin";
 import { getUserData } from "./dashboard/action";
 
@@ -25,6 +19,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     } catch (error) {
         console.error("Failed to fetch user data:", error);
     }
+    
     return (
         <ThemeProvider
             attribute="class"

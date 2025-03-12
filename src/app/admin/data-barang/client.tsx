@@ -21,7 +21,7 @@ import { getBarang } from "./action"
 import type { ItemData } from "./action"
 
 interface ItemClientProps {
-  itemData: ItemData[];
+    itemData: ItemData[];
 }
 
 export default function DataBarangClient({ itemData }: ItemClientProps) {

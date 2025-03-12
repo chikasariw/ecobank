@@ -1,3 +1,4 @@
+"use client";
 interface User {
   name: string;
   email: string;

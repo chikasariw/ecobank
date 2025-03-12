@@ -11,7 +11,6 @@ interface User {
     profile_url?: string;
 } 
 
-// Komponen ini server-side (karena tidak ada "use client")
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
     let user: User | null = null;
 
@@ -31,7 +30,6 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <SidebarProvider className="bg-eb-primary-gray-200">
                 <AppSidebar />
                 <SidebarInset>
-                    {/* Kirim data user ke HeaderUser */}
                     <HeaderUser user={user} />
                     <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
                         {children}

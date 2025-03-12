@@ -1,5 +1,7 @@
-import SetorClient from "./client";
+"use server";
 
+import { getBarang } from "./action";
+import SetorClient from "./client";
 
 export async function generateMetadata() {
     return {
@@ -8,6 +10,12 @@ export async function generateMetadata() {
     };
 }
 
-export default function SetorPage() {
-    return <SetorClient/>;
-}
+export default async function SetorPage() {
+    const itemData = await getBarang();
+  
+    return (
+    <SetorClient
+        itemData={itemData}
+    />
+    );
+  }

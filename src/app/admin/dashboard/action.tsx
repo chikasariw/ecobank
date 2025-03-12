@@ -8,33 +8,33 @@ export interface UserData {
     profile_url: string;
   }
 
-// export async function getBalance(): Promise<number | null> {
-//   const accessToken = (await cookies()).get('access_token')?.value;
+export async function getBalance(): Promise<number | null> {
+  const accessToken = (await cookies()).get('access_token')?.value;
 
-//   if (!accessToken) {
-//       return null;
-//   }
+  if (!accessToken) {
+      return null;
+  }
 
-//   try {
-//       const response = await fetch(`${apiUrl}/transaction/user/balance`, {
-//           headers: {
-//               'Authorization': `Bearer ${accessToken}`,
-//           },
-//       });
+  try {
+      const response = await fetch(`${apiUrl}/transaction/user/balance`, {
+          headers: {
+              'Authorization': `Bearer ${accessToken}`,
+          },
+      });
 
-//       const { data, fulfilled } = await response.json();
+      const { data, fulfilled } = await response.json();
 
 
-//       if (fulfilled !== 1) {
-//           throw new Error('Failed to fetch Balance');
-//       }
+      if (fulfilled !== 1) {
+          throw new Error('Failed to fetch Balance');
+      }
 
-//       return data;
-//   } catch (error) {
-//       console.error('Error fetching Balance:', error);
-//       return null;
-//   }
-// }
+      return data;
+  } catch (error) {
+      console.error('Error fetching Balance:', error);
+      return null;
+  }
+}
 
 export async function getUserData() {
     try {
@@ -45,7 +45,7 @@ export async function getUserData() {
         throw new Error("No token found");
       }
   
-      const userResponse = await fetch(`${apiUrl}/user/profile`, {
+      const userResponse = await fetch(`${apiUrl}/admin/profile`, {
         method: "GET",
         headers: {  
           Authorization: `Bearer ${token}`,
