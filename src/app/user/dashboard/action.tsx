@@ -67,4 +67,31 @@ export async function getUserData() {
       console.error("Error fetching user data or avatars:", error);
       throw error;
     }
+}
+
+export async function getTransaction() {
+  const accessToken = (await cookies()).get("access_token")?.value;
+
+  if (!accessToken) {
+    return null;
   }
+
+  try {
+    const response = await fetch(`${apiUrl}/transaction/user/transaction`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    const { data, fulfilled } = await response.json();
+
+    if (fulfilled !== 1) {
+      throw new Error("Failed to fetch Balance");
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching Balance:", error);
+    return null;
+  }
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import React, { useState } from "react";
 import Image from "next/image";
@@ -12,42 +12,23 @@ import FormButton from "@/components/ui/form-button";
 
 export default function LoginPage() {
     const router = useRouter();
-    const searchParams = useSearchParams();
+    // const searchParams = useSearchParams();
     
-    const redirect = searchParams.get("redirect") || undefined;
-    const error = searchParams.get("error") || undefined;
+    // const redirect = searchParams.get("redirect") || undefined;
+    // const error = searchParams.get("error") || undefined;
 
     const [errors, setErrors] = useState<LoginValidationErrors>({});
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [passwordError, setPasswordError] = useState("");
 
     const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         setPassword(value);
 
-        // Perbarui error konfirmasi password jika sudah ada
-        if (confirmPassword && confirmPassword !== value) {
-            setPasswordError("Konfirmasi kata sandi tidak cocok");
-        } else {
-            setPasswordError("");
-        }
-    };
-
-    const handleConfirmPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        setConfirmPassword(value);
-        setPasswordError(value !== password ? "Konfirmasi kata sandi tidak cocok" : "");
     };
 
     async function handleSubmit(formData: FormData) {
         const email = formData.get("email") as string;
         const password = formData.get("password") as string;
-
-        if (confirmPassword !== password) {
-            setPasswordError("Konfirmasi kata sandi tidak cocok");
-            return;
-        }
         
         const result = await loginAction(email, password);
 
