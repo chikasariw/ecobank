@@ -34,26 +34,24 @@ export const columns: ColumnDef<Barang>[] = [
     {
         accessorFn: (row: Barang) => row.purchase_price, // Explicit accessor
         id: "purchase_price",
-        header: () => <div className="text-left">Harga Beli</div>,
+        header: "Harga Beli",
         cell: ({ row }) => {
-            const purchase_price = parseFloat(row.getValue("purchase_price"));
             const formatted = new Intl.NumberFormat("id-ID", {
                 style: "currency",
                 currency: "IDR",
-            }).format(purchase_price);
+            }).format(row.getValue("purchase_price"));
             return <div className="text-left font-medium">{formatted} /gram</div>;
         },
     },
     {
-        accessorFn: (row: Barang) => row.selling_price, // Explicit accessor
+        accessorFn: (row: Barang) => row.selling_price,
         id: "selling_price",
-        header: () => <div className="text-left">Harga Jual</div>,
+        header: "Harga Jual",
         cell: ({ row }) => {
-            const selling_price = parseFloat(row.getValue("selling_price"));
             const formatted = new Intl.NumberFormat("id-ID", {
                 style: "currency",
                 currency: "IDR",
-            }).format(selling_price);
+            }).format(row.getValue("selling_price"));
             return <div className="text-left font-medium">{formatted} /gram</div>;
         },
     },
@@ -61,10 +59,7 @@ export const columns: ColumnDef<Barang>[] = [
         id: "actions",
         header: () => <div className="text-center">Aksi</div>,
         cell: ({ row }) => (
-            <ActionButtons
-                onEdit={() => console.log("Edit", row.original.item_id)}
-                onDelete={() => console.log("Delete", row.original.item_id)}
-            />
+            <ActionButtons barangData={row.original} />
         ),
     },
 ];
