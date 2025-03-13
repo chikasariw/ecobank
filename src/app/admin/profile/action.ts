@@ -31,7 +31,7 @@ export async function getUserData() {
       throw new Error("No token found");
     }
 
-    const userResponse = await fetch(`${apiUrl}/user/profile`, {
+    const userResponse = await fetch(`${apiUrl}/admin/profile`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

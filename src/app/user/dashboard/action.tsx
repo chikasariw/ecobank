@@ -47,7 +47,7 @@ export async function getUserData() {
   
       const userResponse = await fetch(`${apiUrl}/user/profile`, {
         method: "GET",
-        headers: {
+        headers: {  
           Authorization: `Bearer ${token}`,
         },
       });
