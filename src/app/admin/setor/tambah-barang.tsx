@@ -1,24 +1,41 @@
 "use client"
-import { useState } from "react"
+import { useState, useCallback  } from "react"
 import { Plus, Minus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
-export function AddProductButton() {
+type AddProductButtonProps = {
+  onClick?: () => void
+  onChangeCount?: (count: number) => void // Callback untuk mengirim jumlah produk
+}
+
+export function AddProductButton({ onClick, onChangeCount }: AddProductButtonProps) {
   const [count, setCount] = useState(0)
 
+  const updateCount = useCallback((newCount: number) => {
+    setCount(newCount);
+    onChangeCount?.(newCount);
+  }, [onChangeCount]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10)
+    const value = parseInt(e.target.value, 10);
     if (!isNaN(value) && value >= 0) {
-      setCount(value)
+      updateCount(value);
+    } else {
+      updateCount(0); // Jika input negatif atau NaN, set ke 0
     }
-  }
+  };
 
   return (
     <div className="grid">
       {count === 0 ? (
         <Button
-          onClick={() => setCount(1)}
+          onClick={() => {
+            if (count === 0) {
+              onClick?.(); // Pastikan hanya dipanggil pertama kali
+            }
+            updateCount(1);
+          }}
           className="w-full h-8"
         >
           <Plus className="w-4 h-4" />
@@ -27,7 +44,7 @@ export function AddProductButton() {
       ) : (
         <div className="flex items-center gap-2">
           <Button
-            onClick={() => setCount((prev) => Math.max(prev - 1, 0))}
+            onClick={() => updateCount(Math.max(count - 1, 0))}
             className="w-8 h-8 flex items-center justify-center rounded-full bg-eb-primary-gray-200"
             variant="prominent"
           >
@@ -36,11 +53,11 @@ export function AddProductButton() {
           <Input
             type="number"
             value={count}
-            onChange={handleChange}
+            onChange={(e) => updateCount(parseInt(e.target.value) || 0)}
             className="w-full h-8 text-center bg-eb-primary-gray-100 rounded-full outline-none border border-gray-300"
           />
           <Button
-            onClick={() => setCount(count + 1)}
+            onClick={() => updateCount(count + 1)}
             className="w-8 h-8 flex items-center justify-center rounded-full bg-eb-primary-gray-200"
             variant="prominent"
           >

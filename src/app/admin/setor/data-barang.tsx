@@ -1,22 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { AddProductButton } from "./tambah-barang";
 import type { ItemData } from "./action";
+import { useMemo } from "react";
 
-interface ItemClientProps {
+interface DataBarangProps  {
   itemData: ItemData[];
+  setAddedItems: (item: ItemData, quantity: number) => void;
 }
 
-export default function DataBarang({ itemData }: ItemClientProps) {
+export default function DataBarang({ itemData, setAddedItems }: DataBarangProps ) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedItems, setSelectedItems] = useState<ItemData[]>([]);
 
-  const filteredProducts = itemData.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  useEffect(() => {
+    setSelectedItems(selectedItems); // Update state di parent saat selectedItems berubah
+  }, [selectedItems, setAddedItems]);
+  
+  const handleAddItem = (product: ItemData, quantity: number) => {
+    setAddedItems(product, quantity);
+  };
+
+  // Filter produk berdasarkan pencarian
+  const filteredProducts = useMemo(() => {
+    return itemData.filter((product) =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [searchQuery, itemData]);
 
   return (
     <div>
@@ -39,16 +53,16 @@ export default function DataBarang({ itemData }: ItemClientProps) {
           filteredProducts.map((product) => (
             <Card key={product.item_id} className="rounded-3xl border border-eb-primary-gray-300">
               <div className="p-4 grid gap-1">
-                {/* <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-40 object-cover rounded-lg mb-2"
-                /> */}
                 <h5 className="text-lg font-semibold text-eb-primary-gray-800">
                   {product.name}
                 </h5>
-                <p className="text-eb-primary-gray-600 text-md mb-2">{product.purchase_price}</p>
-                <AddProductButton />
+                <p className="text-eb-primary-gray-600 text-md mb-2">
+                Rp. {new Intl.NumberFormat("id-ID").format(Number(product.purchase_price))}
+                </p>
+                <AddProductButton
+                  onClick={() => handleAddItem(product, 1)}
+                  onChangeCount={(quantity) => handleAddItem(product, quantity)}
+                />              
               </div>
             </Card>
           ))

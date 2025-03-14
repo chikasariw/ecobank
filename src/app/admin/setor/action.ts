@@ -6,9 +6,9 @@ const apiUrl = process.env.API_URL;
 export interface ItemData {
   item_id: string;
   name: string;
-  unit: string;
-  purchase_price: string;
-  selling_price: string | null;
+  unit: number;
+  purchase_price: number;
+  selling_price: number;
 }
 
 export async function getBarang() {
