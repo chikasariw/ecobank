@@ -35,6 +35,25 @@ export async function getBarang() {
   return data as ItemData[];
 }
 
+export async function updateBarang(data: any) {
+  const response = await fetch(`${apiUrl}/item/item/${data.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Gagal memperbarui barang");
+  }
+
+  return response.json();
+}
+
+
+
 export const addBarang = async (formData: FormData) => {
   const token = (await cookies()).get("access_token")?.value;
 
@@ -59,6 +78,7 @@ export const addBarang = async (formData: FormData) => {
       .join(", ");
     throw new Error(`Validasi gagal: ${errorMessages}`);
   }
+
 
   // Kirim ke API jika validasi sukses
   const response = await fetch(`${apiUrl}/item/item`, {

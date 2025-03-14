@@ -80,7 +80,6 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
             className="w-full pl-12 pr-4 py-5 rounded-3xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-eb-primary-green-800 focus:border-eb-primary-green-800"
           />
         </div>
-        
       </div>
       <div className="rounded-xl border">
         <Table>
