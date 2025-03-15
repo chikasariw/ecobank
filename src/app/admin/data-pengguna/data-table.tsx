@@ -32,7 +32,7 @@ interface UserData {
 
 interface DataTableProps<TData> {
   data: TData[];
-  columns: ColumnDef<TData>[];
+  columns: ColumnDef<UserData>[];
 }
 
 export const DataTable = <TData extends UserData>({ data, columns }: DataTableProps<TData>) => {

@@ -5,9 +5,9 @@ import { ModalImage } from "./modal-image";
 
 export type Pengguna = {
     user_id: string;
-    gambar: string;
-    email: string;
     name: string;
+    email: string;
+    profile_url: string;
 };
 
 export const columns: ColumnDef<Pengguna>[] = [
@@ -22,8 +22,8 @@ export const columns: ColumnDef<Pengguna>[] = [
             id: "modalimage",
             header: () => <div className="text-left">Gambar</div>,
             cell: ({ row }) => {
-                console.log("Gambar URL:", row.original.gambar); 
-                return <ModalImage src={row.original.gambar} />;
+                console.log("Gambar URL:", row.original.profile_url); 
+                return <ModalImage src={row.original.profile_url} />;
             },
         },   
     {
@@ -40,7 +40,7 @@ export const columns: ColumnDef<Pengguna>[] = [
         id: "detail",
         header: () => <div className="text-left text-nowrap">Detail</div>,
         cell: ({ row }) => (
-            <UserDetailButton userId={row.original.id} />
+            <UserDetailButton userId={row.original.user_id} />
         ),
     },
     
@@ -49,8 +49,8 @@ export const columns: ColumnDef<Pengguna>[] = [
         header: () => <div className="text-center">Aksi</div>,
         cell: ({ row }) => (
             <ActionButtons
-                onEdit={() => console.log("Edit", row.original.id)}
-                onDelete={() => console.log("Delete", row.original.id)}
+                onEdit={() => console.log("Edit", row.original.user_id)}
+                onDelete={() => console.log("Delete", row.original.user_id)}
             />
         ),
     },

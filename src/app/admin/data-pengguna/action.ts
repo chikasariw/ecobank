@@ -1,24 +1,17 @@
 "use server";
 import { cookies } from "next/headers";
-import { z } from "zod";
 
 const apiUrl = process.env.API_URL;
 
-// // Skema validasi barang sesuai DTO
-// const barangSchema = z.object({
-//   email: z.string().nonempty("Email barang harus diisi"),
-//   name: z.string().nonempty("Nama barang harus diisi"),
-// });
-
 export interface userData {
-    user_id: string;
-    profile_url: string;
-    email: string;
-    name: string;
-};
+  user_id: string;
+  profile_url: string;
+  email: string;
+  name: string;
+}
 
 export async function getUser() {
-try {
+  try {
     const token = (await cookies()).get("access_token")?.value;
 
     if (!token) {
@@ -41,6 +34,9 @@ try {
         `Failed to fetch user data. Status: ${userResponse.status}`
       );
     }
+
+    console.log(userData as userData[]);
+
     return userData as userData[];
   } catch (error) {
     console.error("Error fetching user data or avatars:", error);

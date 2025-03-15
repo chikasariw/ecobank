@@ -3,9 +3,10 @@ import React, { useState } from 'react'
 
 import { Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
-export default function ProfileImage({ defaultValue }: { defaultValue?: string }) {
-    const [imageSrc, setImageSrc] = useState<string | null>(defaultValue || null);
+export default function ProfileImage({ defaultValue }: { defaultValue: string }) {
+    const [imageSrc, setImageSrc] = useState<string>(defaultValue);
     const fileInputRef = React.useRef<HTMLInputElement>(null);
 
     const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,10 +26,13 @@ export default function ProfileImage({ defaultValue }: { defaultValue?: string }
     return (
         <div className="flex justify-center lg:block">
             <div className="relative w-3/4 sm:w-1/3 md:w-1/2 lg:w-full aspect-square overflow-hidden rounded-lg border bg-muted">
-                <img
-                    src={imageSrc || "/content/default-profile.jpg"} 
-                    alt="Profile picture"
-                    className="h-full w-full object-cover"
+            <Image 
+                    src={imageSrc} 
+                    alt="Thumbnail" 
+                    width={500} 
+                    height={500} 
+                    unoptimized
+                    className="cursor-pointer rounded-lg object-cover"
                 />
                 <Button
                     size="icon"

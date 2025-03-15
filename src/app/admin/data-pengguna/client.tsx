@@ -2,7 +2,7 @@
 import * as React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DataTable } from "./data-table";
-import { columns, Pengguna } from "./columns";
+import { columns } from "./columns";
 import { useState, useEffect } from "react"
 import GradientText from "@/components/ui/gradient-text"
 import {

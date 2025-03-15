@@ -89,7 +89,7 @@ export default function ProfileClient({ userData }: ProfileClientProps) {
         </CardHeader>
         <CardContent>
           <div className="grid gap-8 lg:grid-cols-[240px,1fr] border border-eb-primary-gray-200 p-4 rounded-xl">
-            <ProfileImage defaultValue={userData.name}/>
+            <ProfileImage defaultValue={userData.profile_url}/>
             <div className="grid gap-4">
               <div className="md:flex items-center">
                 <Label htmlFor="name" className="w-full md:w-1/2 xl:w-1/5">Nama Pengguna</Label>

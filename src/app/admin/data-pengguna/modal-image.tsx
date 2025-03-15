@@ -21,7 +21,7 @@ export function ModalImage({ src }: { src: string }) {
                     width={500} 
                     height={500} 
                     unoptimized
-                    className="cursor-pointer rounded-lg w-14 h-14 object-cover"
+                    className="cursor-pointer rounded-lg w-14 h-14 object-contain"
                 />
             </DialogTrigger>
             <DialogContent className="flex justify-center items-center w-96 h-96 p-0 m-0 rounded-lg">
@@ -33,7 +33,7 @@ export function ModalImage({ src }: { src: string }) {
                         width={500} 
                         height={500} 
                         unoptimized
-                        className="w-96 h-96 object-cover rounded-lg"
+                        className="w-96 h-96 object-contain rounded-lg"
                     />
                
             </DialogContent>
