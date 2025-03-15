@@ -17,7 +17,7 @@ export function BalanceCard({ balance }: { balance: number | null }) {
         </p>
       </div>
       <div className="text-4xl font-bold mt-6 mb-8">
-        Rp. {balance !== null ? balance.toLocaleString() : "10"}
+        Rp. {new Intl.NumberFormat("id-ID").format(balance ?? 0)}
       </div>
 
     </div>

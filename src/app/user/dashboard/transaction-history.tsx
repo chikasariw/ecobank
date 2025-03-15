@@ -36,7 +36,7 @@ export function TransactionHistory({ transactions }: TransactionHistoryProps) {
                         {transactions.length === 0 ? (
                             <p className="text-center text-gray-500">Belum ada transaksi.</p>
                         ) : (
-                            transactions.map((transaction, index) => (
+                            transactions.slice(0, 5).map((transaction, index) => (
                                 <div key={index} className="flex items-center justify-between border-b pb-3">
                                     <div className="flex items-center gap-4">
                                         <div className="rounded-full bg-eb-primary-gray-100 p-3">
