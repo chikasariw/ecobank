@@ -32,7 +32,7 @@ export default function Footer() {
               <Link href={"/paket-belajar"}>Beranda</Link>
               <Link href={"/try-out"}>Tentang Kami</Link>
               <Link href={"/diskusi"}>Fitur</Link>
-              <Link href={"/catatan"}>FAQ</Link>
+              <Link href={"/catatan"}>FAQ</Link> 
             </div>
           </div>
 
