@@ -31,28 +31,28 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 interface TransactionData {
   transaction_id: string;
-  email: string;
   total_amount: number;
-  current_balance: number;
   type: string;
+  created_at: string;
+  wallet_id: string;
+  balance: number;
+  user_id: string;
+  name: string;
+  email: string;
 }
 
-interface DataTableProps<TData> {
-  data: TData[];
+interface DataTableProps {
   columns: ColumnDef<TransactionData>[];
 }
 
-export const DataTable = <TData extends TransactionData>({ data, columns }: DataTableProps<TData>) => {
+export const DataTable = ({ columns }: DataTableProps) => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  );
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+  const [tableData, setTableData] = React.useState<TransactionData[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
-  const [tableData, setTableData] = React.useState<TransactionData[]>(data);
 
   const { toast } = useToast();
 
@@ -60,13 +60,13 @@ export const DataTable = <TData extends TransactionData>({ data, columns }: Data
     async function fetchData() {
       try {
         const result = await getTransaction();
-        setTableData((prev) => (Array.isArray(result) ? result : prev));
+        setTableData(Array.isArray(result) ? result : []);
         setError(null);
       } catch (err) {
-        setError("Gagal mengambil data.");
+        setError("Gagal mengambil data transaksi.");
         toast({
           title: "Gagal mengambil data",
-          description: "Terjadi kesalahan saat mengambil data.",
+          description: "Terjadi kesalahan saat mengambil data transaksi.",
           variant: "destructive",
         });
       } finally {
@@ -77,7 +77,7 @@ export const DataTable = <TData extends TransactionData>({ data, columns }: Data
   }, [toast]);
 
   const table = useReactTable({
-    data: tableData || [],
+    data: tableData,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -97,25 +97,20 @@ export const DataTable = <TData extends TransactionData>({ data, columns }: Data
 
   return (
     <div className="w-full">
+      {/* Search Input */}
       <div className="flex items-center justify-between gap-4 py-4">
-        <div className="relative justify-between w-full max-w-sm">
-          <Search
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
-            size={18}
-          />
+        <div className="relative w-full max-w-sm">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
           <Input
             placeholder="Cari berdasarkan email..."
-            value={
-              (table.getColumn("email")?.getFilterValue() as string) ?? ""
-            }
-            onChange={(event) =>
-              table.getColumn("email")?.setFilterValue(event.target.value)
-            }
-            className="w-full pl-12 pr-4 py-2 rounded-3xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600"
+            value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+            onChange={(event) => table.getColumn("email")?.setFilterValue(event.target.value)}
+            className="w-full pl-12 pr-4 py-2 rounded-3xl border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600"
           />
         </div>
       </div>
 
+      {/* Table */}
       <div className="rounded-xl border">
         {loading ? (
           <div className="p-3 space-y-2">
@@ -130,81 +125,50 @@ export const DataTable = <TData extends TransactionData>({ data, columns }: Data
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         ) : (
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                ))}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {loading ? (
-              <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
-                  Loading...
-                </TableCell>
-              </TableRow>
-            ) : table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </TableCell>
+          <Table>
+            <TableHeader>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <TableHead key={header.id}>
+                      {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                    </TableHead>
                   ))}
                 </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
-                  No results.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+              ))}
+            </TableHeader>
+            <TableBody>
+              {table.getRowModel().rows.length ? (
+                table.getRowModel().rows.map((row) => (
+                  <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={columns.length} className="h-24 text-center">
+                    No results.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
         )}
       </div>
 
+      {/* Pagination */}
       <div className="flex items-center justify-end space-x-2 py-4">
-        <Button
-          variant="link"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
+        <Button variant="link" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
           <ChevronLeft />
           Previous
         </Button>
 
         {Array.from({ length: table.getPageCount() }, (_, i) => {
-          if (
-            i < 2 ||
-            i > table.getPageCount() - 3 ||
-            (i >= table.getState().pagination.pageIndex - 1 &&
-              i <= table.getState().pagination.pageIndex + 1)
-          ) {
+          if (i < 2 || i > table.getPageCount() - 3 || (i >= table.getState().pagination.pageIndex - 1 && i <= table.getState().pagination.pageIndex + 1)) {
             return (
-              <Button
-                key={i}
-                variant={
-                  table.getState().pagination.pageIndex === i
-                    ? "primary"
-                    : "outline"
-                }
-                size="icon"
-                onClick={() => table.setPageIndex(i)}
-              >
+              <Button key={i} variant={table.getState().pagination.pageIndex === i ? "primary" : "outline"} size="icon" onClick={() => table.setPageIndex(i)}>
                 {i + 1}
               </Button>
             );
@@ -214,16 +178,11 @@ export const DataTable = <TData extends TransactionData>({ data, columns }: Data
           return null;
         })}
 
-        <Button
-          variant="link"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
+        <Button variant="link" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
           Next
           <ChevronRight />
         </Button>
       </div>
     </div>
   );
-}
+};
