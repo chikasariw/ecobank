@@ -25,14 +25,6 @@ export function ModalAdd() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
-    // Pastikan nama field sesuai dengan DTO
-    const rawData = {
-      name: formData.get("name")?.toString(),
-      unit: Number(formData.get("unit")),
-      purchase_price: Number(formData.get("purchase_price")),
-      selling_price: Number(formData.get("selling_price")),
-    };
-
     try {
       await addBarang(formData);
       toast({
