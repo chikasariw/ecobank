@@ -17,7 +17,7 @@ export async function getTransaction() {
   }
 
   try {
-    const response = await fetch(`${apiUrl}/transaction/user/transaction`, {
+    const response = await fetch(`${apiUrl}/transaction/user/history`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
