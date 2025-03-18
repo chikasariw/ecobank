@@ -20,38 +20,53 @@ export interface ItemData {
   selling_price: string | null;
 }
 
+// export async function getBarang() {
+//   const response = await fetch(`${apiUrl}/item/item`, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   });
+
+//   const { data, fulfilled, message } = await response.json();
+//   if (fulfilled !== 1) {
+//     throw new Error(message);
+//   }
+//   return data as ItemData[];
+// }
+
 export async function getBarang() {
-  const response = await fetch(`${apiUrl}/item/item`, {
+  const url = `${apiUrl}/item/item`;
+  console.log("Fetching from:", url); // Debug URL
+
+  const response = await fetch(url, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   });
 
-  const { data, fulfilled, message } = await response.json();
-  if (fulfilled !== 1) {
-    throw new Error(message);
-  }
-  return data as ItemData[];
-}
+  const text = await response.text();
+  console.log("Raw response text:", text); // Debug response
 
-export async function updateBarang(data: any) {
-  const response = await fetch(`${apiUrl}/item/item/${data.id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Gagal memperbarui barang");
+  if (!text) {
+    throw new Error("Response kosong dari server");
   }
 
-  return response.json();
-}
+  try {
+    const json = JSON.parse(text);
+    console.log("Parsed JSON:", json);
 
+    if (json.fulfilled !== 1) {
+      throw new Error(json.message || "Gagal mengambil data");
+    }
+
+    return json.data as ItemData[];
+  } catch (err) {
+    console.error("JSON Parsing Error:", err);
+    throw new Error("Gagal parsing JSON");
+  }
+}
 
 
 export const addBarang = async (formData: FormData) => {
@@ -78,7 +93,6 @@ export const addBarang = async (formData: FormData) => {
       .join(", ");
     throw new Error(`Validasi gagal: ${errorMessages}`);
   }
-
 
   // Kirim ke API jika validasi sukses
   const response = await fetch(`${apiUrl}/item/item`, {

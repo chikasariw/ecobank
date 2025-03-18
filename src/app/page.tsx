@@ -185,18 +185,18 @@ export default function Home() {
             <h1 className="text-eb-primary-gray-100 font-bold text-2xl md:text-3xl text-center tracking-wide max-w-xs md:max-w-md z-10">
               Cari Tahu Sampah yang Dapat Ditukar di EcoBank
             </h1>
-            <p className="max-w-xs md:max-w-md lg:max-w-lg text-eb-primary-gray-100 text-base font-regular text-center mt-3 md:mt-5 z-10">
+            <p className="max-w-xs md:max-w-md lg:max-w-lg text-eb-primary-gray-100 text-base font-regular text-center mt-3 md:mt-4 z-10">
               Pelajari sampah yang dapat ditukar di EcoBank dan cari tahu
               keuntungan yang bisa kamu peroleh!
             </p>
             <Button
-              className="w-44 mt-4 ps-4 py-4 z-10"
+              className="w-44 mt-5 ps-4 py-4 z-10"
               variant="secondarycustom"
               asChild
             >
               <Link href="auth/login">
                 Mulai Sekarang
-                <span className="flex h-8 w-8 ms-2 items-center justify-center rounded-3xl bg-white/20">
+                <span className="flex h-8 w-8 ms-2 items-center justify-center rounded-3xl bg-white/60">
                   <ArrowUpRight />
                 </span>
               </Link>

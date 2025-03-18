@@ -6,7 +6,9 @@ export interface TransactionData {
   transaction_id: string;
   total_amount: number;
   current_balance: number;
+  created_at: string;
   type: string;
+  name: string; 
 }
 
 export async function getTransaction() {
