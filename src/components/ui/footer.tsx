@@ -26,14 +26,17 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col col-span-4 lg:col-span-1 gap-5">
-            <p className="font-black">Menu EcoBank</p>
+            <p className="font-black mb-2">Menu EcoBank</p>
 
-            <div className="text-sm text-eb-primary-gray-600 fhover:text-eb-primary-green-800 flex flex-col gap-3">
-              <Link href={"/paket-belajar"}>Beranda</Link>
-              <Link href={"/try-out"}>Tentang Kami</Link>
-              <Link href={"/diskusi"}>Fitur</Link>
-              <Link href={"/catatan"}>FAQ</Link> 
-            </div>
+            {["Beranda", "Tentang Kami", "Fitur", "FAQ"].map((item, index) => (
+              <a
+                key={index}
+                href={`#${item.toLowerCase().replace(" ", "-")}`}
+                className="text-sm text-eb-primary-gray-600 hover:text-eb-primary-green-800 flex flex-col gap-2"
+              >
+                {item}
+              </a>
+            ))}
           </div>
 
           <div className="flex flex-col col-span-4 lg:col-span-1 gap-5 ">
@@ -48,12 +51,18 @@ export default function Footer() {
                 65117
               </p>
               <div className="flex items-center text-eb-primary-gray-600 gap-2 mt-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200" >
-                  
-                  <Link href={"mailto:hello.ecobank@gmail.com"}><Mail className="text-eb-primary-green-800 h-4 w-4" /></Link>
+                <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200">
+                  <Link href={"mailto:hello.ecobank@gmail.com"}>
+                    <Mail className="text-eb-primary-green-800 h-4 w-4" />
+                  </Link>
                 </div>
                 <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200">
-                  <Link href={"https://www.instagram.com/hello.ecobank/"} target="_blank"><Instagram className="text-eb-primary-green-800 h-4 w-4" /></Link>
+                  <Link
+                    href={"https://www.instagram.com/hello.ecobank/"}
+                    target="_blank"
+                  >
+                    <Instagram className="text-eb-primary-green-800 h-4 w-4" />
+                  </Link>
                 </div>
               </div>
             </div>

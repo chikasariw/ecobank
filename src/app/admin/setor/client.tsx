@@ -1,22 +1,23 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import DataBarang from "./data-barang";
 import RingkasanPenukaran from "./ringkasan-penukaran";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getBarang } from "./action"; // Import fungsi fetch data
-import { ItemData } from "./action"; // Import tipe data
+import { TransactionItemData } from "./action"; // Import tipe data
 
 interface SetorClientProps {
-  itemData: ItemData[];
+  itemData: TransactionItemData[];
+  email: string; // Gunakan email sebagai identitas transaksi
 }
 
-export default function SetorClient({ itemData }: SetorClientProps) {
-  const [data, setData] = useState<ItemData[]>(itemData);
+export default function SetorClient({ itemData, email }: SetorClientProps) {
+  const [data, setData] = useState<TransactionItemData[]>(itemData);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [addedItems, setAddedItems] = useState<ItemData[]>([]);
+  const [addedItems, setAddedItems] = useState<TransactionItemData[]>([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -36,12 +37,12 @@ export default function SetorClient({ itemData }: SetorClientProps) {
   }, []);
 
   // Fungsi untuk menambahkan barang atau memperbarui jumlahnya
-  const handleAddItem = (product: ItemData, unit: number) => {
+  const handleAddItem = (product: TransactionItemData, unit: number) => {
     setAddedItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.item_id === product.item_id);
       if (existingItem) {
         return prevItems.map((item) =>
-          item.item_id === product.item_id ? { ...item, unit: unit } : item
+          item.item_id === product.item_id ? { ...item, unit } : item
         );
       } else {
         return [...prevItems, { ...product, unit }];
@@ -49,22 +50,23 @@ export default function SetorClient({ itemData }: SetorClientProps) {
     });
   };
 
+  // Perbarui jumlah barang yang sudah ditambahkan
   const updateItemQuantity = (itemId: string, unit: number) => {
+    if (unit < 1) return; // Cegah nilai 0 atau negatif
     setAddedItems((prevItems) =>
-      prevItems
-        .map((item) => (item.item_id === itemId ? { ...item, unit } : item))
-        .filter((item) => item.unit > 0) // Menghapus jika jumlahnya 0
+      prevItems.map((item) => (item.item_id === itemId ? { ...item, unit } : item))
     );
   };
 
+  // Hapus barang dari daftar transaksi
   const removeItem = (itemId: string) => {
     setAddedItems((prevItems) => prevItems.filter((item) => item.item_id !== itemId));
   };
 
+  // Kosongkan seluruh daftar barang
   const clearItems = () => {
-    setAddedItems([]); // Hapus semua item
+    setAddedItems([]);
   };
-  
 
   return (
     <div>
@@ -78,7 +80,13 @@ export default function SetorClient({ itemData }: SetorClientProps) {
           ) : (
             <DataBarang itemData={data} setAddedItems={handleAddItem} />
           )}
-          <RingkasanPenukaran addedItems={addedItems} updateItemQuantity={updateItemQuantity} removeItem={removeItem} clearItems={clearItems} />
+          <RingkasanPenukaran 
+            email={email} 
+            addedItems={addedItems} 
+            updateItemQuantity={updateItemQuantity} 
+            removeItem={removeItem} 
+            clearItems={clearItems} 
+          />
         </CardContent>
       </Card>
     </div>

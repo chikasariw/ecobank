@@ -6,7 +6,9 @@ export interface TransactionData {
   transaction_id: string;
   total_amount: number;
   current_balance: number;
+  created_at: string;
   type: string;
+  name: string; 
 }
 
 export async function getTransaction() {
@@ -17,7 +19,7 @@ export async function getTransaction() {
   }
 
   try {
-    const response = await fetch(`${apiUrl}/transaction/user/transaction`, {
+    const response = await fetch(`${apiUrl}/transaction/user/history`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

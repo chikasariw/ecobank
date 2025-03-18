@@ -1,8 +1,13 @@
 "use client";
 import * as React from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DataTable } from "./data-table";
-import { columns, Barang } from "./columns";
+import { columns } from "./columns";
+import { useToast } from "@/hooks/use-toast"
+import { Skeleton } from "@/components/ui/skeleton"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { AlertCircle } from "lucide-react"
 
 import {
     Breadcrumb,
@@ -12,20 +17,40 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import { getTransaction, TransactionData } from "./action";
 
+interface ItemClientProps {
+    transactionData: TransactionData[];
+  }
 
-const data: Barang[] = [
-    {
-        id: "m5gr84i9",
-        namabarang: "Lorem Ipsum",
-        penukar: "parkjisung@gmail.com",
-        totalpenukaran: 90,
-        hargapenukaran: 90.000,
-        waktupenukaran: "12.00, 12 Januari 2025",
-    },
-];
+export default function DataSampahDitukarClient({ transactionData }: ItemClientProps) {
+const [data, setData] = useState<transactionData[]>(transactionData);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null)  // State error untuk menangani kesalahan
+  const { toast } = useToast()
 
-export default function DataSampahDitukarClient() {
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+      try {
+        const result = await getTransaction()  // Memanggil fungsi untuk fetch data
+        setData(result)  // Menyimpan data yang berhasil diambil
+        setError(null)  // Menghapus error jika berhasil
+      } catch (error) {
+        console.error("Failed to fetch data:", error)
+        setError("Gagal mengambil data Transaksi. Silakan coba lagi nanti.")  // Menampilkan pesan error
+        toast({
+          title: "Gagal mengambil data",
+          description: "Terjadi kesalahan saat mengambil data Transaksi.",
+          variant: "destructive",
+        })
+      } finally {
+        setLoading(false)  // Mengubah state loading menjadi false setelah selesai
+      }
+    }
+    fetchData();
+  }, [toast]);
+
     return (
         <div>
             <Card>
@@ -47,8 +72,22 @@ export default function DataSampahDitukarClient() {
                 </CardHeader>
                 <CardContent>
                     <div className="rounded-xl border border-eb-primary-gray-200 p-4">
-                        <DataTable columns={columns} data={data} />
-                    </div>
+                        {loading ? (
+                            <div className="space-y-2">
+                                <Skeleton className="h-4 w-[250px]" />
+                                <Skeleton className="h-4 w-[200px]" />
+                                <Skeleton className="h-4 w-[300px]" />
+                            </div>
+                        ) : error ? (
+                            <Alert variant="destructive">
+                                <AlertCircle className="h-4 w-4" />
+                                <AlertTitle>Error</AlertTitle>
+                                <AlertDescription>{error}</AlertDescription>
+                            </Alert>
+                        ) : (
+                            <DataTable columns={columns} data={data} />  // Menampilkan data yang sudah diambil
+                        )}
+                        </div>
                 </CardContent>
             </Card>
         </div>

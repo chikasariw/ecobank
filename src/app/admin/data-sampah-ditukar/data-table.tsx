@@ -2,9 +2,9 @@
 
 import * as React from "react";
 import {
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
+  type ColumnFiltersState,
+  type SortingState,
+  type VisibilityState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -12,7 +12,6 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -24,27 +23,26 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ColumnDef } from "@tanstack/react-table";
-import { ChevronRight, ChevronLeft } from "lucide-react";
-import { Search } from "lucide-react";
-import { getBarang } from "./action"
-import { useToast } from "@/hooks/use-toast"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { AlertCircle } from "lucide-react"
+import { ChevronRight, ChevronLeft, Search, AlertCircle } from "lucide-react";
+import { getTransaction } from "./action";
+import { useToast } from "@/hooks/use-toast";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
-interface ItemData {
-  item_id: string;
-  name: string;
+interface TransactionData {
+  transaction_id: string;
   email: string;
-  purchase_price: string;
-  selling_price: string | null;
+  total_amount: number;
+  current_balance: number;
+  type: string;
 }
 
 interface DataTableProps<TData> {
   data: TData[];
-  columns: ColumnDef<TData>[];
+  columns: ColumnDef<TransactionData>[];
 }
 
-export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
+export const DataTable = <TData extends TransactionData>({ data, columns }: DataTableProps<TData>) => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -52,9 +50,34 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
+  const [tableData, setTableData] = React.useState<TransactionData[]>(data);
+
+  const { toast } = useToast();
+
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        const result = await getTransaction();
+        setTableData((prev) => (Array.isArray(result) ? result : prev));
+        setError(null);
+      } catch (err) {
+        setError("Gagal mengambil data.");
+        toast({
+          title: "Gagal mengambil data",
+          description: "Terjadi kesalahan saat mengambil data.",
+          variant: "destructive",
+        });
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, [toast]);
 
   const table = useReactTable({
-    data,
+    data: tableData || [],
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -81,22 +104,32 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
             size={18}
           />
           <Input
-            placeholder="Cari Penukar..."
+            placeholder="Cari berdasarkan email..."
             value={
-              (table
-                .getColumn("penukar")
-                ?.getFilterValue() as string) ?? ""
+              (table.getColumn("email")?.getFilterValue() as string) ?? ""
             }
             onChange={(event) =>
-              table
-                .getColumn("penukar")
-                ?.setFilterValue(event.target.value)
+              table.getColumn("email")?.setFilterValue(event.target.value)
             }
-            className="w-full pl-12 pr-4 py-5 rounded-3xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-eb-primary-green-800 focus:border-eb-primary-green-800"
+            className="w-full pl-12 pr-4 py-2 rounded-3xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600"
           />
         </div>
       </div>
+
       <div className="rounded-xl border">
+        {loading ? (
+          <div className="p-3 space-y-2">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+          </div>
+        ) : error ? (
+          <Alert variant="destructive">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        ) : (
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -115,35 +148,34 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {loading ? (
+              <TableRow>
+                <TableCell colSpan={columns.length} className="h-24 text-center">
+                  Loading...
+                </TableCell>
+              </TableRow>
+            ) : table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
+                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
+                <TableCell colSpan={columns.length} className="h-24 text-center">
                   No results.
                 </TableCell>
               </TableRow>
             )}
           </TableBody>
         </Table>
+        )}
       </div>
+
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
           variant="link"
@@ -155,20 +187,32 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
           Previous
         </Button>
 
-        {Array.from({ length: table.getPageCount() }, (_, i) => (
-          <Button
-            key={i}
-            variant={
-              table.getState().pagination.pageIndex === i
-                ? "primary"
-                : "outline"
-            }
-            size="icon"
-            onClick={() => table.setPageIndex(i)}
-          >
-            {i + 1}
-          </Button>
-        ))}
+        {Array.from({ length: table.getPageCount() }, (_, i) => {
+          if (
+            i < 2 ||
+            i > table.getPageCount() - 3 ||
+            (i >= table.getState().pagination.pageIndex - 1 &&
+              i <= table.getState().pagination.pageIndex + 1)
+          ) {
+            return (
+              <Button
+                key={i}
+                variant={
+                  table.getState().pagination.pageIndex === i
+                    ? "primary"
+                    : "outline"
+                }
+                size="icon"
+                onClick={() => table.setPageIndex(i)}
+              >
+                {i + 1}
+              </Button>
+            );
+          } else if (i === 2 || i === table.getPageCount() - 3) {
+            return <span key={i}>...</span>;
+          }
+          return null;
+        })}
 
         <Button
           variant="link"

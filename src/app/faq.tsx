@@ -65,12 +65,12 @@ const FAQ = () => {
       <div className="flex flex-1 relative w-full pt-10 md:pt-10 lg:pt-0">
         <div className="grid gap-4 w-full">
           {faqData.map((item, index) => (
-            <div key={index} className="bg-eb-primary-gray-100 border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4">
+            <div key={index} className="bg-eb-primary-gray-100  border-2 border-eb-primary-gray-300 rounded-3xl px-6 py-4">
               <div className="flex flex-row items-center justify-between cursor-pointer" onClick={() => toggleIndex(index)}>
                 <h5 className="font-semibold text-eb-primary-green-700">
                   {item.question}
                 </h5>
-                <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-gray-200">
+                <div className="flex h-8 w-8 items-center justify-center rounded-3xl bg-eb-primary-green-100">
                   {openIndex === index ? <ChevronUp className="h-4" /> : <ChevronDown className="h-4" />}
                 </div>
               </div>

@@ -1,15 +1,15 @@
 import { ColumnDef } from "@tanstack/react-table";
 
-export type Barang = {
-    id: string;
-    namabarang: string;
-    penukar: string;
-    totalpenukaran: number;
-    hargapenukaran: number;
-    waktupenukaran: string;
-};
+interface TransactionData {
+    transaction_id: string;
+    name: string;
+    email: string;
+    total_amount: number;
+    current_balance: number;
+    type: string;
+  }
 
-export const columns: ColumnDef<Barang>[] = [
+export const columns: ColumnDef<TransactionData>[] = [
     {
         id: "no",
         header: () => <div className="text-center">No.</div>, 
@@ -18,14 +18,14 @@ export const columns: ColumnDef<Barang>[] = [
         enableHiding: false,
     },   
     {
-        accessorKey: "namabarang",
-        header: "Nama Barang Ditukar",
-        cell: ({ row }) => <div className="capitalize">{row.getValue("namabarang")}</div>,
+        accessorKey: "Warga Hijau",
+        header: "Warga Hijau",
+        cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
     },    
     {
-        accessorKey: "penukar",
-        header: "Penukar",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("penukar")}</div>,
+        accessorKey: "Email",
+        header: "Email",
+        cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
     }, 
     {
         accessorKey: "totalpenukaran",
