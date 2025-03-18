@@ -43,7 +43,6 @@ export const columns: ColumnDef<Pengguna>[] = [
             <UserDetailButton userId={row.original.user_id} />
         ),
     },
-    
     {
         id: "actions",
         header: () => <div className="text-center">Aksi</div>,

@@ -118,7 +118,7 @@ export default function ProfileClient({ userData }: ProfileClientProps) {
 
               <div className="md:flex items-center">
                 <Label htmlFor="gender" className="w-full md:w-1/2 xl:w-1/5">Jenis Kelamin</Label>
-                <RadioGroup className="flex gap-4" name="gender" defaultValue={userData.gender || ""}>
+                <RadioGroup className="w-full flex gap-4" name="gender" defaultValue={userData.gender || ""}>
                   <div className="flex items-center gap-2">
                     <RadioGroupItem value="Laki-Laki" id="Laki-Laki" />
                     <label htmlFor="Laki-Laki" className="text-sm font-medium text-gray-700 cursor-pointer">
