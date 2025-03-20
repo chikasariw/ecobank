@@ -1,6 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ActionButtons } from "./action-buttons"; 
-import { UserDetailButton } from "./detail-button";
+import { DetailButton } from "./detail-button";
 import { ModalImage } from "./modal-image";
 
 export type Pengguna = {
@@ -40,10 +40,9 @@ export const columns: ColumnDef<Pengguna>[] = [
         id: "detail",
         header: () => <div className="text-left text-nowrap">Detail</div>,
         cell: ({ row }) => (
-            <UserDetailButton userId={row.original.user_id} />
+            <DetailButton />
         ),
     },
-    
     {
         id: "actions",
         header: () => <div className="text-center">Aksi</div>,

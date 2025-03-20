@@ -51,7 +51,7 @@ export default function ProfileImage({ defaultValue }: { defaultValue: string })
                     onChange={handleImageUpload}
                 />
             </div>
-        </div>
+        </div> 
     );
 }
 

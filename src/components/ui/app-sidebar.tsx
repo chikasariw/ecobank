@@ -54,15 +54,20 @@ const data = {
       icon: UsersRound,
     },
     {
+      title: "Data Warga Hijau",
+      url: "/admin/data-pengguna",
+      icon: UsersRound,
+    },
+    {
       title: "Data Keuangan",
       url: "/admin/data-keuangan",
       icon: BadgeDollarSign
     },
     {
-      title: "Data Sampah Ditukar",
-      url: "/admin/data-sampah-ditukar",
+      title: "Riwayat Transaksi",
+      url: "/admin/riwayat-transaksi",
       icon: ScrollText 
-    },
+    }
   ]
 }
 

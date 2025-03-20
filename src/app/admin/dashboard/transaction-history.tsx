@@ -1,6 +1,7 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { ArrowDownRight, ArrowUpRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { ArrowDownRight, ArrowUpRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import Link from "next/link";
 
 interface Transaction {
     type: "Nabung" | "Ambil";
@@ -23,9 +24,13 @@ export function TransactionHistory() {
                 <CardHeader>
                     <div className="flex items-center justify-between">
                         <h2 className="text-xl font-bold">Riwayat Transaksi</h2>
+                        <Link href="/admin/data-keuangan">
                         <Button size="sm" variant="prominent" className="font-bold rounded-3xl px-3">
+                            
                             Lihat Semua
+                        
                         </Button>
+                        </Link>
                     </div>
                 </CardHeader>
                 <CardContent>
