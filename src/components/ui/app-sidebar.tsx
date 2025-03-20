@@ -34,14 +34,24 @@ const data = {
       icon: Home,
     },
     {
-      title: "Data Warga Hijau",
-      url: "/admin/data-pengguna",
-      icon: UsersRound,
+      title: "Setor",
+      url: "/admin/setor",
+      icon: PackagePlus
+    },
+    {
+      title: "Tarik Tunai",
+      url: "/admin/tarik-tunai",
+      icon: HandCoins
     },
     {
       title: "Data Barang",
       url: "/admin/data-barang",
       icon: PackageSearch
+    },
+    {
+      title: "Data Warga Hijau",
+      url: "/admin/data-pengguna",
+      icon: UsersRound,
     },
     {
       title: "Data Keuangan",
@@ -53,16 +63,6 @@ const data = {
       url: "/admin/data-sampah-ditukar",
       icon: ScrollText 
     },
-    {
-      title: "Setor",
-      url: "/admin/setor",
-      icon: PackagePlus
-    },
-    {
-      title: "Tarik Tunai",
-      url: "/admin/tarik-tunai",
-      icon: HandCoins
-    }
   ]
 }
 

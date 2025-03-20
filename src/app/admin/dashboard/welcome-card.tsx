@@ -12,11 +12,11 @@ export default function WelcomeSection({ user }: { user: User | null }) {
       style={{ backgroundImage: "url('/content/bg-nature.jpg')" }}
     >
       {/* Wrapper untuk teks dengan backdrop-filter */}
-      <div className="relative z-10 p-6 rounded-2xl w-fit">
+      <div className="relative z-10 px-4 py-3 rounded-2xl w-fit">
         <h1 className="text-2xl font-bold text-white">
           Hai {user?.name || "Guest User"}!
         </h1>
-        <p className="mt-2 text-md text-white">
+        <p className="mt-2 text-sm text-white">
           Kelola transaksi dan pantau penjualan sampah anorganik secara efisien di platform ini
         </p>
       </div>
