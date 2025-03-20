@@ -1,7 +1,7 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { ModalDetail } from "./modal-detail";
+import { DetailButton } from "./detail-button";
 
-export type Barang = {
+export type UserTransaction = {
   id: string;
   email: string;
   tipetransaksi: string;
@@ -9,7 +9,7 @@ export type Barang = {
   tanggaltransaksi: string;
 };
 
-export const columns: ColumnDef<Barang>[] = [
+export const columns: ColumnDef<UserTransaction>[] = [
   {
     id: "no",
     header: () => <div className="text-center">No.</div>,
@@ -67,6 +67,6 @@ export const columns: ColumnDef<Barang>[] = [
   {
     id: "detail",
     header: () => <div className="text-left text-nowrap">Detail</div>,
-    cell: ({ row }) => <ModalDetail />,
+    cell: ({ row }) => <DetailButton />,
   },
 ];

@@ -13,7 +13,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { Skeleton } from "@/components/ui/skeleton"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
@@ -21,7 +20,7 @@ import { getBarang } from "./action"
 import type { ItemData } from "./action"
 
 interface ItemClientProps {
-    itemData: ItemData[];
+  itemData: ItemData[];
 }
 
 export default function DataBarangClient({ itemData }: ItemClientProps) {
@@ -75,20 +74,14 @@ export default function DataBarangClient({ itemData }: ItemClientProps) {
       </CardHeader>
       <CardContent>
         <div className="rounded-xl border border-eb-primary-gray-200 p-4">
-          {loading ? (
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-[250px]" />
-              <Skeleton className="h-4 w-[200px]" />
-              <Skeleton className="h-4 w-[300px]" />
-            </div>
-          ) : error ? (
+          {error ? (
             <Alert variant="destructive">
               <AlertCircle className="h-4 w-4" />
               <AlertTitle>Error</AlertTitle>
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           ) : (
-            <DataTable columns={columns} data={data} />  // Menampilkan data yang sudah diambil
+            <DataTable columns={columns} data={data} />
           )}
         </div>
       </CardContent>
