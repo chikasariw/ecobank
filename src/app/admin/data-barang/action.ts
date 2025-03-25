@@ -20,54 +20,20 @@ export interface ItemData {
   selling_price: string | null;
 }
 
-// export async function getBarang() {
-//   const response = await fetch(`${apiUrl}/item/item`, {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
-
-//   const { data, fulfilled, message } = await response.json();
-//   if (fulfilled !== 1) {
-//     throw new Error(message);
-//   }
-//   return data as ItemData[];
-// }
-
 export async function getBarang() {
-  const url = `${apiUrl}/item/item`;
-  console.log("Fetching from:", url); // Debug URL
-
-  const response = await fetch(url, {
+  const response = await fetch(`${apiUrl}/item/item`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   });
 
-  const text = await response.text();
-  console.log("Raw response text:", text); // Debug response
-
-  if (!text) {
-    throw new Error("Response kosong dari server");
+  const { data, fulfilled, message } = await response.json();
+  if (fulfilled !== 1) {
+    throw new Error(message);
   }
-
-  try {
-    const json = JSON.parse(text);
-    console.log("Parsed JSON:", json);
-
-    if (json.fulfilled !== 1) {
-      throw new Error(json.message || "Gagal mengambil data");
-    }
-
-    return json.data as ItemData[];
-  } catch (err) {
-    console.error("JSON Parsing Error:", err);
-    throw new Error("Gagal parsing JSON");
-  }
+  return data as ItemData[];
 }
-
 
 export const addBarang = async (formData: FormData) => {
   const token = (await cookies()).get("access_token")?.value;
@@ -107,6 +73,73 @@ export const addBarang = async (formData: FormData) => {
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.message || "Failed to add barang");
+  }
+
+  return await response.json();
+};
+
+export const editBarang = async (itemId: string, formData: FormData) => {
+  const token = (await cookies()).get("access_token")?.value;
+
+  if (!token) {
+    console.error("No token found in cookies");
+    throw new Error("No token found");
+  }
+
+  // Mengambil data dari FormData
+  const rawData = {
+    name: formData.get("name")?.toString(),
+    unit: Number(formData.get("unit")),
+    purchase_price: Number(formData.get("purchase_price")),
+    selling_price: Number(formData.get("selling_price")),
+  };
+
+  // Validasi dengan Zod
+  const validation = barangSchema.safeParse(rawData);
+  if (!validation.success) {
+    const errorMessages = validation.error.errors
+      .map((err) => err.message)
+      .join(", ");
+    throw new Error(`Validasi gagal: ${errorMessages}`);
+  }
+
+  // Kirim ke API jika validasi sukses
+  const response = await fetch(`${apiUrl}/item/item/${itemId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(validation.data),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Failed to edit barang");
+  }
+
+  return await response.json();
+};
+
+export const deleteBarang = async (itemId: string) => {
+  const token = (await cookies()).get("access_token")?.value;
+
+  if (!token) {
+    console.error("No token found in cookies");
+    throw new Error("No token found");
+  }
+
+  const response = await fetch(`${apiUrl}/item/item/${itemId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Failed to delete barang");
   }
 
   return await response.json();
