@@ -30,11 +30,14 @@ import { Search } from "lucide-react";
 import type { userData } from "./action";
 
 interface DataTableProps<TData> {
-  data: TData[]
-  columns: ColumnDef<userData>[]
+  data: TData[];
+  columns: ColumnDef<userData>[];
 }
 
-export const DataTable = <TData extends userData>({ data, columns }: DataTableProps<TData>) => {
+export const DataTable = <TData extends userData>({
+  data,
+  columns,
+}: DataTableProps<TData>) => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -79,7 +82,6 @@ export const DataTable = <TData extends userData>({ data, columns }: DataTablePr
             className="w-full pl-12 pr-4 py-5 rounded-3xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-eb-primary-green-800 focus:border-eb-primary-green-800"
           />
         </div>
-        
       </div>
       <div className="rounded-xl border">
         <div className="overflow-x-auto">
@@ -169,4 +171,4 @@ export const DataTable = <TData extends userData>({ data, columns }: DataTablePr
       </div>
     </div>
   );
-}
+};

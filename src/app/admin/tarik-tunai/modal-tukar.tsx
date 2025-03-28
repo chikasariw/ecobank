@@ -45,7 +45,11 @@ export function ModalTukar({ userId }: ModalTukarProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size="sm" variant="prominent" className="flex items-center gap-1">
+        <Button
+          size="sm"
+          variant="prominent"
+          className="flex items-center gap-1"
+        >
           Tarik Tunai
           <ChevronRight />
         </Button>
