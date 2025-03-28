@@ -5,23 +5,23 @@ import { Card } from "@/components/ui/card";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { AddProductButton } from "./tambah-barang";
-import type { ItemData } from "./action";
+import type { TransactionItemData } from "./action";
 import { useMemo } from "react";
 
 interface DataBarangProps  {
-  itemData: ItemData[];
-  setAddedItems: (item: ItemData, quantity: number) => void;
+  itemData: TransactionItemData[];
+  setAddedItems: (item: TransactionItemData, quantity: number) => void;
 }
 
 export default function DataBarang({ itemData, setAddedItems }: DataBarangProps ) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedItems, setSelectedItems] = useState<ItemData[]>([]);
+  const [selectedItems, setSelectedItems] = useState<TransactionItemData[]>([]);
 
   useEffect(() => {
     setSelectedItems(selectedItems); // Update state di parent saat selectedItems berubah
   }, [selectedItems, setAddedItems]);
   
-  const handleAddItem = (product: ItemData, quantity: number) => {
+  const handleAddItem = (product: TransactionItemData, quantity: number) => {
     setAddedItems(product, quantity);
   };
 

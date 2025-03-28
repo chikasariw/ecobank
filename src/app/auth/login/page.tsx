@@ -1,4 +1,4 @@
-import Login from "./client"
+import Login from "./client"; 
 
 export async function generateMetadata() {
   return {
@@ -7,6 +7,6 @@ export async function generateMetadata() {
   }
 }
 
-export default function LoginPage({ searchParams }: { searchParams: { redirect?: string; error?: string } }) {
-  return <Login searchParams={searchParams} />
+export default function LoginPage() {
+  return <Login/>;
 }

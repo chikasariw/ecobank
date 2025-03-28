@@ -17,14 +17,6 @@ export function AddProductButton({ onClick, onChangeCount }: AddProductButtonPro
     onChangeCount?.(newCount);
   }, [onChangeCount]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10);
-    if (!isNaN(value) && value >= 0) {
-      updateCount(value);
-    } else {
-      updateCount(0); // Jika input negatif atau NaN, set ke 0
-    }
-  };
 
   return (
     <div className="grid">

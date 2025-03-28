@@ -44,3 +44,36 @@ export async function getTransaction() {
     return null;
   }
 }
+
+export async function getTransactionDetail(transactionId: string) {
+  try {
+    const token = (await cookies()).get("access_token")?.value;
+
+    if (!token) {
+      console.error("No token found in cookies");
+      throw new Error("No token found");
+    }
+
+    const response = await fetch(
+      `${apiUrl}/transaction/detailtransaction/${transactionId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const { data: transactionData, fulfilled: userFulfilled } =
+      await response.json();
+
+    if (userFulfilled != 1) {
+      throw new Error(`Failed to fetch user data. Status: ${response.status}`);
+    }
+
+    return transactionData as transactionData[];
+  } catch (error) {
+    console.error("Error fetching transaction data:", error);
+    return null;
+  }
+}

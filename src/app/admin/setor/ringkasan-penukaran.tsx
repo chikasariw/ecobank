@@ -22,18 +22,18 @@ export default function RingkasanPenukaran({
   removeItem,
   clearItems,
 }: RingkasanPenukaranProps) {
-  const subTotal = addedItems.reduce((acc, item) => item.unit * Number(item.purchase_price), 0);
-  const totalHarga = addedItems.reduce((acc, item) => acc + item.unit * Number(item.purchase_price), 0);
+  // const subTotal = addedItems.reduce((acc, item) => item.unit * Number(item.purchase_price), 0);
+  const total_amount = addedItems.reduce((acc, item) => acc + item.unit * Number(item.purchase_price), 0);
 
   console.log("Data", {
-    totalHarga,
+    total_amount,
     items: addedItems, // Pastikan items sudah sesuai dengan yang backend butuhkan
   });
 
   async function handleSubmit(formData: FormData) {
-    const emailPenukar = formData.get("emailPenukar") as string;
+    const email = formData.get("emailPenukar") as string;
   
-    if (!emailPenukar?.trim()) {
+    if (!email?.trim()) {
       alert("Email penukar harus diisi!");
       return;
     }
@@ -45,17 +45,20 @@ export default function RingkasanPenukaran({
   
     const formattedItems = addedItems.map(item => ({
       item_id: item.item_id,
+      name: item.name,
       unit: item.unit,
-      sub_total: subTotal,
+      purchase_price: Number(item.purchase_price),
+      sub_total: item.unit * Number(item.purchase_price),
     }));
   
     console.log("Data dikirim ke backend:", {
-      emailPenukar,
-      totalHarga,
+      email,
+      total_amount,
       items: formattedItems,
     });
   
-    const response = await createTransactionAction(emailPenukar, totalHarga, formattedItems);
+
+    const response = await createTransactionAction(email, total_amount, formattedItems);
   
     console.log("Response dari backend:", response);
     if (!response) {
@@ -147,7 +150,7 @@ export default function RingkasanPenukaran({
 
         <div className="flex justify-between items-center mt-6 text-lg font-bold">
           <span>Total:</span>
-          <span>Rp. {new Intl.NumberFormat("id-ID").format(totalHarga)}</span>
+          <span>Rp. {new Intl.NumberFormat("id-ID").format(total_amount)}</span>
         </div>
 
         <Button type="submit" className="w-full mt-4">

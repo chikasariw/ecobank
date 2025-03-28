@@ -15,7 +15,6 @@ export default async function SetorPage() {
   
     return (
     <SetorClient
-        itemData={itemData}
-    />
+            itemData={itemData} email={""}    />
     );
   }

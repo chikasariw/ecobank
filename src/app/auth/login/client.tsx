@@ -10,7 +10,8 @@ import { InputPassword } from "@/components/ui/inputpassword";
 import { Button } from "@/components/ui/button";
 import FormButton from "@/components/ui/form-button";
 
-export default function LoginPage() {
+
+export default function Login() {
     const router = useRouter();
     // const searchParams = useSearchParams();
     

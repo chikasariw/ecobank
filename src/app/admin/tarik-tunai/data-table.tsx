@@ -25,15 +25,16 @@ import {
 } from "@/components/ui/table";
 import { ColumnDef } from "@tanstack/react-table";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-import { ModalTukar } from "./modal-tukar";
+// import { ModalTukar } from "./modal-tukar";
 import { Search } from "lucide-react";
+import type { userData } from "./action";
 
 interface DataTableProps<TData> {
-  data: TData[];
-  columns: ColumnDef<TData>[];
+  data: TData[]
+  columns: ColumnDef<userData>[]
 }
 
-export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
+export const DataTable = <TData extends userData>({ data, columns }: DataTableProps<TData>) => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []

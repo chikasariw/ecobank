@@ -16,7 +16,7 @@ interface SetorClientProps {
 export default function SetorClient({ itemData, email }: SetorClientProps) {
   const [data, setData] = useState<TransactionItemData[]>(itemData);
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
   const [addedItems, setAddedItems] = useState<TransactionItemData[]>([]);
 
   useEffect(() => {

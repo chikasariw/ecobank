@@ -10,14 +10,7 @@ import { InputPassword } from '@/components/ui/inputpassword';
 import { Button } from '@/components/ui/button';
 import FormButton from '@/components/ui/form-button';
 
-interface RegisterPageProps {
-    searchParams: {
-        redirect?: string;
-        error?: string;
-    };
-}
-
-export default function RegisterPage({ searchParams }: RegisterPageProps) {
+export default function RegisterPage() {
     const router = useRouter();
     const [errors, setErrors] = useState<RegisterValidationErrors>({});
     const [password, setPassword] = useState("");

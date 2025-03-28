@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Pencil, Trash, Plus, CircleX } from "lucide-react";
+import { Pencil, Trash, CircleX } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { editBarang, deleteBarang } from "./action";
 import {
@@ -13,15 +13,15 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
+  // AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
 // Tipe data item
 type ItemData = {
   item_id: string;
   name: string;
-  purchase_price: number;
-  selling_price: number;
+  purchase_price: string;
+  selling_price: string;
 };
 
 export function ActionButtons({ item }: { item: ItemData }) {

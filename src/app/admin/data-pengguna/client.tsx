@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DataTable } from "./data-table";
 import { columns } from "./columns";
 import { useState, useEffect } from "react"
-import GradientText from "@/components/ui/gradient-text"
+// import GradientText from "@/components/ui/gradient-text"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -72,7 +72,9 @@ export default function DataUserClient({ userData }: ItemClientProps) {
         </CardHeader>
         <CardContent>
           <div className="rounded-xl border border-eb-primary-gray-200 p-4">
-            {error ? (
+          {loading ? (
+              <p>Loading...</p>
+            ) : error ? (
               <Alert variant="destructive">
                 <AlertCircle className="h-4 w-4" />
                 <AlertTitle>Error</AlertTitle>

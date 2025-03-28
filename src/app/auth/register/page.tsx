@@ -7,6 +7,6 @@ export async function generateMetadata() {
   };
 }
 
-export default function RegisterPage({ searchParams }: { searchParams: { redirect?: string; error?: string } }) {
-  return <Register searchParams={searchParams} />;
+export default function RegisterPage() {
+  return <Register />;
 }

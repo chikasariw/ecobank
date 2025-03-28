@@ -17,7 +17,7 @@ export interface ItemData {
   name: string;
   unit: string;
   purchase_price: string;
-  selling_price: string | null;
+  selling_price: string;
 }
 
 export async function getBarang() {

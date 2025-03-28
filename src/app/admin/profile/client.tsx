@@ -114,7 +114,7 @@ export default function ProfileClient({ userData }: ProfileClientProps) {
               <div className="md:flex items-center">
                 <Label htmlFor="birth_date" className="w-full md:w-1/2 xl:w-1/5">Tanggal Lahir</Label>
                 <DatePicker defaultValue={userData.birth_date || ""} />
-              </div>
+                </div>
 
               <div className="md:flex items-center">
                 <Label htmlFor="gender" className="w-full md:w-1/2 xl:w-1/5">Jenis Kelamin</Label>

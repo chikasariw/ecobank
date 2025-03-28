@@ -52,7 +52,7 @@ export const DataTable = <TData extends UserData>({ data, columns }: DataTablePr
         const result = await getUser();
         setTableData(Array.isArray(result) ? result : []); // Pastikan result adalah array
         setError(null);
-      } catch (err) {
+      } catch (error) {
         setError("Gagal mengambil data.");
         toast({
           title: "Gagal mengambil data",
@@ -68,7 +68,7 @@ export const DataTable = <TData extends UserData>({ data, columns }: DataTablePr
   
 
   const table = useReactTable({
-    data: tableData || [], // Default ke array kosong jika `tableData` undefined
+    data: tableData, // Default ke array kosong jika `tableData` undefined
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,

@@ -1,16 +1,9 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ActionButtons } from "./action-buttons";
 // import { ModalImage } from "./modal-image";
+import type { ItemData } from "./action"
 
-export type Barang = {
-    item_id: string;
-    name: string;
-    unit: string;
-    purchase_price: number;
-    selling_price: number;
-};
-
-export const columns: ColumnDef<Barang>[] = [
+export const columns: ColumnDef<ItemData>[] = [
     {
         id: "no",
         header: () => <div className="text-center">No.</div>,
@@ -32,7 +25,12 @@ export const columns: ColumnDef<Barang>[] = [
         cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
     },
     {
-        accessorFn: (row: Barang) => row.purchase_price, // Explicit accessor
+        accessorKey: "unit",
+        header: "Jumlah Barang",
+        cell: ({ row }) => <div>{row.getValue("unit")} gram</div>,
+    },
+    {
+        accessorFn: (row: ItemData) => row.purchase_price, // Explicit accessor
         id: "purchase_price",
         header: "Harga Beli",
         cell: ({ row }) => {
@@ -44,7 +42,7 @@ export const columns: ColumnDef<Barang>[] = [
         },
     },
     {
-        accessorFn: (row: Barang) => row.selling_price,
+        accessorFn: (row: ItemData) => row.selling_price,
         id: "selling_price",
         header: "Harga Jual",
         cell: ({ row }) => {
@@ -59,7 +57,7 @@ export const columns: ColumnDef<Barang>[] = [
         id: "actions",
         header: () => <div className="text-center">Aksi</div>,
         cell: ({ row }) => (
-            <ActionButtons barangData={row.original} />
+            <ActionButtons item={row.original} />
         ),
     },
 ];

@@ -12,6 +12,8 @@ const transactionSchema = z.object({
     .array(
       z.object({
         item_id: z.string().uuid("Invalid item ID"),
+        name: z.string().min(1, "Item name is required"), // Tambahkan validasi name
+        purchase_price: z.number().min(1, "Purchase price must be at least 1"), // Tambahkan validasi harga beli
         unit: z.number().min(1, "Unit must be at least 1"),
         sub_total: z.number().min(0, "Subtotal must be non-negative"),
       })
@@ -74,6 +76,8 @@ export async function createTransactionAction(
       items,
     });
 
+    console.log(JSON.stringify(validationResult, null, 2));
+
     if (!validationResult.success) {
       // Ambil pesan error pertama dari setiap array error
       const errors: TransactionValidationErrors = {
@@ -92,7 +96,7 @@ export async function createTransactionAction(
     }
 
     // Kirim request ke backend untuk membuat transaksi
-    const response = await fetch(`${apiUrl}/transaction/item`, {
+    const response = await fetch(`${apiUrl}/transaction`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -24,18 +24,11 @@ import { useToast } from "@/hooks/use-toast"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
-
-interface ItemData {
-  item_id: string;
-  name: string;
-  unit: string;
-  purchase_price: string;
-  selling_price: string | null;
-}
+import type { ItemData } from "./action"
 
 interface DataTableProps<TData> {
   data: TData[]
-  columns: ColumnDef<TData>[]
+  columns: ColumnDef<ItemData>[]
 }
 
 export const DataTable = <TData extends ItemData>({ data, columns }: DataTableProps<TData>) => {
@@ -54,7 +47,6 @@ export const DataTable = <TData extends ItemData>({ data, columns }: DataTablePr
     async function fetchData() {
       try {
         const result = await getBarang()
-        console.log("pppp", result);
         setTableData(result as TData[])
         setError(null)
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -73,7 +65,7 @@ export const DataTable = <TData extends ItemData>({ data, columns }: DataTablePr
   }, [toast])
 
   const table = useReactTable({
-    data,
+    data: tableData,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
