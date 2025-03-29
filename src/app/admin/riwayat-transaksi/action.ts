@@ -5,14 +5,28 @@ const apiUrl = process.env.API_URL;
 
 export interface transactionData {
   transaction_id: string;
-  total_amount: number;
-  type: string;
-  created_at: string;
-  wallet_id: string;
-  balance: number;
-  user_id: string;
   name: string;
   email: string;
+  type: string;
+  total_amount: number;
+  created_at: string;
+  balance: number;
+}
+
+export interface transactionDetail {
+  transaction_id: string;
+  total_amount: number;
+  created_at: string;
+  user: {
+    name: string;
+    email: string;
+  };
+  details: {
+    item_name: string;
+    unit: number;
+    purchase_price: number;
+    sub_total: number;
+  }[];
 }
 
 export async function getTransaction() {
@@ -64,14 +78,13 @@ export async function getTransactionDetail(transactionId: string) {
       }
     );
 
-    const { data: transactionData, fulfilled: userFulfilled } =
+    const { data: transactionDetail, fulfilled: userFulfilled } =
       await response.json();
 
     if (userFulfilled != 1) {
       throw new Error(`Failed to fetch user data. Status: ${response.status}`);
     }
-
-    return transactionData as transactionData[];
+    return transactionDetail as transactionDetail[];
   } catch (error) {
     console.error("Error fetching transaction data:", error);
     return null;

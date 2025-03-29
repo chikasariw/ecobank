@@ -1,19 +1,8 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { DetailButton } from "./detail-button";
+import type { transactionData } from "./action";
 
-export type UserTransaction = {
-  transaction_id: string;
-  total_amount: number;
-  type: string;
-  created_at: string;
-  wallet_id: string;
-  balance: number;
-  user_id: string;
-  name: string;
-  email: string;
-};
-
-export const columns: ColumnDef<UserTransaction>[] = [
+export const columns: ColumnDef<transactionData>[] = [
   {
     id: "no",
     header: () => <div className="text-center">No.</div>,
@@ -24,7 +13,9 @@ export const columns: ColumnDef<UserTransaction>[] = [
   {
     accessorKey: "email",
     header: "Email Warga Hijau",
-    cell: ({ row }) => <div className="lowercase text-nowrap">{row.getValue("email")}</div>,
+    cell: ({ row }) => (
+      <div className="lowercase text-nowrap">{row.getValue("email")}</div>
+    ),
   },
   {
     accessorKey: "tipetransaksi",
@@ -32,13 +23,14 @@ export const columns: ColumnDef<UserTransaction>[] = [
     cell: ({ row }) => {
       const type = row.original.type;
       console.log("Tipe Transaksi:", type);
-      const displayType = type === "Deposit" ? "Nabung" : type === "Withdraw" ? "Ambil" : type;
+      const displayType =
+        type === "Deposit" ? "Nabung" : type === "Withdraw" ? "Ambil" : type;
       const badgeColor =
         type === "Deposit"
           ? "flex items-center bg-eb-primary-green-200 text-eb-primary-green-700"
           : type === "Withdraw"
-            ? "bg-eb-primary-yellow-200 text-eb-primary-yellow-800"
-            : "bg-gray-500";
+          ? "bg-eb-primary-yellow-200 text-eb-primary-yellow-800"
+          : "bg-gray-500";
       return (
         <div
           className={`capitalize px-3 py-1 rounded-3xl text-center text-sm font-medium w-fit ${badgeColor}`}
@@ -71,15 +63,24 @@ export const columns: ColumnDef<UserTransaction>[] = [
     header: () => <div className="text-left">Tanggal Transaksi</div>,
     cell: ({ row }) => {
       const date = new Date(row.getValue("created_at"));
-      const formattedDate = `${String(date.getDate()).padStart(2, "0")}-${String(date.getMonth() + 1).padStart(2, "0")}-${date.getFullYear()} ${String(date.getHours()).padStart(2, "0")}.${String(date.getMinutes()).padStart(2, "0")}`;
-      return <div className="lowercase text-left">
-        {formattedDate}
-      </div>
+      const formattedDate = `${String(date.getDate()).padStart(
+        2,
+        "0"
+      )}-${String(date.getMonth() + 1).padStart(
+        2,
+        "0"
+      )}-${date.getFullYear()} ${String(date.getHours()).padStart(
+        2,
+        "0"
+      )}.${String(date.getMinutes()).padStart(2, "0")}`;
+      return <div className="lowercase text-left">{formattedDate}</div>;
     },
   },
   {
     id: "detail",
     header: () => <div className="text-left text-nowrap">Detail</div>,
-    cell: ({ row }) => <DetailButton transactionId={row.original.transaction_id}/>,
+    cell: ({ row }) => (
+      <DetailButton transactionId={row.original.transaction_id} />
+    ),
   },
 ];

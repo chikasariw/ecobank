@@ -10,36 +10,40 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { ChevronRight } from "lucide-react";
 import { getTransactionDetail } from "./action";
+import type { transactionDetail } from "./action";
 
 interface DetailButtonProps {
   transactionId: string;
 }
 
-interface TransactionItem {
-  quantity: number;
-  productName: string;
-  price: number;
-  subTotal: number;
-}
-
-interface TransactionDetail {
-  adminName: string;
-  exchangerName: string;
-  items: TransactionItem[];
-  totalAmount: number;
-}
-
 export function DetailButton({ transactionId }: DetailButtonProps) {
   const [open, setOpen] = useState(false);
-  const [transaction, setTransaction] = useState<TransactionDetail | null>(null);
+  const [transaction, setTransaction] = useState<transactionDetail | null>(
+    null
+  );
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (open && transactionId) {
-      getTransactionDetail(transactionId).then((data) => setTransaction(data));
+      setLoading(true);
+      getTransactionDetail(transactionId).then((data) => {
+        if (Array.isArray(data)) {
+          setTransaction(data[0]); // Ambil item pertama
+        } else {
+          setTransaction(data);
+        }
+      });
     }
   }, [open, transactionId]);
 
@@ -52,42 +56,62 @@ export function DetailButton({ transactionId }: DetailButtonProps) {
       </DialogTrigger>
       <DialogContent className="max-w-[425px] md:max-w-[600px] rounded-xl">
         <DialogHeader>
-          <DialogTitle>Detail Riwayat Transaksi Penukaran</DialogTitle>
-          <DialogDescription></DialogDescription>
+          <DialogTitle>Detail Riwayat Transaksi</DialogTitle>
+          <DialogDescription>
+            Informasi lengkap transaksi penukaran.
+          </DialogDescription>
         </DialogHeader>
         <hr className="border border-dashed mb-5" />
 
-        {transaction ? (
+        {loading ? (
+          <p className="text-center text-sm text-gray-500">Memuat data...</p>
+        ) : transaction ? (
           <div className="space-y-5">
-            <div className="flex items-center">
-              <label className="block text-sm font-medium w-1/4">Nama Admin</label>
-              <Input defaultValue={transaction.adminName} disabled className="mt-2" />
+            <div className="flex items-center gap-2">
+              <label className="block text-sm font-medium w-1/4">
+                Nama Admin
+              </label>
+              <Input disabled className="mt-2" />
             </div>
-            <div className="flex items-center">
-              <label className="block text-sm font-medium w-1/4">Nama Penukar</label>
-              <Input defaultValue={transaction.exchangerName} disabled className="mt-2" />
+            <div className="flex items-center gap-2">
+              <label className="block text-sm font-medium w-1/4">
+                Nama Penukar
+              </label>
+              <Input value={transaction.user.name} disabled className="mt-2" />
             </div>
 
             <hr className="border border-dashed my-5" />
 
             <div>
-              <h2 className="font-semibold text-eb-primary-green-800">Item Ditukar</h2>
+              <h2 className="font-semibold text-eb-primary-green-800">
+                Item Ditukar
+              </h2>
               <Table className="mt-2">
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Jumlah</TableHead>
                     <TableHead>Nama Produk</TableHead>
+                    <TableHead>Jumlah</TableHead>
                     <TableHead>Harga</TableHead>
                     <TableHead>Sub-Total</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {transaction.items.map((item, index) => (
+                  {(transaction.details || []).map((item, index) => (
                     <TableRow key={index} className="text-nowrap">
-                      <TableCell>{item.quantity}</TableCell>
-                      <TableCell>{item.productName}</TableCell>
-                      <TableCell>Rp. {item.price.toLocaleString()}</TableCell>
-                      <TableCell>Rp. {item.subTotal.toLocaleString()}</TableCell>
+                      <TableCell>{item.item_name}</TableCell>
+                      <TableCell>{item.unit}</TableCell>
+                      <TableCell>
+                        Rp.{" "}
+                        {new Intl.NumberFormat("id-ID").format(
+                          item.purchase_price
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        Rp.{" "}
+                        {new Intl.NumberFormat("id-ID").format(
+                          item.unit * item.purchase_price
+                        )}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -97,11 +121,11 @@ export function DetailButton({ transactionId }: DetailButtonProps) {
             <hr className="border border-dashed my-5" />
             <div className="flex justify-between items-center text-lg font-bold">
               <span>Total:</span>
-              <span>Rp. {transaction.totalAmount.toLocaleString()}</span>
+              <span>Rp. {transaction.total_amount.toLocaleString()}</span>
             </div>
           </div>
         ) : (
-          <p className="text-center">Memuat data...</p>
+          <p className="text-center text-red-500">Gagal memuat data.</p>
         )}
       </DialogContent>
     </Dialog>

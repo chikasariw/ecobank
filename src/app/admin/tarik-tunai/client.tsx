@@ -59,7 +59,8 @@ export default function DataPenggunaClient({ userData }: ItemClientProps) {
         <CardHeader>
           <CardTitle className="lg:flex lg:justify-between">
             <p>
-              Data <span className="text-eb-primary-tosca-700">Pengguna</span>
+              Data{" "}
+              <span className="text-eb-primary-tosca-700">Warga Hijau</span>
             </p>
             <Breadcrumb>
               <BreadcrumbList>
