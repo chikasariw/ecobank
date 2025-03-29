@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -22,6 +22,8 @@ import { Input } from "@/components/ui/input";
 import { ChevronRight } from "lucide-react";
 import { getTransactionDetail } from "./action";
 import type { transactionDetail } from "./action";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 
 interface DetailButtonProps {
   transactionId: string;
@@ -33,19 +35,34 @@ export function DetailButton({ transactionId }: DetailButtonProps) {
     null
   );
   const [loading, setLoading] = useState(false);
+  const printRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (open && transactionId) {
       setLoading(true);
-      getTransactionDetail(transactionId).then((data) => {
-        if (Array.isArray(data)) {
-          setTransaction(data[0]); // Ambil item pertama
-        } else {
-          setTransaction(data);
-        }
-      });
+      getTransactionDetail(transactionId)
+        .then((data) => {
+          if (Array.isArray(data)) {
+            setTransaction(data[0]);
+          } else {
+            setTransaction(data);
+          }
+        })
+        .catch(() => setTransaction(null))
+        .finally(() => setLoading(false));
     }
   }, [open, transactionId]);
+
+  const handlePrint = () => {
+    if (printRef.current) {
+      html2canvas(printRef.current).then((canvas) => {
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jsPDF();
+        pdf.addImage(imgData, "PNG", 10, 10, 190, 0);
+        pdf.save("nota_transaksi.pdf");
+      });
+    }
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -66,7 +83,7 @@ export function DetailButton({ transactionId }: DetailButtonProps) {
         {loading ? (
           <p className="text-center text-sm text-gray-500">Memuat data...</p>
         ) : transaction ? (
-          <div className="space-y-5">
+          <div className="space-y-5" ref={printRef}>
             <div className="flex items-center gap-2">
               <label className="block text-sm font-medium w-1/4">
                 Nama Admin
@@ -99,7 +116,7 @@ export function DetailButton({ transactionId }: DetailButtonProps) {
                   {(transaction.details || []).map((item, index) => (
                     <TableRow key={index} className="text-nowrap">
                       <TableCell>{item.item_name}</TableCell>
-                      <TableCell>{item.unit}</TableCell>
+                      <TableCell>{item.unit} gram</TableCell>
                       <TableCell>
                         Rp.{" "}
                         {new Intl.NumberFormat("id-ID").format(
@@ -121,12 +138,23 @@ export function DetailButton({ transactionId }: DetailButtonProps) {
             <hr className="border border-dashed my-5" />
             <div className="flex justify-between items-center text-lg font-bold">
               <span>Total:</span>
-              <span>Rp. {transaction.total_amount.toLocaleString()}</span>
+              <span>
+                Rp.{" "}
+                {new Intl.NumberFormat("id-ID").format(
+                  transaction.total_amount
+                )}
+              </span>
             </div>
           </div>
         ) : (
           <p className="text-center text-red-500">Gagal memuat data.</p>
         )}
+
+        <div className="flex justify-end mt-4">
+          <Button onClick={handlePrint} variant="outline">
+            Cetak Nota
+          </Button>
+        </div>
       </DialogContent>
     </Dialog>
   );
