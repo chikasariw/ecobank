@@ -2,7 +2,7 @@
 
 export function ProfitCard({ balance }: { balance: number | null }) {  
   return (
-    <div className="relative w-full lg:w-1/3 overflow-hidden rounded-3xl bg-white p-6 text-black mb-3">
+    <div className="relative w-full lg:w-1/3 overflow-hidden rounded-3xl bg-eb-primary-gray-50 p-6 text-black mb-3">
       <div className="">
         <div className="radial-yellow-card"></div>
         <div className="radial-yellow-card-right"></div>

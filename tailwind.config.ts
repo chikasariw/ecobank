@@ -71,6 +71,7 @@ export default {
   				'container-foreground': 'var(--eb-primary-tosca-700)'
   			},
   			'eb-primary-gray': {
+				'50': 'var(--eb-primary-gray-50)',
   				'100': 'var(--eb-primary-gray-100)',
   				'200': 'var(--eb-primary-gray-200)',
   				'300': 'var(--eb-primary-gray-300)',
@@ -84,6 +85,15 @@ export default {
   				foreground: 'var(--eb-primary-gray-100)',
   				container: 'var(--eb-primary-gray-200)',
   				'container-foreground': 'var(--eb-primary-gray-700)'
+  			},
+			'eb-primary-red': {
+  				'100': 'var(--eb-primary-red-100)',
+  				'200': 'var(--eb-primary-red-200)',
+  				'300': 'var(--eb-primary-red-300)',
+  				DEFAULT: 'var(--eb-primary-red-300)',
+  				foreground: 'var(--eb-primary-red-100)',
+  				container: 'var(--eb-primary-red-200)',
+  				'container-foreground': 'var(--eb-primary-red-300)'
   			},
   			background: 'hsl(var(--background))',
   			card: {

@@ -20,7 +20,7 @@ export function TotalAsset({ items = [] }: TotalAssetProps) {
       <Card>
         <CardHeader>
           <div className="space-y-1">
-            <h2 className="text-xl font-bold text-black">Total Asset</h2>
+            <h2 className="text-xl font-bold">Total Asset</h2>
           </div>
         </CardHeader>
         <CardContent>
