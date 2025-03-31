@@ -2,6 +2,7 @@
 
 import type React from "react";
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -19,9 +20,10 @@ import { useToast } from "@/hooks/use-toast";
 
 export function ModalAdd() {
   const { toast } = useToast();
+  const router = useRouter(); // Inisialisasi router
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null)  // State error untuk menangani kesalahan
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,19 +37,20 @@ export function ModalAdd() {
         title: "Data berhasil ditambahkan",
         description: "Data barang baru telah berhasil disimpan.",
       });
-      form.reset(); // Reset form setelah sukses
+      form.reset();
       setOpen(false);
-      setError(null) 
+      setError(null);
+      router.refresh(); // Perbarui halaman tanpa reload
     } catch (error) {
-      console.error("Failed to fetch data:", error)
-      setError("Gagal mengambil data barang. Silakan coba lagi nanti.")  // Menampilkan pesan error
+      console.error("Gagal menambahkan data:", error);
+      setError("Gagal menambahkan data barang. Silakan coba lagi nanti.");
       toast({
-        title: "Gagal mengambil data",
-        description: "Terjadi kesalahan saat mengambil data barang.",
+        title: "Gagal menambahkan data",
+        description: "Terjadi kesalahan saat menambahkan data barang.",
         variant: "destructive",
-      })
+      });
     } finally {
-      setLoading(false)  // Mengubah state loading menjadi false setelah selesai
+      setLoading(false);
     }
   };
 
@@ -64,44 +67,54 @@ export function ModalAdd() {
         </DialogHeader>
         <hr />
         <form onSubmit={handleSubmit}>
-  <div className="grid gap-5">
-    <div>
-      <Label htmlFor="name">Nama Barang</Label>
-      <Input name="name" placeholder="Masukkan Nama Barang" className="mt-2" required />
-    </div>
-    <div className="flex gap-5">
-      <div className="w-1/2">
-        <Label htmlFor="purchase_price">Harga Beli</Label>
-        <Input
-          name="purchase_price"
-          type="number"
-          placeholder="Masukkan Harga Beli"
-          className="mt-2"
-          required
-        />
-      </div>
-      <div className="w-1/2">
-        <Label htmlFor="selling_price">Harga Jual</Label>
-        <Input
-          name="selling_price"
-          type="number"
-          placeholder="Masukkan Harga Jual"
-          className="mt-2"
-          required
-        />
-      </div>
-    </div>
-  </div>
-  
-  {/* Tampilkan pesan error jika ada */}
-  {error && <p className="text-red-500 text-sm">{error}</p>}
+          <div className="grid gap-5">
+            <div>
+              <Label htmlFor="name">Nama Barang</Label>
+              <Input
+                name="name"
+                placeholder="Masukkan Nama Barang"
+                className="mt-2"
+                required
+              />
+            </div>
+            <div className="flex gap-5">
+              <div className="w-1/2">
+                <Label htmlFor="purchase_price">Harga Beli</Label>
+                <Input
+                  name="purchase_price"
+                  type="number"
+                  placeholder="Masukkan Harga Beli"
+                  className="mt-2"
+                  required
+                />
+              </div>
+              <div className="w-1/2">
+                <Label htmlFor="selling_price">Harga Jual</Label>
+                <Input
+                  name="selling_price"
+                  type="number"
+                  placeholder="Masukkan Harga Jual"
+                  className="mt-2"
+                  required
+                />
+              </div>
+            </div>
+          </div>
 
-  <hr className="my-4" />
-  <DialogFooter>
-    <Button type="submit" disabled={loading}>
-      {loading ? "Menambahkan..." : <><Plus /> Tambah Data</>}
-    </Button>
-  </DialogFooter>
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+
+          <hr className="my-4" />
+          <DialogFooter>
+            <Button type="submit" disabled={loading}>
+              {loading ? (
+                "Menambahkan..."
+              ) : (
+                <>
+                  <Plus /> Tambah Data
+                </>
+              )}
+            </Button>
+          </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>

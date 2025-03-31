@@ -7,7 +7,6 @@ const apiUrl = process.env.API_URL;
 // Skema validasi barang sesuai DTO
 const barangSchema = z.object({
   name: z.string().nonempty("Nama barang harus diisi"),
-  unit: z.number().min(1, "Unit harus lebih dari 0"),
   purchase_price: z.number().min(0, "Harga beli tidak boleh negatif"),
   selling_price: z.number().min(0, "Harga jual tidak boleh negatif"),
 });
@@ -23,6 +22,7 @@ export interface ItemData {
 export async function getBarang() {
   const response = await fetch(`${apiUrl}/item/item`, {
     method: "GET",
+    cache: "no-store",
     headers: {
       "Content-Type": "application/json",
     },
@@ -46,7 +46,6 @@ export const addBarang = async (formData: FormData) => {
   // Mengambil data dari FormData
   const rawData = {
     name: formData.get("name")?.toString(),
-    unit: Number(formData.get("unit")),
     purchase_price: Number(formData.get("purchase_price")),
     selling_price: Number(formData.get("selling_price")),
   };
@@ -89,7 +88,6 @@ export const editBarang = async (itemId: string, formData: FormData) => {
   // Mengambil data dari FormData
   const rawData = {
     name: formData.get("name")?.toString(),
-    unit: Number(formData.get("unit")),
     purchase_price: Number(formData.get("purchase_price")),
     selling_price: Number(formData.get("selling_price")),
   };
@@ -105,7 +103,7 @@ export const editBarang = async (itemId: string, formData: FormData) => {
 
   // Kirim ke API jika validasi sukses
   const response = await fetch(`${apiUrl}/item/item/${itemId}`, {
-    method: "PUT",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

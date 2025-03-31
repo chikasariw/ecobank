@@ -1,6 +1,12 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Pencil, Trash, CircleX } from "lucide-react";
@@ -40,8 +46,9 @@ export function ActionButtons({ item }: { item: ItemData }) {
         title: "Barang dihapus",
         description: "Item berhasil dihapus dari sistem.",
       });
-      setOpenDelete(false);
+      setOpenDelete(false); // Tutup modal setelah delete berhasil
     } catch (error) {
+      console.error("Gagal menghapus barang:", error);
       toast({
         title: "Gagal menghapus data",
         description: (error as Error).message || "Terjadi kesalahan.",
@@ -51,7 +58,10 @@ export function ActionButtons({ item }: { item: ItemData }) {
   };
 
   const handleClickOutside = useCallback((event: MouseEvent) => {
-    if (alertDialogRef.current && !alertDialogRef.current.contains(event.target as Node)) {
+    if (
+      alertDialogRef.current &&
+      !alertDialogRef.current.contains(event.target as Node)
+    ) {
       setOpenDelete(false);
     }
   }, []);
@@ -62,7 +72,6 @@ export function ActionButtons({ item }: { item: ItemData }) {
 
     console.log("Selected Item:", selectedItem);
     console.log("Open Edit:", openEdit);
-
   }, [handleClickOutside, selectedItem, openEdit]);
 
   return (
@@ -78,39 +87,47 @@ export function ActionButtons({ item }: { item: ItemData }) {
         >
           <Pencil className="w-4 h-4" />
         </Button>
-        <Button size="sm" variant="destructive" onClick={() => setOpenDelete(true)}>
+        <Button
+          size="sm"
+          variant="destructive"
+          onClick={() => setOpenDelete(true)}
+        >
           <Trash className="w-4 h-4" />
         </Button>
       </div>
 
       {/* Modal Edit */}
-      {selectedItem && <ModalEdit open={openEdit} setOpen={setOpenEdit} item={selectedItem} />}
+      {selectedItem && (
+        <ModalEdit open={openEdit} setOpen={setOpenEdit} item={selectedItem} />
+      )}
 
       {/* Alert Konfirmasi Delete */}
       <AlertDialog open={openDelete} onOpenChange={setOpenDelete}>
-        <div ref={alertDialogRef}>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle className="hidden">Apakah Anda yakin ingin menghapus barang ini?</AlertDialogTitle>
-              <AlertDialogDescription>
-                <div className="flex flex-col items-center justify-center text-center gap-4 my-3">
-                  <div className="bg-destructive text-destructive-foreground p-5 rounded-full">
-                    <CircleX className="w-16 h-16" />
-                  </div>
-                  <p className="text-xl font-semibold">Apakah Anda yakin ingin menghapus barang ini?</p>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="hidden">
+              Apakah Anda yakin ingin menghapus barang ini?
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              <div className="flex flex-col items-center justify-center text-center gap-4 my-3">
+                <div className="bg-destructive text-destructive-foreground p-5 rounded-full">
+                  <CircleX className="w-16 h-16" />
                 </div>
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter className="sm:justify-center">
-              <Button variant="ghost" onClick={() => setOpenDelete(false)}>
-                Batal
-              </Button>
-              <Button variant="destructive" onClick={handleDelete}>
-                Hapus
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </div>
+                {/* <p className="text-xl font-semibold">
+                  Apakah Anda yakin ingin menghapus barang ini?
+                </p> */}
+              </div>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className="sm:justify-center">
+            <Button variant="ghost" onClick={() => setOpenDelete(false)}>
+              Batal
+            </Button>
+            <Button variant="destructive" onClick={handleDelete}>
+              Hapus
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
       </AlertDialog>
     </>
   );
