@@ -20,7 +20,7 @@ const transactions: Transaction[] = [
 export function TransactionHistory() {
     return (
         <div className="w-full lg:w-2/3 mb-3">
-            <Card className="bg-white">
+            <Card>
                 <CardHeader>
                     <div className="flex items-center justify-between">
                         <h2 className="text-xl font-bold">Riwayat Transaksi</h2>
@@ -43,11 +43,11 @@ export function TransactionHistory() {
                                             {transaction.type === "Nabung" ? (
                                                 <ArrowUpRight className="h-4 w-4 text-eb-primary-green-500" />
                                             ) : (
-                                                <ArrowDownRight className="h-4 w-4 text-destructive-foreground" />
+                                                <ArrowDownRight className="h-4 w-4 text-eb-primary-red-300" />
                                             )}
                                         </div>
                                         <div>
-                                            <div className={transaction.type === "Nabung" ? "text-eb-primary-green-500 text-sm" : "text-destructive-foreground text-sm"}>
+                                            <div className={transaction.type === "Nabung" ? "text-eb-primary-green-500 text-sm" : "text-eb-primary-red-300 text-sm"}>
                                                 {transaction.type}
                                             </div>
                                             <div className="text-xs text-eb-primary-gray-600">
@@ -55,7 +55,7 @@ export function TransactionHistory() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={`font-medium ${transaction.type === "Nabung" ? "text-eb-primary-green-500 text-sm mr-2" : "text-destructive-foreground text-sm mr-2"}`}>
+                                    <div className={`font-medium ${transaction.type === "Nabung" ? "text-eb-primary-green-500 text-sm mr-2" : "text-eb-primary-red-300 text-sm mr-2"}`}>
                                         {transaction.type === "Nabung" ? "+" : "-"}Rp. {Math.abs(transaction.amount).toLocaleString()}
                                     </div>
                                 </div>
