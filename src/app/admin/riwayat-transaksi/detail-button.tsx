@@ -21,9 +21,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { ChevronRight } from "lucide-react";
 import { getTransactionDetail } from "./action";
-import type { transactionDetail } from "./action";
-import html2canvas from "html2canvas";
-import { jsPDF } from "jspdf";
+import type { TransactionDetail } from "./action";
+// import html2canvas from "html2canvas";
+// import { jsPDF } from "jspdf";
 
 interface DetailButtonProps {
   transactionId: string;
@@ -31,7 +31,7 @@ interface DetailButtonProps {
 
 export function DetailButton({ transactionId }: DetailButtonProps) {
   const [open, setOpen] = useState(false);
-  const [transaction, setTransaction] = useState<transactionDetail | null>(
+  const [transaction, setTransaction] = useState<TransactionDetail | null>(
     null
   );
   const [loading, setLoading] = useState(false);
@@ -53,16 +53,16 @@ export function DetailButton({ transactionId }: DetailButtonProps) {
     }
   }, [open, transactionId]);
 
-  const handlePrint = () => {
-    if (printRef.current) {
-      html2canvas(printRef.current).then((canvas) => {
-        const imgData = canvas.toDataURL("image/png");
-        const pdf = new jsPDF();
-        pdf.addImage(imgData, "PNG", 10, 10, 190, 0);
-        pdf.save("nota_transaksi.pdf");
-      });
-    }
-  };
+  // const handlePrint = () => {
+  //   if (printRef.current) {
+  //     html2canvas(printRef.current).then((canvas) => {
+  //       const imgData = canvas.toDataURL("image/png");
+  //       const pdf = new jsPDF();
+  //       pdf.addImage(imgData, "PNG", 10, 10, 190, 0);
+  //       pdf.save("nota_transaksi.pdf");
+  //     });
+  //   }
+  // };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -150,11 +150,11 @@ export function DetailButton({ transactionId }: DetailButtonProps) {
           <p className="text-center text-red-500">Gagal memuat data.</p>
         )}
 
-        <div className="flex justify-end mt-4">
+        {/* <div className="flex justify-end mt-4">
           <Button onClick={handlePrint} variant="outline">
             Cetak Nota
           </Button>
-        </div>
+        </div> */}
       </DialogContent>
     </Dialog>
   );

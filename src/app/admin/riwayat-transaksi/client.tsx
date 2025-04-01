@@ -19,10 +19,12 @@ import {
 } from "@/components/ui/breadcrumb"
 import GradientText from "@/components/ui/gradient-text";
 import { getTransaction } from "./action";
-import type { transactionData } from "./action";
+import type { TransactionData } from "./action";
+
 
 export default function RiwayatTransaksiClient() {
-    const [data, setData] = useState<transactionData[]>([]);
+  const [data, setData] = useState<TransactionData[]>([]);
+
     const [loading, setLoading] = useState<boolean>(true); // Loading default true untuk fetch awal
     const [error, setError] = useState<string | null>(null);
     const { toast } = useToast();

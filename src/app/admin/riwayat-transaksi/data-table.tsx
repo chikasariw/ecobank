@@ -29,17 +29,16 @@ import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
-interface TransactionData {
+export interface TransactionData {
   transaction_id: string;
-  total_amount: number;
-  type: string;
-  created_at: string;
-  wallet_id: string;
-  balance: number;
-  user_id: string;
   name: string;
   email: string;
+  type: string;
+  total_amount: number;
+  created_at: string;
+  balance: number;
 }
+
 
 interface DataTableProps<TData> {
   data: TData[]

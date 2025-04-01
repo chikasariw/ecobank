@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 const apiUrl = process.env.API_URL;
 
-export interface transactionData {
+export interface TransactionData {
   transaction_id: string;
   name: string;
   email: string;
@@ -13,7 +13,7 @@ export interface transactionData {
   balance: number;
 }
 
-export interface transactionDetail {
+export interface TransactionDetail {
   transaction_id: string;
   total_amount: number;
   created_at: string;
@@ -52,7 +52,7 @@ export async function getTransaction() {
       throw new Error(`Failed to fetch user data. Status: ${response.status}`);
     }
 
-    return transactionData as transactionData[];
+    return transactionData as TransactionData[];
   } catch (error) {
     console.error("Error fetching transaction data:", error);
     return null;
@@ -84,7 +84,7 @@ export async function getTransactionDetail(transactionId: string) {
     if (userFulfilled != 1) {
       throw new Error(`Failed to fetch user data. Status: ${response.status}`);
     }
-    return transactionDetail as transactionDetail[];
+    return transactionDetail as TransactionDetail[];
   } catch (error) {
     console.error("Error fetching transaction data:", error);
     return null;
