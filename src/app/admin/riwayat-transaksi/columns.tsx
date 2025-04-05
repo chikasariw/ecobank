@@ -1,8 +1,9 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { DetailButton } from "./detail-button";
-import type { transactionData } from "./action";
+import type { TransactionData } from "./action";
 
-export const columns: ColumnDef<transactionData>[] = [
+
+export const columns: ColumnDef<TransactionData>[] = [
   {
     id: "no",
     header: () => <div className="text-center">No.</div>,
@@ -18,7 +19,7 @@ export const columns: ColumnDef<transactionData>[] = [
     ),
   },
   {
-    accessorKey: "tipetransaksi",
+    accessorKey: "type",
     header: "Tipe Transaksi",
     cell: ({ row }) => {
       const type = row.original.type;

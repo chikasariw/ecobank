@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import GradientText from "@/components/ui/gradient-text";
 import { getTransaction } from "./action";
-import type { transactionData } from "./action";
+import type { TransactionData } from "./action";
 
 interface ItemClientProps {
   transactionData: transactionData[];

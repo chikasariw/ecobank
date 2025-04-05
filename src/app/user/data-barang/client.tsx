@@ -1,3 +1,5 @@
+
+
 "use client";
 import * as React from "react";
 import { useState } from "react";
@@ -5,7 +7,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
-export default function DataBarangClient({ itemData }) {
+type Product = {
+  item_id: string;
+  name: string;
+  unit: string;
+  purchase_price: string;
+  selling_price: string | null;
+};
+
+interface DataBarangClientProps {
+  itemData: Product[];
+}
+
+export default function DataBarangClient({ itemData }: DataBarangClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
 
   // Filter produk berdasarkan nama
