@@ -42,13 +42,19 @@ interface TransactionData {
 }
 
 interface DataTableProps<TData> {
-  data: TData[]
+  data: TData[];
   columns: ColumnDef<TransactionData>[];
 }
-export const DataTable = <TData extends TransactionData>({ data, columns }: DataTableProps<TData>) => {
+export const DataTable = <TData extends TransactionData>({
+  columns,
+  data,
+}: DataTableProps<TData>) => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
   const [tableData, setTableData] = React.useState<TransactionData[]>(data);
   const [loading, setLoading] = React.useState(true);
@@ -63,14 +69,14 @@ export const DataTable = <TData extends TransactionData>({ data, columns }: Data
         setTableData(Array.isArray(result) ? result : []);
         setError(null);
       } catch (error) {
-        setError("Gagal mengambil data transaksi.")
+        setError("Gagal mengambil data transaksi.");
         toast({
           title: "Gagal mengambil data",
           description: "Terjadi kesalahan saat mengambil data transaksi.",
           variant: "destructive",
-        })
+        });
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
     fetchData();
@@ -100,11 +106,16 @@ export const DataTable = <TData extends TransactionData>({ data, columns }: Data
       {/* Search Input */}
       <div className="flex items-center justify-between gap-4 py-4">
         <div className="relative w-full max-w-sm">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+          <Search
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+            size={18}
+          />
           <Input
             placeholder="Cari berdasarkan email..."
             value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-            onChange={(event) => table.getColumn("email")?.setFilterValue(event.target.value)}
+            onChange={(event) =>
+              table.getColumn("email")?.setFilterValue(event.target.value)
+            }
             className="w-full pl-12 pr-4 py-2 rounded-3xl border border-gray-300 focus:ring-2 focus:ring-green-600 focus:border-green-600"
           />
         </div>
@@ -131,7 +142,12 @@ export const DataTable = <TData extends TransactionData>({ data, columns }: Data
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
                     <TableHead key={header.id}>
-                      {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
                     </TableHead>
                   ))}
                 </TableRow>
@@ -140,15 +156,26 @@ export const DataTable = <TData extends TransactionData>({ data, columns }: Data
             <TableBody>
               {table.getRowModel().rows.length ? (
                 table.getRowModel().rows.map((row) => (
-                  <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
                     ))}
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
                     No results.
                   </TableCell>
                 </TableRow>
@@ -160,15 +187,34 @@ export const DataTable = <TData extends TransactionData>({ data, columns }: Data
 
       {/* Pagination */}
       <div className="flex items-center justify-end space-x-2 py-4">
-        <Button variant="link" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+        <Button
+          variant="link"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
           <ChevronLeft />
           Previous
         </Button>
 
         {Array.from({ length: table.getPageCount() }, (_, i) => {
-          if (i < 2 || i > table.getPageCount() - 3 || (i >= table.getState().pagination.pageIndex - 1 && i <= table.getState().pagination.pageIndex + 1)) {
+          if (
+            i < 2 ||
+            i > table.getPageCount() - 3 ||
+            (i >= table.getState().pagination.pageIndex - 1 &&
+              i <= table.getState().pagination.pageIndex + 1)
+          ) {
             return (
-              <Button key={i} variant={table.getState().pagination.pageIndex === i ? "primary" : "outline"} size="icon" onClick={() => table.setPageIndex(i)}>
+              <Button
+                key={i}
+                variant={
+                  table.getState().pagination.pageIndex === i
+                    ? "primary"
+                    : "outline"
+                }
+                size="icon"
+                onClick={() => table.setPageIndex(i)}
+              >
                 {i + 1}
               </Button>
             );
@@ -178,7 +224,12 @@ export const DataTable = <TData extends TransactionData>({ data, columns }: Data
           return null;
         })}
 
-        <Button variant="link" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+        <Button
+          variant="link"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
           Next
           <ChevronRight />
         </Button>

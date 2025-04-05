@@ -4,16 +4,27 @@ import { useState, useEffect } from "react";
 import WelcomeSection from "./welcome-card";
 import { BalanceCard } from "./balance-card";
 import { TransactionHistory } from "./transaction-history";
-import { Barchart } from "./barchart";
 import { TotalAsset } from "./total-asset";
 import { ProfitCard } from "./profit-card";
-import { getUserData, getBalance } from "./action"; // Sesuaikan path jika berbeda
-import { getBarang } from "./action"; 
+import { getUserData, getBalance, getTransaction } from "./action"; // Sesuaikan path jika berbeda
+import { getBarang } from "./action";
 
 interface User {
   name: string;
   email: string;
   profile_url?: string;
+}
+
+interface Transaction {
+  transaction_id: string;
+  total_amount: string;
+  type: string;
+  created_at: string;
+  wallet_id: string;
+  balance: string;
+  user_id: string;
+  name: string;
+  email: string;
 }
 
 // Definisi tipe data untuk props
@@ -27,6 +38,7 @@ export default function DashboardClient() {
   const [user, setUser] = useState<User | null>(null);
   const [balance, setBalance] = useState<number | null>(null);
   const [items, setItems] = useState<ItemData[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -34,17 +46,20 @@ export default function DashboardClient() {
     async function fetchUserData() {
       try {
         setLoading(true);
-        const [userData, userBalance] = await Promise.all([
+        const [userData, userBalance, userTransactions] = await Promise.all([
           getUserData(),
           getBalance(),
+          getTransaction(),
         ]);
         setUser(userData);
         setBalance(userBalance);
+        setTransactions(userTransactions); // Pastikan data ada
       } catch (err) {
         console.error("Failed to fetch user data:", err);
         setError("Gagal mengambil data pengguna.");
         setUser(null);
         setBalance(null);
+        setTransactions([]);
       } finally {
         setLoading(false);
       }
@@ -52,7 +67,7 @@ export default function DashboardClient() {
 
     fetchUserData();
   }, []);
-  
+
   useEffect(() => {
     async function fetchItems() {
       try {
@@ -84,7 +99,7 @@ export default function DashboardClient() {
             <BalanceCard balance={balance} />
           </div>
           <div className="lg:flex gap-3">
-            <TransactionHistory />
+            <TransactionHistory transactions={transactions} />
             <TotalAsset items={items} />
           </div>
         </>

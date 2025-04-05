@@ -10,70 +10,79 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 
 import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import GradientText from "@/components/ui/gradient-text";
 import { getTransaction } from "./action";
 import type { transactionData } from "./action";
 
-export default function RiwayatTransaksiClient() {
-    const [data, setData] = useState<transactionData[]>([]);
-    const [loading, setLoading] = useState<boolean>(true); // Loading default true untuk fetch awal
-    const [error, setError] = useState<string | null>(null);
-    const { toast } = useToast();
+interface ItemClientProps {
+  transactionData: transactionData[];
+}
 
-    useEffect(() => {
-        async function fetchData() {
-          try {
-            const result = await getTransaction(); // Memanggil fungsi fetch data
-            if (result) {
-              setData(Array.isArray(result) ? result : [result]); // Pastikan data berupa array
-              setError(null);
-            } else {
-              throw new Error("Data transaksi tidak ditemukan.");
-            }
-          } catch (error) {
-            console.error("Failed to fetch data:", error);
-            setError("Gagal mengambil data Transaksi. Silakan coba lagi nanti.");
-            toast({
-              title: "Gagal mengambil data",
-              description: "Terjadi kesalahan saat mengambil data Transaksi.",
-              variant: "destructive",
-            });
-          } finally {
-            setLoading(false);
-          }
+export default function RiwayatTransaksiClient({
+  transactionData,
+}: ItemClientProps) {
+  const [data, setData] = useState<transactionData[]>(transactionData);
+  const [loading, setLoading] = useState<boolean>(true); // Loading default true untuk fetch awal
+  const [error, setError] = useState<string | null>(null);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const result = await getTransaction(); // Memanggil fungsi fetch data
+        if (result) {
+          setData(Array.isArray(result) ? result : [result]); // Pastikan data berupa array
+          setError(null);
+        } else {
+          throw new Error("Data transaksi tidak ditemukan.");
         }
-        fetchData();
-    }, [toast]);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+        setError("Gagal mengambil data Transaksi. Silakan coba lagi nanti.");
+        toast({
+          title: "Gagal mengambil data",
+          description: "Terjadi kesalahan saat mengambil data Transaksi.",
+          variant: "destructive",
+        });
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, [toast]);
 
-
-    return (
-        <div>
-            <Card>
-                <CardHeader>
-                    <CardTitle className="lg:flex lg:justify-between">
-                        <p>Riwayat <GradientText>Transaksi Penukaran</GradientText></p>
-                        <Breadcrumb>
-                            <BreadcrumbList>
-                                <BreadcrumbItem>
-                                    <BreadcrumbLink href="/admin/dashboard">EcoBank.</BreadcrumbLink>
-                                </BreadcrumbItem>
-                                <BreadcrumbSeparator />
-                                <BreadcrumbItem>
-                                    <BreadcrumbPage>Riwayat Transaksi</BreadcrumbPage>
-                                </BreadcrumbItem>
-                            </BreadcrumbList>
-                        </Breadcrumb>
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
-                <div className="rounded-xl border border-eb-primary-gray-200 p-4">
+  return (
+    <div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="lg:flex lg:justify-between">
+            <p>
+              Riwayat <GradientText>Transaksi Penukaran</GradientText>
+            </p>
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/admin/dashboard">
+                    EcoBank.
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Riwayat Transaksi</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="rounded-xl border border-eb-primary-gray-200 p-4">
             {loading ? (
               <div className="space-y-2">
                 <Skeleton className="h-4 w-[250px]" />
@@ -90,8 +99,8 @@ export default function RiwayatTransaksiClient() {
               <DataTable columns={columns} data={data} />
             )}
           </div>
-                </CardContent>
-            </Card>
-        </div>
-    );
+        </CardContent>
+      </Card>
+    </div>
+  );
 }

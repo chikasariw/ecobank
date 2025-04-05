@@ -1,12 +1,17 @@
+"use server";
+
+import { getFinance } from "./action";
 import DataKeuanganClient from "./client";
 
 export async function generateMetadata() {
-    return {
-        title: "Data Keuangan - EcoBank.",
-        description: "Halaman Data Keuangan EcoBank.",
-    };
+  return {
+    title: "Data Keuangan - EcoBank.",
+    description: "Halaman Data Keuangan EcoBank.",
+  };
 }
 
-export default function DataKeuanganPage() {
-    return <DataKeuanganClient />;
+export default async function DataKeuanganPage() {
+  const financeData = await getFinance();
+
+  return <DataKeuanganClient financeData={financeData} />;
 }

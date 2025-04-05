@@ -5,25 +5,31 @@ const apiUrl = process.env.API_URL;
 
 export interface userData {
   user_id: string;
-  profile_url: string;
-  email: string;
   name: string;
+  email: string;
+  profile_url: string;
+  birth_date: string;
+  gender: string;
+  phone_number: string;
+  balance: number;
+}
+
+// Fungsi untuk mendapatkan token sekali saja
+async function getToken() {
+  const token = (await cookies()).get("access_token")?.value;
+  if (!token) {
+    throw new Error("No token found");
+  }
+  return token;
 }
 
 export async function getUser() {
   try {
-    const token = (await cookies()).get("access_token")?.value;
-
-    if (!token) {
-      console.error("No token found in cookies");
-      throw new Error("No token found");
-    }
+    const token = await getToken();
 
     const userResponse = await fetch(`${apiUrl}/user/all-user`, {
       method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     });
 
     const { data: userData, fulfilled: userFulfilled } =
@@ -35,52 +41,33 @@ export async function getUser() {
       );
     }
 
-    console.log(userData as userData[]);
-
+    console.log(userData);
     return userData as userData[];
   } catch (error) {
-    console.error("Error fetching user data or avatars:", error);
+    console.error("Error fetching user data:", error);
     throw error;
   }
 }
 
-// export const addBarang = async (formData: FormData) => {
-//   const token = (await cookies()).get("access_token")?.value;
+export async function getUserById(userId: string) {
+  try {
+    const token = await getToken();
 
-//   if (!token) {
-//     console.error("No token found in cookies");
-//     throw new Error("No token found");
-//   }
+    const userResponse = await fetch(`${apiUrl}/user/profile/${userId}`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
-//   // Mengambil data dari FormData
-//   const rawData = {
-//     name: formData.get("name")?.toString(),
-//     email: formData.get("email")?.toString(),
-//   };
+    if (!userResponse.ok) {
+      throw new Error(
+        `Failed to fetch user profile. Status: ${userResponse.status}`
+      );
+    }
 
-//   // Validasi dengan Zod
-//   const validation = barangSchema.safeParse(rawData);
-//   if (!validation.success) {
-//     const errorMessages = validation.error.errors
-//       .map((err) => err.message)
-//       .join(", ");
-//     throw new Error(`Validasi gagal: ${errorMessages}`);
-//   }
-
-//   // Kirim ke API jika validasi sukses
-//   const response = await fetch(`${apiUrl}/user/all-user`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${token}`,
-//     },
-//     body: JSON.stringify(validation.data),
-//   });
-
-//   if (!response.ok) {
-//     const errorData = await response.json();
-//     throw new Error(errorData.message || "Failed to add");
-//   }
-
-//   return await response.json();
-// };
+    const { data: userData } = await userResponse.json();
+    return userData as userData;
+  } catch (error) {
+    console.error("Error fetching user profile:", error);
+    throw error;
+  }
+}

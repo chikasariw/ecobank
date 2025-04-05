@@ -1,25 +1,41 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ChevronRight } from "lucide-react";
 import ProfileDetail from "./profile-pengguna/profile-pengguna";
+import type { userData } from "./action";
+import { getUserById } from "./action";
 
-export type Pengguna = {
-  id: string;
-  gambar: string;
-  email: string;
-  nama: string;
-};
-export function DetailButton() {
+interface DetailButtonProps {
+  userId: string;
+}
+
+export function DetailButton({ userId }: DetailButtonProps) {
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState<userData | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (open && userId) {
+      setLoading(true);
+      getUserById(userId)
+        .then((data) => {
+          setData(Array.isArray(data) ? data[0] || null : data); // 🔥 Fix di sini
+        })
+        .catch(() => setData(null))
+        .finally(() => setLoading(false));
+    }
+  }, [open, userId]);
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
           size="sm"
@@ -38,7 +54,7 @@ export function DetailButton() {
         <hr className="mx-0 px-0" />
         <div className="grid gap-5">
           <div>
-          <ProfileDetail/>
+            <ProfileDetail data={data} isLoading={true} />
           </div>
         </div>
       </DialogContent>

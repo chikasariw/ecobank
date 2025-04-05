@@ -19,7 +19,7 @@ export async function getBalance(): Promise<number | null> {
       return null;
     }
 
-    const response = await fetch(`${apiUrl}/transaction/user/balance`, {
+    const response = await fetch(`${apiUrl}/transaction/admin/balance`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -60,10 +60,13 @@ export async function getUserData(): Promise<UserData | null> {
     });
 
     if (!userResponse.ok) {
-      throw new Error(`Failed to fetch user data. Status: ${userResponse.status}`);
+      throw new Error(
+        `Failed to fetch user data. Status: ${userResponse.status}`
+      );
     }
 
-    const { data: userData, fulfilled: userFulfilled } = await userResponse.json();
+    const { data: userData, fulfilled: userFulfilled } =
+      await userResponse.json();
 
     if (userFulfilled !== 1) {
       throw new Error("API did not fulfill request successfully.");
@@ -100,12 +103,41 @@ export async function getBarang(): Promise<ItemData[]> {
     const { data, fulfilled, message } = await response.json();
 
     if (fulfilled !== 1) {
-      throw new Error(`API did not fulfill request successfully. Message: ${message}`);
+      throw new Error(
+        `API did not fulfill request successfully. Message: ${message}`
+      );
     }
 
     return data as ItemData[];
   } catch (error) {
     console.error("Error fetching items:", error);
     return [];
+  }
+}
+
+export async function getTransaction() {
+  const accessToken = (await cookies()).get("access_token")?.value;
+
+  if (!accessToken) {
+    return null;
+  }
+
+  try {
+    const response = await fetch(`${apiUrl}/transaction/admin/history`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    const { data, fulfilled } = await response.json();
+
+    if (fulfilled !== 1) {
+      throw new Error("Failed to fetch Balance");
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching Balance:", error);
+    return null;
   }
 }

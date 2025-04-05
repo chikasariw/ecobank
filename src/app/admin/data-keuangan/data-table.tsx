@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
+  ColumnDef,
   type ColumnFiltersState,
   type SortingState,
   type VisibilityState,
@@ -11,42 +12,65 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table"
+} from "@tanstack/react-table";
+import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { ChevronRight, ChevronLeft, CalendarIcon } from "lucide-react";
+import ModalAdd from "./modal-add";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { format } from "date-fns";
+import { id } from "date-fns/locale";
+import type { financeData } from "./action";
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { ChevronRight, ChevronLeft, Search, CalendarIcon } from "lucide-react"
-import { ModalAdd } from "./modal-add"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { type Keuangan, columns } from "./columns"
-import { Calendar } from "@/components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { format } from "date-fns"
-import { id } from "date-fns/locale"
-
-interface DataTableProps {
-  data: Keuangan[]
+interface DataTableProps<TData> {
+  data: TData[];
+  columns: ColumnDef<financeData>[];
 }
 
-export function DataTable({ data }: DataTableProps) {
-  const [sorting, setSorting] = React.useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
-  const [rowSelection, setRowSelection] = React.useState({})
-  const [periode, setPeriode] = React.useState("Semua")
-  const [tahun, setTahun] = React.useState("2025")
-  const [bulan, setBulan] = React.useState("1")
+export const DataTable = <TData extends financeData>({
+  data,
+  columns,
+}: DataTableProps<TData>) => {
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = React.useState({});
+  const [periode, setPeriode] = React.useState("Semua");
+  const [tahun, setTahun] = React.useState("2025");
+  const [bulan, setBulan] = React.useState("1");
   const [dateRange, setDateRange] = React.useState<{
-    from: Date | undefined
-    to: Date | undefined
+    from: Date | undefined;
+    to: Date | undefined;
   }>({
     from: undefined,
     to: undefined,
-  })
+  });
 
-  const currentYear = new Date().getFullYear()
-  const years = Array.from({ length: 10 }, (_, i) => currentYear - i)
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: 10 }, (_, i) => currentYear - i);
   const months = [
     { value: "1", label: "Januari" },
     { value: "2", label: "Februari" },
@@ -60,37 +84,40 @@ export function DataTable({ data }: DataTableProps) {
     { value: "10", label: "Oktober" },
     { value: "11", label: "November" },
     { value: "12", label: "Desember" },
-  ]
+  ];
 
   const filterDataByPeriod = React.useCallback(
-    (data: Keuangan[]) => {
+    (data: financeData[]) => {
       if (periode === "Semua") {
-        return data
+        return data;
       }
       return data.filter((item) => {
-        const date = new Date(item.tanggaltransaksi)
-        const itemYear = date.getFullYear().toString()
-        const itemMonth = (date.getMonth() + 1).toString()
+        const date = new Date(item.created_at);
+        const itemYear = date.getFullYear().toString();
+        const itemMonth = (date.getMonth() + 1).toString();
 
         switch (periode) {
           case "Tahunan":
-            return itemYear === tahun
+            return itemYear === tahun;
           case "Bulanan":
-            return itemYear === tahun && itemMonth === bulan
+            return itemYear === tahun && itemMonth === bulan;
           case "Mingguan":
             if (dateRange.from && dateRange.to) {
-              return date >= dateRange.from && date <= dateRange.to
+              return date >= dateRange.from && date <= dateRange.to;
             }
-            return true
+            return true;
           default:
-            return true
+            return true;
         }
-      })
+      });
     },
-    [periode, tahun, bulan, dateRange],
-  )
+    [periode, tahun, bulan, dateRange]
+  );
 
-  const filteredData = React.useMemo(() => filterDataByPeriod(data), [data, filterDataByPeriod])
+  const filteredData = React.useMemo(
+    () => filterDataByPeriod(data),
+    [data, filterDataByPeriod]
+  );
 
   const table = useReactTable({
     data: filteredData,
@@ -109,7 +136,7 @@ export function DataTable({ data }: DataTableProps) {
       columnVisibility,
       rowSelection,
     },
-  })
+  });
 
   return (
     <div className="w-full">
@@ -200,11 +227,18 @@ export function DataTable({ data }: DataTableProps) {
                         {dateRange.from ? (
                           dateRange.to ? (
                             <>
-                              {format(dateRange.from, "dd MMMM yyyy", { locale: id })} -{" "}
-                              {format(dateRange.to, "dd MMMM yyyy", { locale: id })}
+                              {format(dateRange.from, "dd MMMM yyyy", {
+                                locale: id,
+                              })}{" "}
+                              -{" "}
+                              {format(dateRange.to, "dd MMMM yyyy", {
+                                locale: id,
+                              })}
                             </>
                           ) : (
-                            format(dateRange.from, "dd MMMM yyyy", { locale: id })
+                            format(dateRange.from, "dd MMMM yyyy", {
+                              locale: id,
+                            })
                           )
                         ) : (
                           <span>Pilih tanggal</span>
@@ -221,7 +255,7 @@ export function DataTable({ data }: DataTableProps) {
                           setDateRange({
                             from: range?.from,
                             to: range?.to,
-                          })
+                          });
                         }}
                         numberOfMonths={2}
                         locale={id}
@@ -243,7 +277,12 @@ export function DataTable({ data }: DataTableProps) {
             />
           </div> */}
         </div>
-        <ModalAdd />
+        <ModalAdd
+          email={""}
+          clearItems={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
       </div>
       <div className="rounded-xl border">
         <Table>
@@ -252,24 +291,40 @@ export function DataTable({ data }: DataTableProps) {
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <TableHead key={header.id}>
-                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                   </TableHead>
                 ))}
               </TableRow>
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel()?.rows?.length > 0 ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
                   No results.
                 </TableCell>
               </TableRow>
@@ -278,7 +333,12 @@ export function DataTable({ data }: DataTableProps) {
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <Button variant="link" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+        <Button
+          variant="link"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
           <ChevronLeft />
           Previous
         </Button>
@@ -286,7 +346,11 @@ export function DataTable({ data }: DataTableProps) {
         {Array.from({ length: table.getPageCount() }, (_, i) => (
           <Button
             key={i}
-            variant={table.getState().pagination.pageIndex === i ? "primary" : "outline"}
+            variant={
+              table.getState().pagination.pageIndex === i
+                ? "primary"
+                : "outline"
+            }
             size="icon"
             onClick={() => table.setPageIndex(i)}
           >
@@ -294,12 +358,16 @@ export function DataTable({ data }: DataTableProps) {
           </Button>
         ))}
 
-        <Button variant="link" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+        <Button
+          variant="link"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
           Next
           <ChevronRight />
         </Button>
       </div>
     </div>
-  )
-}
-
+  );
+};
