@@ -22,13 +22,13 @@ import { getTransaction } from "./action";
 import type { TransactionData } from "./action";
 
 interface ItemClientProps {
-  transactionData: transactionData[];
+  transactionData: TransactionData[];
 }
 
 export default function RiwayatTransaksiClient({
   transactionData,
 }: ItemClientProps) {
-  const [data, setData] = useState<transactionData[]>(transactionData);
+  const [data, setData] = useState<TransactionData[]>(transactionData);
   const [loading, setLoading] = useState<boolean>(true); // Loading default true untuk fetch awal
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();

@@ -64,7 +64,7 @@ export function TransactionHistory({ transactions }: TransactionHistoryProps) {
                             : "text-destructive-foreground text-sm"
                         }
                       >
-                        {transaction.type}
+                        {transaction.type === "Deposit" ? "Nabung" : "Ambil"}
                       </div>
                       <div className="text-xs text-eb-primary-gray-600">
                         {new Intl.DateTimeFormat("id-ID", {

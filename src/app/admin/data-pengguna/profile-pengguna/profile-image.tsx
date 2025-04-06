@@ -1,61 +1,30 @@
 "use client";
-import React, { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
 
-export default function ProfileImage() {
-  const [imageSrc, setImageSrc] = useState<string | null>(null);
-  const fileInputRef = React.useRef<HTMLInputElement>(null);
+interface ProfileImageProps {
+  imagesrc?: string | null;
+}
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImageSrc(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    fileInputRef.current?.click();
-  };
+export default function ProfileImage({ imagesrc }: ProfileImageProps) {
+  const fallbackImage = "/content/profile-default.png";
+  const imageToDisplay = imagesrc || fallbackImage;
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="flex justify-center">
-      <div className="relative w-2/3 sm:w-2/3 md:w-1/3 lg:1/5 lg:w-full aspect-square overflow-hidden rounded-lg border bg-muted">
-        {imageSrc ? (
-          <Image
-            src={imageSrc}
-            alt="Profile picture"
-            width={300}
-            height={300}
-            className="h-full w-full object-cover"
-          />
-        ) : (
-          <Image
-            src="/content/profile-jisung.jpg"
-            alt="Profile picture"
-            width={300}
-            height={300}
-            className="h-full w-full object-cover"
-          />
+    <div className="flex justify-center items-center w-full">
+      <div className="relative w-48 h-48 md:w-60 md:h-60 overflow-hidden rounded-full border bg-muted shadow-md">
+        {isLoading && (
+          <div className="absolute inset-0 animate-pulse bg-gray-200 rounded-full" />
         )}
+        <Image
+          src={imageToDisplay}
+          alt="Foto Profil"
+          fill
+          onLoadingComplete={() => setIsLoading(false)}
+          className="object-contain transition-opacity duration-300 ease-in-out"
+        />
       </div>
-      <button
-        onClick={handleButtonClick}
-        className="mt-3 p-2 bg-blue-500 text-white rounded"
-      >
-        Ganti Foto Profil
-      </button>
-      <input
-        type="file"
-        ref={fileInputRef}
-        onChange={handleImageUpload}
-        className="hidden"
-        accept="image/*"
-      />
     </div>
   );
 }

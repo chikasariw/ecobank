@@ -42,6 +42,45 @@ export async function getBalance(): Promise<number | null> {
   }
 }
 
+export async function getProfit(
+  filter: "daily" | "weekly" | "monthly" | "yearly" | "all" = "all"
+): Promise<number | null> {
+  try {
+    const cookieStore = cookies();
+    const accessToken = (await cookieStore).get("access_token")?.value;
+
+    if (!accessToken) {
+      console.warn("No access token found in cookies");
+      return null;
+    }
+
+    const response = await fetch(
+      `${apiUrl}/transaction/admin/profit?filter=${filter}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch profit. Status: ${response.status}`);
+    }
+
+    const { data, fulfilled } = await response.json();
+
+    if (fulfilled !== 1) {
+      throw new Error("API did not fulfill request successfully.");
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching profit:", error);
+    return null;
+  }
+}
+
 export async function getUserData(): Promise<UserData | null> {
   try {
     const cookieStore = cookies();

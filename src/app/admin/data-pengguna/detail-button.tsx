@@ -54,7 +54,7 @@ export function DetailButton({ userId }: DetailButtonProps) {
         <hr className="mx-0 px-0" />
         <div className="grid gap-5">
           <div>
-            <ProfileDetail data={data} isLoading={true} />
+            <ProfileDetail data={data} isLoading={loading} />
           </div>
         </div>
       </DialogContent>

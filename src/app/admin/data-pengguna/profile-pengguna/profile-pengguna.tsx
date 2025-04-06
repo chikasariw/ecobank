@@ -15,7 +15,7 @@ export default function ProfileDetail({ data, isLoading }: ProfileDetailProps) {
     <div className="rounded-xl border border-eb-primary-gray-200 p-4">
       <div className="grid gap-8 lg:grid-cols-[240px,1fr]">
         {/* Profile Image */}
-        <ProfileImage />
+        <ProfileImage imagesrc={data?.profile_url} />
 
         {/* Form */}
         <div className="grid gap-5 mt-3">
@@ -59,7 +59,13 @@ export default function ProfileDetail({ data, isLoading }: ProfileDetailProps) {
                   Saldo
                 </Label>
                 <p className="text-sm text-eb-primary-green-800 font-medium text-nowrap">
-                  {data?.balance || "-"}
+                  {data?.balance !== undefined
+                    ? new Intl.NumberFormat("id-ID", {
+                        style: "currency",
+                        currency: "IDR",
+                        minimumFractionDigits: 0,
+                      }).format(data.balance)
+                    : "-"}
                 </p>
               </div>
 

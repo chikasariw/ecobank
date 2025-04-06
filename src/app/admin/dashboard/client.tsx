@@ -6,8 +6,9 @@ import { BalanceCard } from "./balance-card";
 import { TransactionHistory } from "./transaction-history";
 import { TotalAsset } from "./total-asset";
 import { ProfitCard } from "./profit-card";
-import { getUserData, getBalance, getTransaction } from "./action"; // Sesuaikan path jika berbeda
+import { getUserData, getBalance, getTransaction, getProfit } from "./action"; // Sesuaikan path jika berbeda
 import { getBarang } from "./action";
+import { setPriority } from "os";
 
 interface User {
   name: string;
@@ -37,6 +38,7 @@ interface ItemData {
 export default function DashboardClient() {
   const [user, setUser] = useState<User | null>(null);
   const [balance, setBalance] = useState<number | null>(null);
+  const [profit, setProfit] = useState<number | null>(null);
   const [items, setItems] = useState<ItemData[]>([]);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -46,19 +48,23 @@ export default function DashboardClient() {
     async function fetchUserData() {
       try {
         setLoading(true);
-        const [userData, userBalance, userTransactions] = await Promise.all([
-          getUserData(),
-          getBalance(),
-          getTransaction(),
-        ]);
+        const [userData, userBalance, userProfit, userTransactions] =
+          await Promise.all([
+            getUserData(),
+            getBalance(),
+            getProfit("all"),
+            getTransaction(),
+          ]);
         setUser(userData);
         setBalance(userBalance);
+        setProfit(userProfit);
         setTransactions(userTransactions); // Pastikan data ada
       } catch (err) {
         console.error("Failed to fetch user data:", err);
         setError("Gagal mengambil data pengguna.");
         setUser(null);
-        setBalance(null);
+        setBalance(0);
+        setPriority(0);
         setTransactions([]);
       } finally {
         setLoading(false);
@@ -95,7 +101,7 @@ export default function DashboardClient() {
         <>
           <div className="lg:flex gap-3">
             <WelcomeSection user={user} />
-            <ProfitCard balance={balance} />
+            <ProfitCard profit={profit} />
             <BalanceCard balance={balance} />
           </div>
           <div className="lg:flex gap-3">
