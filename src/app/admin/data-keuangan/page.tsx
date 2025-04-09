@@ -1,7 +1,7 @@
-"use server";
-
 import { getFinance } from "./action";
 import DataKeuanganClient from "./client";
+
+export const dynamic = "force-dynamic"; // ⬅️ INI WAJIB KALO PAKAI cookies()
 
 export async function generateMetadata() {
   return {

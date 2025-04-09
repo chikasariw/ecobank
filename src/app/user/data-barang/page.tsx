@@ -1,17 +1,17 @@
-"use server";
-
 import { getBarang } from "./action";
 import DataBarangClient from "./client";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata() {
-    return {
-        title: "Data Barang - EcoBank.",
-        description: "Halaman Data Barang EcoBank.",
-    };
+  return {
+    title: "Data Barang - EcoBank.",
+    description: "Halaman Data Barang EcoBank.",
+  };
 }
 
 export default async function DataBarangPage() {
-    const itemData = await getBarang();
+  const itemData = await getBarang();
 
-    return <DataBarangClient itemData={itemData} />;
+  return <DataBarangClient itemData={itemData} />;
 }

@@ -1,7 +1,7 @@
-"use server";
-
-import { getTransaction } from "./action";
+// import { getTransaction } from "./action";
 import RiwayatPenukaranClient from "./client";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   return {
@@ -11,7 +11,7 @@ export async function generateMetadata() {
 }
 
 export default async function RiwayatPenukaranPage() {
-  const itemData = await getTransaction();
+  // const itemData = await getTransaction();
 
   return <RiwayatPenukaranClient />;
 }
