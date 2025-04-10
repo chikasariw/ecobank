@@ -179,7 +179,8 @@ export default function ModalAdd({ email, clearItems }: ModalAddProps) {
           </div>
         </div>
 
-        <Button type="button" variant="secondary" onClick={handleAddItem}>
+
+        <Button type="button" variant="prominent" onClick={handleAddItem}>
           <Plus className="mr-2 h-4 w-4" />
           Tambah ke Daftar
         </Button>

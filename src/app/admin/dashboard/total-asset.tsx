@@ -32,11 +32,11 @@ export function TotalAsset({ items = [] }: TotalAssetProps) {
                 </div>
                 <div className="flex flex-col">
                   <h4 className="font-medium text-md">{ItemData.name}</h4>
-                  <p className="text-xs text-eb-primary-gray-600">Jumlah: {ItemData.unit}</p>
+                  <p className="text-xs text-eb-primary-gray-600">Jumlah: {ItemData.unit} gram</p>
                 </div>
               </div>
               <h4 className="font-semibold text-xl text-eb-primary-green-500">
-                {ItemData.unit}
+                {ItemData.unit} gram
               </h4>
             </div>
           ))}

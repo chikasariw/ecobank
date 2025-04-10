@@ -137,7 +137,7 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
           disabled={!table.getCanPreviousPage()}
         >
           <ChevronLeft />
-          Previous
+          Sebelumnya
         </Button>
 
         {Array.from({ length: table.getPageCount() }, (_, i) => (
@@ -161,7 +161,7 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
-          Next
+          Selanjutnya
           <ChevronRight />
         </Button>
       </div>

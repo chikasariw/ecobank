@@ -42,10 +42,7 @@ export const columns: ColumnDef<userData>[] = [
     id: "actions",
     header: () => <div className="text-center">Aksi</div>,
     cell: ({ row }) => (
-      <ActionButtons
-        onEdit={() => console.log("Edit", row.original.user_id)}
-        onDelete={() => console.log("Delete", row.original.user_id)}
-      />
+      <ActionButtons item={row.original} />
     ),
   },
 ];

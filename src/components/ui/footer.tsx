@@ -10,14 +10,14 @@ export default function Footer() {
       <div className="flex flex-col max-w-screen-xl mx-auto px-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-12">
           <div className="col-start-1 row-start-1 col-span-4 md:col-span-4 lg:col-span-2 flex flex-col gap-5">
-            <Link href="/">
+            <a href="#">
               <Image
                 src="/logo/ecobank-logo.svg"
                 alt="Cofika Logo"
                 width={150}
                 height={150}
               />
-            </Link>
+            </a>
 
             <p className="text-eb-primary-gray-600 max-w-sm">
               Jangan biarkan sampah menumpuk dan jadi masalah! Segera tukarkan

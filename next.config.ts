@@ -5,7 +5,10 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true, // Mengabaikan error ESLint saat build
   },
   images: {
-    domains: ["mf11q2bf-14100.asse.devtunnels.ms"], // Tambahkan domain ini
+    domains: [
+      "mf11q2bf-14100.asse.devtunnels.ms",
+      "eco-bank-production.up.railway.app" 
+    ],
   },
 };
 

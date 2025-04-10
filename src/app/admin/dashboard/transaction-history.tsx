@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from 'next/navigation';
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -22,6 +24,7 @@ interface TransactionHistoryProps {
 
 export function TransactionHistory({ transactions }: TransactionHistoryProps) {
   console.log("Transactions Props:", transactions); // Debugging
+  const router = useRouter();
 
   return (
     <div className="w-full lg:w-2/3 mb-3">
@@ -33,6 +36,7 @@ export function TransactionHistory({ transactions }: TransactionHistoryProps) {
               size="sm"
               variant="prominent"
               className="font-bold rounded-3xl px-3"
+              onClick={() => router.push('/admin/riwayat-transaksi')}
             >
               Lihat Semua
             </Button>
