@@ -99,7 +99,7 @@ export default function RegisterPage() {
                         <div>
                             <Input
                                 type="name"
-                                label="Name"
+                                label="Nama"
                                 name="name"
                                 placeholder="Masukkan Nama Anda"
                                 error={!!errors.name}

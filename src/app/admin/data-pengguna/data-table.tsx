@@ -41,11 +41,8 @@ export const DataTable = <TData extends userData>({
   columns,
 }: DataTableProps<TData>) => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  );
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
@@ -57,7 +54,7 @@ export const DataTable = <TData extends userData>({
     async function fetchData() {
       try {
         const result = await getUser();
-        setTableData(Array.isArray(result) ? result : []); // Pastikan result adalah array
+        setTableData(Array.isArray(result) ? result : []);
         setError(null);
       } catch (error) {
         setError("Gagal mengambil data.");
@@ -70,11 +67,12 @@ export const DataTable = <TData extends userData>({
         setLoading(false);
       }
     }
+
     fetchData();
   }, [toast]);
 
   const table = useReactTable({
-    data: tableData, // Default ke array kosong jika `tableData` undefined
+    data: tableData,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -91,6 +89,18 @@ export const DataTable = <TData extends userData>({
       rowSelection,
     },
   });
+
+  // Pagination Logic
+  const currentPage = table.getState().pagination.pageIndex;
+  const pageCount = table.getPageCount();
+  const maxVisiblePages = 5;
+
+  let startPage = Math.max(0, currentPage - Math.floor(maxVisiblePages / 2));
+  let endPage = startPage + maxVisiblePages;
+  if (endPage > pageCount) {
+    endPage = pageCount;
+    startPage = Math.max(0, endPage - maxVisiblePages);
+  }
 
   return (
     <div className="w-full">
@@ -110,6 +120,7 @@ export const DataTable = <TData extends userData>({
           />
         </div>
       </div>
+
       <div className="rounded-xl border">
         {loading ? (
           <div className="p-3 space-y-2">
@@ -132,10 +143,7 @@ export const DataTable = <TData extends userData>({
                     <TableHead key={header.id}>
                       {header.isPlaceholder
                         ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                        : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   ))}
                 </TableRow>
@@ -147,20 +155,14 @@ export const DataTable = <TData extends userData>({
                   <TableRow key={row.id}>
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </TableCell>
                     ))}
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell
-                    colSpan={columns.length}
-                    className="h-24 text-center"
-                  >
+                  <TableCell colSpan={columns.length} className="h-24 text-center">
                     Tidak ada data.
                   </TableCell>
                 </TableRow>
@@ -169,6 +171,8 @@ export const DataTable = <TData extends userData>({
           </Table>
         )}
       </div>
+
+      {/* Pagination */}
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
           variant="link"
@@ -176,29 +180,42 @@ export const DataTable = <TData extends userData>({
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
-          <ChevronLeft /> Previous
+          <ChevronLeft /> Sebelumnya
         </Button>
-        {Array.from({ length: table.getPageCount() }, (_, i) => (
-          <Button
-            key={i}
-            variant={
-              table.getState().pagination.pageIndex === i
-                ? "primary"
-                : "outline"
-            }
-            size="icon"
-            onClick={() => table.setPageIndex(i)}
-          >
-            {i + 1}
+
+        {startPage > 0 && (
+          <Button variant="ghost" size="icon" disabled>
+            ...
           </Button>
-        ))}
+        )}
+
+        {Array.from({ length: endPage - startPage }, (_, i) => {
+          const pageNumber = startPage + i;
+          return (
+            <Button
+              key={pageNumber}
+              variant={table.getState().pagination.pageIndex === pageNumber ? "primary" : "outline"}
+              size="icon"
+              onClick={() => table.setPageIndex(pageNumber)}
+            >
+              {pageNumber + 1}
+            </Button>
+          );
+        })}
+
+        {endPage < pageCount && (
+          <Button variant="ghost" size="icon" disabled>
+            ...
+          </Button>
+        )}
+
         <Button
           variant="link"
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
-          Next <ChevronRight />
+          Selanjutnya <ChevronRight />
         </Button>
       </div>
     </div>
