@@ -24,14 +24,14 @@ export default function Header() {
     >
       <div className="max-w-screen-xl mx-auto flex items-center justify-between px-6 lg:px-10 py-4">
         {/* Logo */}
-        <div>
+        <a href="#">
           <Image
             src="/logo/ecobank-logo.svg"
             alt="Ecobank Logo"
             width={150}
             height={150}
           />
-        </div>
+        </a>
 
         {/* Desktop Navigation */}
         <nav
