@@ -77,7 +77,15 @@ export default function RiwayatPenukaranClient() {
                       {transaction.type === "debit" ? "Keluar" : "Masuk"}
                     </p>
                     <h5 className="text-lg font-semibold text-eb-primary-gray-800 pt-2">
-                      Transaksi {transaction.created_at}
+                      Transaksi 
+                      {new Intl.DateTimeFormat("id-ID", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: false,
+                        }).format(new Date(transaction.created_at))}
                     </h5>
                     <p className="text-eb-primary-gray-600 text-md pt-1">
                       Jumlah: Rp. {transaction.total_amount.toLocaleString()}

@@ -5,7 +5,7 @@ import WelcomeSection from "./welcome-card";
 import { BalanceCard } from "./balance-card";
 import { TransactionHistory } from "./transaction-history";
 import { Barchart } from "./barchart";
-import { getUserData, getBalance, getTransaction } from "./action"; // Sesuaikan path jika berbeda
+import { getUserData, getBalance, getTransaction } from "./action"; 
 
 interface User {
   name: string;
@@ -74,10 +74,10 @@ export default function DashboardClient() {
           </div>
           <div className="lg:flex gap-3">
             <TransactionHistory transactions={transactions} />
-            <div className="flex flex-col w-full lg:w-1/3 ">
+            {/* <div className="flex flex-col w-full lg:w-1/3 ">
               <Barchart />
-              {/* <StatsSection /> */}
-            </div>
+              <StatsSection />
+            </div> */}
           </div>
         </>
       )}

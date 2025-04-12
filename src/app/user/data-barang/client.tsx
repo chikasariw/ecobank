@@ -1,11 +1,11 @@
-
-
 "use client";
 import * as React from "react";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type Product = {
   item_id: string;
@@ -21,11 +21,62 @@ interface DataBarangClientProps {
 
 export default function DataBarangClient({ itemData }: DataBarangClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
 
-  // Filter produk berdasarkan nama
-  const filteredProducts = itemData.filter((product: { name: string; }) =>
+  const filteredProducts = itemData.filter((product) =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery]);
+
+  function getPageNumbers(current: number, total: number): (number | "...")[] {
+    const siblings = 1;
+    const totalNumbers = siblings * 2 + 5;
+    const totalBlocks = totalNumbers + 2;
+
+    if (total <= totalBlocks) {
+      return Array.from({ length: total }, (_, i) => i + 1);
+    }
+
+    const pages: (number | "...")[] = [];
+
+    const left = Math.max(current - siblings, 3);
+    const right = Math.min(current + siblings, total - 2);
+
+    pages.push(1, 2);
+
+    if (left > 3) {
+      pages.push("...");
+    }
+
+    for (let i = left; i <= right; i++) {
+      pages.push(i);
+    }
+
+    if (right < total - 2) {
+      pages.push("...");
+    }
+
+    pages.push(total - 1, total);
+
+    return pages;
+  }
 
   return (
     <div>
@@ -43,8 +94,8 @@ export default function DataBarangClient({ itemData }: DataBarangClientProps) {
                 />
                 <Input
                   placeholder="Cari Barang..."
-                  value={searchQuery} 
-                  onChange={(e) => setSearchQuery(e.target.value)} 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full pl-12 pr-4 py-5 rounded-3xl border border-eb-primary-gray-300 focus:outline-none focus:ring-2 focus:ring-eb-primary-green-500 focus:border-eb-primary-green-800 placeholder:text-gray-400 placeholder:font-medium"
                 />
               </div>
@@ -53,12 +104,15 @@ export default function DataBarangClient({ itemData }: DataBarangClientProps) {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => (
-                <Card key={product.item_id} className="rounded-3xl border border-eb-primary-gray-300 ">
+            {currentItems.length > 0 ? (
+              currentItems.map((product) => (
+                <Card
+                  key={product.item_id}
+                  className="rounded-3xl border border-eb-primary-gray-300"
+                >
                   <div className="p-4">
                     <img
-                      src="/content/default-image.jpg" // Ganti dengan gambar jika ada di API
+                      src="/content/default-image.jpg"
                       alt={product.name}
                       className="w-full h-40 object-cover rounded-lg mb-3"
                     />
@@ -77,6 +131,54 @@ export default function DataBarangClient({ itemData }: DataBarangClientProps) {
               </p>
             )}
           </div>
+
+          {/* Pagination Controls */}
+          {filteredProducts.length > itemsPerPage && (
+            <div className="flex justify-end items-center space-x-2 mt-6">
+              <Button
+                variant="link"
+                size="sm"
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+                className="flex items-center gap-1 text-gray-700 disabled:opacity-50"
+              >
+                <ChevronLeft size={16} />
+                Sebelumnya
+              </Button>
+
+              {getPageNumbers(currentPage, totalPages).map((page, idx) =>
+                page === "..." ? (
+                  <span key={idx} className="px-2 text-muted-foreground">...</span>
+                ) : (
+                  <Button
+                    key={page}
+                    variant={page === currentPage ? "default" : "outline"}
+                    size="icon"
+                    onClick={() => setCurrentPage(Number(page))}
+                    className={`rounded-full w-9 h-9 ${
+                      page === currentPage
+                        ? "bg-gradient-to-r from-eb-primary-green-600 to-eb-primary-green-400 text-eb-primary-green-100 font-bold hover:from-eb-primary-green-700 hover:to-eb-primary-green-600"
+                        : "border-eb-primary-gray-300 hover:bg-eb-primary-gray-200 text-gray-700"
+                    }`}
+                  >
+                    {page}
+                  </Button>
+                )
+              )}
+
+              <Button
+                variant="link"
+                size="sm"
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+                className="flex items-center gap-1 text-gray-700 disabled:opacity-50"
+              >
+                Selanjutnya
+
+                <ChevronRight size={16} />
+              </Button>
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>

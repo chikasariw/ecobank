@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,15 +21,22 @@ interface TransactionHistoryProps {
 export function TransactionHistory({ transactions }: TransactionHistoryProps) {
     console.log("Transactions Props:", transactions); // Debugging
 
+    const router = useRouter();
+
     return (
-        <div className="w-full lg:w-2/3 mb-3">
+        <div className="w-full mb-3">
             <Card>
                 <CardHeader>
                     <div className="flex items-center justify-between">
                         <h2 className="text-xl font-bold">Riwayat Transaksi</h2>
-                        <Button size="sm" variant="prominent" className="font-bold rounded-3xl px-3">
-                            Lihat Semua
-                        </Button>
+                        <Button
+              size="sm"
+              variant="prominent"
+              className="font-bold rounded-3xl px-3"
+              onClick={() => router.push('/user/riwayat-penukaran')}
+            >
+              Lihat Semua
+            </Button>
                     </div>
                 </CardHeader>
                 <CardContent>
