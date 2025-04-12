@@ -1,14 +1,17 @@
 "use server";
-import { cookies } from "next/headers";
 
-const apiUrl = process.env.API_URL;
+import { cookies } from "next/headers"; // Mengambil cookie dari header request (server side)
 
+const apiUrl = process.env.API_URL; // Mengambil URL API dari environment variable
+
+// Tipe data 
 export interface UserData {
   email: string;
   name: string;
   profile_url: string;
 }
 
+// Mengambil saldo (balance) admin
 export async function getBalance(): Promise<number | null> {
   try {
     const cookieStore = cookies();
@@ -42,6 +45,7 @@ export async function getBalance(): Promise<number | null> {
   }
 }
 
+// Mengambil data profit admin
 export async function getProfit(
   filter: "daily" | "weekly" | "monthly" | "yearly" | "all" = "all"
 ): Promise<number | null> {
@@ -81,6 +85,7 @@ export async function getProfit(
   }
 }
 
+// Mengambil data profil admin
 export async function getUserData(): Promise<UserData | null> {
   try {
     const cookieStore = cookies();
@@ -118,6 +123,8 @@ export async function getUserData(): Promise<UserData | null> {
   }
 }
 
+
+// Tipe data untuk barang
 export interface ItemData {
   item_id: string;
   name: string;
@@ -126,6 +133,7 @@ export interface ItemData {
   selling_price: string | null;
 }
 
+// Mengambil daftar barang
 export async function getBarang(): Promise<ItemData[]> {
   try {
     const response = await fetch(`${apiUrl}/item/item`, {
@@ -154,6 +162,7 @@ export async function getBarang(): Promise<ItemData[]> {
   }
 }
 
+// Mengambil riwayat transaksi 
 export async function getTransaction() {
   const accessToken = (await cookies()).get("access_token")?.value;
 

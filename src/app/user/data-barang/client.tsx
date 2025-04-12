@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 type Product = {
   item_id: string;
   name: string;
+  image_url: string;
   unit: string;
   purchase_price: string;
   selling_price: string | null;
@@ -58,7 +59,7 @@ export default function DataBarangClient({ itemData }: DataBarangClientProps) {
                 <Card key={product.item_id} className="rounded-3xl border border-eb-primary-gray-300 ">
                   <div className="p-4">
                     <img
-                      src="/content/default-image.jpg" // Ganti dengan gambar jika ada di API
+                      src={product.image_url} // Ganti dengan gambar jika ada di API
                       alt={product.name}
                       className="w-full h-40 object-cover rounded-lg mb-3"
                     />

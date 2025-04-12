@@ -26,7 +26,13 @@ export const metadata: Metadata = {
   icons: {
     icon: "/logo/ecobank-logo-icon.svg",
   },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
 };
+
 
 export default function RootLayout({
   children,

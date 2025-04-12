@@ -1,5 +1,6 @@
 "use client";
 
+// Komponen Balance Card untuk menampilkan saldo admin
 export function BalanceCard({ balance }: { balance: number | null }) {
   return (
     <div className="relative w-full lg:w-1/3 overflow-hidden rounded-3xl bg-gradient-to-r from-[#0B4221] to-[#126D37] p-6 text-white mb-3">

@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// Tipe data transaksi
 interface Transaction {
   transaction_id: string;
   total_amount: string;
@@ -18,10 +19,12 @@ interface Transaction {
   email: string;
 }
 
+// Props yang diterima oleh komponen
 interface TransactionHistoryProps {
   transactions: Transaction[];
 }
 
+// Komponen untuk menampilkan riwayat transaksi
 export function TransactionHistory({ transactions }: TransactionHistoryProps) {
   console.log("Transactions Props:", transactions); // Debugging
   const router = useRouter();
@@ -42,6 +45,8 @@ export function TransactionHistory({ transactions }: TransactionHistoryProps) {
             </Button>
           </div>
         </CardHeader>
+
+        {/* Konten kartu untuk menampilkan transaksi */}
         <CardContent>
           <div className="space-y-4">
             {transactions.length === 0 ? (
