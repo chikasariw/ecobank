@@ -79,21 +79,7 @@ export default function DataPenggunaClient({ userData }: ItemClientProps) {
         </CardHeader>
         <CardContent>
           <div className="rounded-xl border border-eb-primary-gray-200 p-4">
-            {loading ? (
-              <div className="p-3 space-y-2">
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-full" />
-              </div>
-            ) : error ? (
-              <Alert variant="destructive">
-                <AlertCircle className="h-4 w-4" />
-                <AlertTitle>Error</AlertTitle>
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            ) : (
-              <DataTable columns={columns} data={data} />
-            )}
+           <DataTable columns={columns} data={data} />
           </div>
         </CardContent>
       </Card>

@@ -2,7 +2,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import { DetailButton } from "./detail-button";
 import type { TransactionData } from "./action";
 
-
 export const columns: ColumnDef<TransactionData>[] = [
   {
     id: "no",
@@ -60,6 +59,13 @@ export const columns: ColumnDef<TransactionData>[] = [
     },
   },
   {
+    accessorKey: "admin_name",
+    header: "Nama Admin",
+    cell: ({ row }) => (
+      <div className="lowercase text-nowrap">{row.getValue("admin_name")}</div>
+    ),
+  },
+  {
     accessorKey: "created_at",
     header: () => <div className="text-left">Tanggal Transaksi</div>,
     cell: ({ row }) => {
@@ -81,7 +87,10 @@ export const columns: ColumnDef<TransactionData>[] = [
     id: "detail",
     header: () => <div className="text-left text-nowrap">Detail</div>,
     cell: ({ row }) => (
-      <DetailButton transactionId={row.original.transaction_id} />
+      <DetailButton
+        transactionId={row.original.transaction_id}
+        admin_name={row.original.admin_name}
+      />
     ),
   },
 ];

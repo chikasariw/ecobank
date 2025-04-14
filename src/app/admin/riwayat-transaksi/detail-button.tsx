@@ -27,9 +27,10 @@ import type { TransactionDetail } from "./action";
 
 interface DetailButtonProps {
   transactionId: string;
+  admin_name: string;
 }
 
-export function DetailButton({ transactionId }: DetailButtonProps) {
+export function DetailButton({ transactionId, admin_name }: DetailButtonProps) {
   const [open, setOpen] = useState(false);
   const [transaction, setTransaction] = useState<TransactionDetail | null>(
     null
@@ -88,7 +89,11 @@ export function DetailButton({ transactionId }: DetailButtonProps) {
               <label className="block text-sm font-medium w-1/4">
                 Nama Admin
               </label>
-              <Input disabled className="mt-2" />
+              <Input
+                value={admin_name || "Tidak diketahui"}
+                disabled
+                className="mt-2"
+              />
             </div>
             <div className="flex items-center gap-2">
               <label className="block text-sm font-medium w-1/4">

@@ -128,19 +128,6 @@ export const DataTable = <TData extends ItemData>({
         <ModalAdd />
       </div>
       <div className="rounded-xl border">
-        {loading ? (
-          <div className="p-3 space-y-2">
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-full" />
-          </div>
-        ) : error ? (
-          <Alert variant="destructive">
-            <AlertCircle className="h-4 w-4" />
-            <AlertTitle>Error</AlertTitle>
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        ) : (
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
@@ -187,7 +174,6 @@ export const DataTable = <TData extends ItemData>({
               )}
             </TableBody>
           </Table>
-        )}
       </div>
 
       {/* Pagination */}

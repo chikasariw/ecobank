@@ -76,17 +76,7 @@ export default function DataBarangClient({ itemData }: ItemClientProps) {
       </CardHeader>
       <CardContent>
         <div className="rounded-xl border border-eb-primary-gray-200 p-4">
-          {loading ? (
-            <p className="text-center text-gray-500">Loading...</p>
-          ) : error ? (
-            <Alert variant="destructive">
-              <AlertCircle className="h-4 w-4" />
-              <AlertTitle>Error</AlertTitle>
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          ) : (
             <DataTable columns={columns} data={data} />
-          )}
         </div>
       </CardContent>
     </Card>
