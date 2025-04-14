@@ -24,7 +24,7 @@ export default function Fitur() {
         </div>
       </div>
       <div className="flex flex-1 relative items-center w-full mt-12">
-        <div className="grid lg:grid-cols-7 md:grid-cols-1 gap-4 w-full">
+        <div className="grid lg:grid-cols-8 md:grid-cols-1 gap-4 w-full">
           <div className="col-span-4 relative bg-gradient-to-r from-eb-primary-gray-100 via-eb-primary-green-100 to-eb-primary-gray-200 rounded-3xl backdrop-blur-lg overflow-hidden">
             {/* Radial Background */}
             <div className="absolute inset-0 w-full h-full z-0">
@@ -41,16 +41,16 @@ export default function Fitur() {
                   Dompet Digital yang menyimpan hasil penukaran sampah anorganik dengan aman dan praktis.
                 </p>
               </div>
-              <div className=" backdrop-blur-md h-52 overflow-hidden ">
+              <div className=" backdrop-blur-md h-56 overflow-hidden ">
                 <Image
-                  className="absolute -right-32 -bottom-2 md:-right-96 md:-bottom-28 rounded-sm "
+                  className="absolute -right-32 -bottom-2 md:-right-80 md:-bottom-14 rounded-sm "
                   src="/content/dashboard-user.png"
                   alt="Dashboard Warga Hijau"
                   width={980}
                   height={600}
                 />
                 <Image
-                  className="absolute right-12 bottom-10 md:right-64 md:bottom-8 rounded-xl drop-shadow-[40px_10px_30px_rgba(0,0,0,0.20)]"
+                  className="absolute right-12 bottom-10 md:right-52 md:bottom-10 rounded-xl drop-shadow-[40px_10px_30px_rgba(0,0,0,0.20)]"
                   src="/content/card-uang.png"
                   alt="Dashboard Warga Hijau"
                   width={260}
@@ -60,13 +60,13 @@ export default function Fitur() {
             </div>
           </div>
 
-          <div className="lg:col-span-3 col-span-4 relative bg-gradient-to-r from-eb-primary-green-700 via-eb-primary-green-600 to-eb-primary-green-500 rounded-3xl backdrop-blur-md overflow-hidden">
-            {/* Radial Background */}
+          {/* <div className="lg:col-span-3 col-span-4 relative bg-gradient-to-r from-eb-primary-green-700 via-eb-primary-green-600 to-eb-primary-green-500 rounded-3xl backdrop-blur-md overflow-hidden">
+            {/* Radial Background 
             <div className="absolute inset-0 w-full h-full z-0">
               <div className="radial-yellow-card-right w-full h-full"></div>
             </div>
 
-            {/* Konten */}
+            {/* Konten 
             <div className="relative z-10">
               <div className="py-6 px-6">
                 <h4 className="font-bold text-xl text-eb-primary-gray-200">
@@ -93,9 +93,9 @@ export default function Fitur() {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="lg:col-span-3 col-span-4 relative bg-gradient-to-r from-eb-primary-green-700 via-eb-primary-green-600 to-eb-primary-green-500 rounded-3xl backdrop-blur-md overflow-hidden order-last lg:order-none">
+          <div className="lg:col-span-4 col-span-4 relative bg-gradient-to-r from-eb-primary-gray-100 via-eb-primary-green-100 to-eb-primary-gray-200 rounded-3xl backdrop-blur-md overflow-hidden order-last lg:order-none">
             {/* Radial Background */}
             <div className="absolute inset-0 w-full h-full z-0">
               <div className="radial-yellow-card-right w-full h-full"></div>
@@ -105,16 +105,16 @@ export default function Fitur() {
             {/* Konten */}
             <div className="relative z-10">
               <div className="py-6 px-6">
-                <h4 className="font-bold text-xl text-eb-primary-gray-200">
+                <h4 className="font-bold text-xl text-eb-primary-gray-800">
                   Data Barang EcoBank
                 </h4>
-                <p className="text-base text-eb-primary-gray-200 mt-2">
+                <p className="text-base text-eb-primary-gray-600 mt-2">
                   Lihat kategori dan nilai sampah anorganik sebelum menukarkannya di EcoBank.
                 </p>
               </div>
               <div className=" backdrop-blur-md h-56 overflow-hidden ">
                 <Image
-                  className="absolute -right-40 -bottom-2 md:-right-60 md:-bottom-28 lg:-bottom-10 rounded-lg "
+                  className="absolute -right-40 -bottom-2 md:-right-60 md:-bottom-28 lg:-bottom-16 rounded-lg "
                   src="/content/data barang.png"
                   alt="Dashboard Warga Hijau"
                   width={900}
@@ -131,7 +131,7 @@ export default function Fitur() {
             </div>
           </div>
 
-          <div className="col-span-4 relative bg-gradient-to-r from-eb-primary-gray-100 via-eb-primary-green-100 to-eb-primary-gray-100 rounded-3xl backdrop-blur-md overflow-hidden">
+          <div className="col-span-8 relative bg-gradient-to-r from-eb-primary-green-700 via-eb-primary-green-600 to-eb-primary-green-500 rounded-3xl backdrop-blur-md overflow-hidden">
             {/* Radial Background */}
             <div className="absolute inset-0 w-full h-full z-0">
               <div className="radial-green-card-right w-full h-full"></div>
@@ -141,20 +141,20 @@ export default function Fitur() {
             {/* Konten */}
             <div className="relative z-10">
               <div className=" py-6 px-6">
-                <h4 className="font-bold text-xl text-eb-primary-gray-800 ">
+                <h4 className="font-bold text-xl text-white ">
                   Riwayat Penukaran
                 </h4>
-                <p className="text-base text-eb-primary-gray-600 max-w-lg mt-2">
+                <p className="text-base text-white  mt-2">
                 Lihat kembali jejak penukaran sampah dan jumlah saldo yang telah kamu kumpulkan.
                 </p>
               </div>
               <div className=" backdrop-blur-md h-56 overflow-hidden ">
                 <Image
-                  className="absolute right-0 -bottom-4 md:right-10 md:-bottom-16 rounded-lg "
+                  className="absolute right-0 -bottom-4 md:right-48 md:-bottom-40 rounded-xl "
                   src="/content/riwayat-transaksi.png"
                   alt="Dashboard Warga Hijau"
-                  width={600}
-                  height={500}
+                  width={800}
+                  height={600}
                 />
               </div>
             </div>
