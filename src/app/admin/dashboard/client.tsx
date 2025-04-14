@@ -120,31 +120,6 @@ export default function DashboardClient() {
   // Render loading state, error state, atau data yang sudah diambil
   return (
     <div>
-      {loading ? (
-        // Tampilkan skeleton jika masih loading
-        <div className="space-y-4">
-          {/* Row pertama: WelcomeSection, ProfitCard, BalanceCard */}
-          <div className="lg:flex gap-3">
-            <Skeleton className="h-[200px] w-full lg:w-2/3 rounded-xl" />
-            <Skeleton className="h-[200px] w-full lg:w-1/3 rounded-xl" />
-            <Skeleton className="h-[200px] w-full lg:w-1/3 rounded-xl" />
-          </div>
-
-          {/* Row kedua: TransactionHistory & TotalAsset */}
-          <div className="lg:flex gap-3">
-            <div className="flex-1">
-              <Skeleton className="h-[300px] w-full rounded-xl" />
-            </div>
-            <div className="w-full lg:w-1/3">
-              <Skeleton className="h-[300px] w-full rounded-xl" />
-            </div>
-          </div>
-        </div>
-      ) : error ? (
-        // Tampilkan error jika ada
-        <p className="text-center text-red-500">{error}</p>
-      ) : (
-        // Tampilkan konten utama jika data sudah siap
         <>
           <div className="lg:flex gap-3">
             <WelcomeSection user={user} />
@@ -156,7 +131,6 @@ export default function DashboardClient() {
             <TotalAsset items={items} />
           </div>
         </>
-      )}
     </div>
   );
 }
