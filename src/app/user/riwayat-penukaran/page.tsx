@@ -5,8 +5,8 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   return {
-    title: "Data Barang - EcoBank.",
-    description: "Halaman Data Barang EcoBank.",
+    title: "Riwayat Penukaran - EcoBank.",
+    description: "Halaman Riwayat Penukaran EcoBank.",
   };
 }
 

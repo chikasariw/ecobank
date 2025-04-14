@@ -66,8 +66,9 @@ body,
 
     /* PRIMARY COLORS RED */
     --eb-primary-red-100: #f8f3f3;
-    --eb-primary-red-200: #f8baba;
-    --eb-primary-red-300: #ef5d5d;
+    --eb-primary-red-200: #fadcdc;
+    --eb-primary-red-300: #f8baba;
+    --eb-primary-red-400: #ef5d5d;
 
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -157,8 +158,9 @@ body,
 
     /* PRIMARY COLORS RED */
     --eb-primary-red-100: #f8f3f3;
-    --eb-primary-red-200: #f8baba;
-    --eb-primary-red-300: #ef5d5d;
+    --eb-primary-red-200: #fadcdc;
+    --eb-primary-red-300: #f8baba;
+    --eb-primary-red-400: #ef5d5d;
 
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;

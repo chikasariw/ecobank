@@ -43,9 +43,9 @@ export function TotalAsset({ items = [] }: TotalAssetProps) {
               </div>
 
               {/* Kanan: jumlah barang */}
-              <h4 className="font-semibold text-xl text-eb-primary-green-500">
+              {/* <h4 className="font-semibold text-xl text-eb-primary-green-500">
                 {ItemData.unit} gram
-              </h4>
+              </h4> */}
             </div>
           ))}
         </CardContent>
