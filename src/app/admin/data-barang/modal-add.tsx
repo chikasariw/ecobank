@@ -69,6 +69,16 @@ export function ModalAdd() {
         <form onSubmit={handleSubmit}>
           <div className="grid gap-5">
             <div>
+              <Label htmlFor="name">Foto Barang</Label>
+              <Input
+                type="file"
+                name="file"
+                placeholder="Unggah Foto Barang"
+                className="mt-2"
+                required
+              />
+            </div>
+            <div>
               <Label htmlFor="name">Nama Barang</Label>
               <Input
                 name="name"
