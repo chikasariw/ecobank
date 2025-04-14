@@ -69,15 +69,15 @@ export default function RiwayatPenukaranClient() {
                   <div className="p-4">
                     <p
                       className={`text-md font-semibold ${
-                        transaction.type === "debit"
-                          ? "flex items-center justify-center bg-eb-primary-yellow-200 text-eb-primary-yellow-800 text-sm rounded-2xl w-20 py-1 "
-                          : "flex items-center justify-center bg-eb-primary-green-200 text-eb-primary-green-700 text-sm rounded-2xl w-20 py-1"
+                        transaction.type?.toLowerCase() === "deposit"
+                          ? "flex items-center justify-center bg-eb-primary-green-200 text-eb-primary-green-700 text-sm rounded-2xl w-20 py-1 "
+                          : "flex items-center justify-center bg-eb-primary-red-200 text-eb-primary-red-400 text-sm rounded-2xl w-20 py-1"
                       }`}
                     >
-                      {transaction.type === "debit" ? "Keluar" : "Masuk"}
+                      {transaction.type?.toLowerCase() === "deposit" ? "Ambil" : "Nabung"}
                     </p>
                     <h5 className="text-lg font-semibold text-eb-primary-gray-800 pt-2">
-                      Transaksi 
+                      Transaksi {" "}
                       {new Intl.DateTimeFormat("id-ID", {
                           day: "2-digit",
                           month: "2-digit",

@@ -21,6 +21,7 @@ export interface ItemData {
   selling_price: string | null;
 }
 
+// Fungsi untuk mengambil semua data barang dari API
 export async function getBarang() {
   const response = await fetch(`${apiUrl}/item/item`, {
     method: "GET",
@@ -36,6 +37,7 @@ export async function getBarang() {
   return data as ItemData[];
 }
 
+// Fungsi untuk menambahkan barang baru
 export const addBarang = async (formData: FormData) => {
   const token = (await cookies()).get("access_token")?.value;
 

@@ -61,6 +61,18 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
     },
   });
 
+  // Pagination Logic
+  const currentPage = table.getState().pagination.pageIndex;
+  const pageCount = table.getPageCount();
+  const maxVisiblePages = 5;
+
+  let startPage = Math.max(0, currentPage - Math.floor(maxVisiblePages / 2));
+  let endPage = startPage + maxVisiblePages;
+  if (endPage > pageCount) {
+    endPage = pageCount;
+    startPage = Math.max(0, endPage - maxVisiblePages);
+  }
+
   return (
     <div className="w-full">
       <div className="flex items-center justify-between py-4">
@@ -72,10 +84,14 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
           <Input
             placeholder="Cari Tanggal Transaksi..."
             value={
-              (table.getColumn("tanggaltransaksi")?.getFilterValue() as string) ?? ""
+              (table
+                .getColumn("tanggaltransaksi")
+                ?.getFilterValue() as string) ?? ""
             }
             onChange={(event) =>
-              table.getColumn("tanggaltransaksi")?.setFilterValue(event.target.value)
+              table
+                .getColumn("tanggaltransaksi")
+                ?.setFilterValue(event.target.value)
             }
             className="w-full pl-12 pr-4 py-5 rounded-3xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-eb-primary-green-800 focus:border-eb-primary-green-800"
           />
@@ -129,6 +145,7 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
           </TableBody>
         </Table>
       </div>
+      {/* Pagination */}
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
           variant="link"
@@ -136,24 +153,38 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
-          <ChevronLeft />
-          Sebelumnya
+          <ChevronLeft /> Sebelumnya
         </Button>
 
-        {Array.from({ length: table.getPageCount() }, (_, i) => (
-          <Button
-            key={i}
-            variant={
-              table.getState().pagination.pageIndex === i
-                ? "primary"
-                : "outline"
-            }
-            size="icon"
-            onClick={() => table.setPageIndex(i)}
-          >
-            {i + 1}
+        {startPage > 0 && (
+          <Button variant="ghost" size="icon" disabled>
+            ...
           </Button>
-        ))}
+        )}
+
+        {Array.from({ length: endPage - startPage }, (_, i) => {
+          const pageNumber = startPage + i;
+          return (
+            <Button
+              key={pageNumber}
+              variant={
+                table.getState().pagination.pageIndex === pageNumber
+                  ? "primary"
+                  : "outline"
+              }
+              size="icon"
+              onClick={() => table.setPageIndex(pageNumber)}
+            >
+              {pageNumber + 1}
+            </Button>
+          );
+        })}
+
+        {endPage < pageCount && (
+          <Button variant="ghost" size="icon" disabled>
+            ...
+          </Button>
+        )}
 
         <Button
           variant="link"
@@ -161,8 +192,7 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
-          Selanjutnya
-          <ChevronRight />
+          Selanjutnya <ChevronRight />
         </Button>
       </div>
     </div>

@@ -7,12 +7,14 @@ import { TransactionHistory } from "./transaction-history";
 import { Barchart } from "./barchart";
 import { getUserData, getBalance, getTransaction } from "./action"; 
 
+// Interface untuk data pengguna
 interface User {
   name: string;
   email: string;
   profile_url?: string;
 }
 
+// Interface untuk struktur data transaksi
 interface Transaction {
   transaction_id: string;
   wallet_id: string;
@@ -30,10 +32,12 @@ export default function DashboardClient() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // useEffect digunakan untuk menjalankan pengambilan data setelah komponen di-render
   useEffect(() => {
     async function fetchUserData() {
       try {
         setLoading(true);
+        // Ambil data pengguna, saldo, dan transaksi secara paralel 
         const [userData, userBalance, userTransactions] = await Promise.all([
           getUserData(),
           getBalance(),
@@ -44,7 +48,7 @@ export default function DashboardClient() {
         console.log("Transactions:", userTransactions);
         setUser(userData);
         setBalance(userBalance);
-        setTransactions(userTransactions); // Pastikan data ada
+        setTransactions(userTransactions); 
       } catch (err) {
         console.error("Failed to fetch user data:", err);
         setError("Gagal mengambil data pengguna.");
@@ -60,6 +64,7 @@ export default function DashboardClient() {
   }, []);
   
 
+  // Render komponen dashboard
   return (
     <div>
       {loading ? (

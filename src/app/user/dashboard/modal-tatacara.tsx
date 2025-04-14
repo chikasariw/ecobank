@@ -8,10 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Plus } from "lucide-react";
-import { ChevronRight } from "lucide-react";
+
 
 export type Pengguna = {
   id: string;
@@ -39,10 +36,9 @@ export function ModalTataCara() {
               Uang Tunai di ECOBank
             </span>
           </DialogTitle>
-          <DialogDescription></DialogDescription>
         </DialogHeader>
 
-        <div className="grid  gap-4">
+        <div className="grid gap-4">
           <h5>
             1. Pastikan saldo cukup – Cek saldo ECOBank-mu sebelum melakukan
             penarikan.
