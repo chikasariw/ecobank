@@ -26,7 +26,7 @@ export const columns: ColumnDef<Barang>[] = [
         type === "nabung"
           ? "flex items-center bg-eb-primary-green-200 text-eb-primary-green-700"
           : type === "ambil"
-          ? "bg-eb-primary-yellow-200 text-eb-primary-yellow-800"
+          ? "bg-eb-primary-red-200 text-eb-primary-red-400"
           : "bg-gray-500";
       return (
         <div
