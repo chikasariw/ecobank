@@ -29,9 +29,10 @@ export function AddProductButton({ onClick, onChangeCount }: AddProductButtonPro
             updateCount(1);
           }}
           className="w-full h-8"
+          variant="prominent"
         >
           <Plus className="w-4 h-4" />
-          <span>Add Product</span>
+          <span>Tambah Produk</span>
         </Button>
       ) : (
         <div className="flex items-center gap-2">
