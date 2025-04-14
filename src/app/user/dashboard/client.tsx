@@ -67,11 +67,6 @@ export default function DashboardClient() {
   // Render komponen dashboard
   return (
     <div>
-      {loading ? (
-        <p className="text-center text-gray-500">Loading...</p>
-      ) : error ? (
-        <p className="text-center text-red-500">{error}</p>
-      ) : (
         <>
           <div className="lg:flex gap-3">
             <WelcomeSection user={user} />
@@ -85,7 +80,6 @@ export default function DashboardClient() {
             </div> */}
           </div>
         </>
-      )}
     </div>
   );
 }

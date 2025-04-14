@@ -10,10 +10,15 @@ import { TransactionItemData } from "./action"; // Import tipe data
 
 interface SetorClientProps {
   itemData: TransactionItemData[];
-  email: string; // Gunakan email sebagai identitas transaksi
+  email: string;
+  admin_name: string;
 }
 
-export default function SetorClient({ itemData, email }: SetorClientProps) {
+export default function SetorClient({
+  itemData,
+  email,
+  admin_name,
+}: SetorClientProps) {
   const [data, setData] = useState<TransactionItemData[]>(itemData);
   const [loading, setLoading] = useState<boolean>(false);
   const [, setError] = useState<string | null>(null);
@@ -39,7 +44,9 @@ export default function SetorClient({ itemData, email }: SetorClientProps) {
   // Fungsi untuk menambahkan barang atau memperbarui jumlahnya
   const handleAddItem = (product: TransactionItemData, unit: number) => {
     setAddedItems((prevItems) => {
-      const existingItem = prevItems.find((item) => item.item_id === product.item_id);
+      const existingItem = prevItems.find(
+        (item) => item.item_id === product.item_id
+      );
       if (existingItem) {
         return prevItems.map((item) =>
           item.item_id === product.item_id ? { ...item, unit } : item
@@ -54,13 +61,17 @@ export default function SetorClient({ itemData, email }: SetorClientProps) {
   const updateItemQuantity = (itemId: string, unit: number) => {
     if (unit < 1) return; // Cegah nilai 0 atau negatif
     setAddedItems((prevItems) =>
-      prevItems.map((item) => (item.item_id === itemId ? { ...item, unit } : item))
+      prevItems.map((item) =>
+        item.item_id === itemId ? { ...item, unit } : item
+      )
     );
   };
 
   // Hapus barang dari daftar transaksi
   const removeItem = (itemId: string) => {
-    setAddedItems((prevItems) => prevItems.filter((item) => item.item_id !== itemId));
+    setAddedItems((prevItems) =>
+      prevItems.filter((item) => item.item_id !== itemId)
+    );
   };
 
   // Kosongkan seluruh daftar barang
@@ -78,14 +89,19 @@ export default function SetorClient({ itemData, email }: SetorClientProps) {
           {loading ? (
             <p className="text-center text-gray-500">Loading...</p> // Indikator loading
           ) : (
-            <DataBarang itemData={data} setAddedItems={handleAddItem} image_url={""} />
+            <DataBarang
+              itemData={data}
+              setAddedItems={handleAddItem}
+              image_url={""}
+            />
           )}
-          <RingkasanPenukaran 
-            email={email} 
-            addedItems={addedItems} 
-            updateItemQuantity={updateItemQuantity} 
-            removeItem={removeItem} 
-            clearItems={clearItems} 
+          <RingkasanPenukaran
+            admin_name={admin_name}
+            email={email}
+            addedItems={addedItems}
+            updateItemQuantity={updateItemQuantity}
+            removeItem={removeItem}
+            clearItems={clearItems}
           />
         </CardContent>
       </Card>

@@ -71,10 +71,10 @@ export default function RiwayatPenukaranClient() {
                       className={`text-md font-semibold ${
                         transaction.type?.toLowerCase() === "deposit"
                           ? "flex items-center justify-center bg-eb-primary-green-200 text-eb-primary-green-700 text-sm rounded-2xl w-20 py-1 "
-                          : "flex items-center justify-center bg-eb-primary-red-200 text-eb-primary-red-400 text-sm rounded-2xl w-20 py-1"
+                          : "flex items-center justify-center bg-eb-primary-yellow-200 text-eb-primary-yellow-800 text-sm rounded-2xl w-20 py-1"
                       }`}
                     >
-                      {transaction.type?.toLowerCase() === "deposit" ? "Ambil" : "Nabung"}
+                      {transaction.type?.toLowerCase() === "deposit" ? "Nabung" : "Ambil"}
                     </p>
                     <h5 className="text-lg font-semibold text-eb-primary-gray-800 pt-2">
                       Transaksi {" "}
@@ -88,10 +88,10 @@ export default function RiwayatPenukaranClient() {
                         }).format(new Date(transaction.created_at))}
                     </h5>
                     <p className="text-eb-primary-gray-600 text-md pt-1">
-                      Jumlah: Rp. {transaction.total_amount.toLocaleString()}
+                      Jumlah: Rp.{transaction.total_amount.toLocaleString()}
                     </p>
                     <p className="text-eb-primary-gray-600 text-md pt-1">
-                      Saldo saat ini: Rp.{" "}
+                      Saldo saat ini: Rp.
                       {transaction.current_balance.toLocaleString()}
                     </p>
                   </div>

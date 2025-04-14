@@ -3,7 +3,14 @@
 import { Button } from "@/components/ui/button";
 import { CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Trash } from "lucide-react";
 import { createTransactionAction } from "./action";
 import type { TransactionItemData } from "./action";
@@ -11,19 +18,24 @@ import type { TransactionItemData } from "./action";
 interface RingkasanPenukaranProps {
   email: string;
   addedItems: TransactionItemData[];
+  admin_name: string;
   updateItemQuantity: (itemId: string, unit: number) => void;
   removeItem: (itemId: string) => void;
   clearItems: () => void;
 }
 
 export default function RingkasanPenukaran({
+  admin_name,
   addedItems,
   updateItemQuantity,
   removeItem,
   clearItems,
 }: RingkasanPenukaranProps) {
   // const subTotal = addedItems.reduce((acc, item) => item.unit * Number(item.purchase_price), 0);
-  const total_amount = addedItems.reduce((acc, item) => acc + item.unit * Number(item.purchase_price), 0);
+  const total_amount = addedItems.reduce(
+    (acc, item) => acc + item.unit * Number(item.purchase_price),
+    0
+  );
 
   console.log("Data", {
     total_amount,
@@ -32,18 +44,18 @@ export default function RingkasanPenukaran({
 
   async function handleSubmit(formData: FormData) {
     const email = formData.get("emailPenukar") as string;
-  
+
     if (!email?.trim()) {
       alert("Email penukar harus diisi!");
       return;
     }
-  
+
     if (addedItems.length === 0) {
       alert("Tambahkan minimal satu item untuk ditukar!");
       return;
     }
-  
-    const formattedItems = addedItems.map(item => ({
+
+    const formattedItems = addedItems.map((item) => ({
       item_id: item.item_id,
       name: item.name,
       unit: item.unit,
@@ -51,22 +63,27 @@ export default function RingkasanPenukaran({
       sub_total: item.unit * Number(item.purchase_price),
       image_url: item.image_url,
     }));
-  
+
     console.log("Data dikirim ke backend:", {
+      admin_name,
       email,
       total_amount,
       items: formattedItems,
     });
-  
 
-    const response = await createTransactionAction(email, total_amount, formattedItems);
-  
+    const response = await createTransactionAction(
+      admin_name,
+      email,
+      total_amount,
+      formattedItems
+    );
+
     console.log("Response dari backend:", response);
     if (!response) {
       alert("Terjadi kesalahan tak terduga saat memproses transaksi.");
       return;
     }
-  
+
     if ("error" in response) {
       alert(`Gagal melakukan transaksi: ${response.error}`);
     } else {
@@ -74,14 +91,16 @@ export default function RingkasanPenukaran({
       clearItems();
     }
   }
-  
-  
 
   return (
     <div className="rounded-3xl sticky top-4 self-start border border-eb-primary-gray-300 p-4">
       <div className="flex justify-between items-center">
         <CardTitle className="text-green-900">Ringkasan Penukaran</CardTitle>
-        <Button variant="destructive" className="flex gap-2" onClick={clearItems}>
+        <Button
+          variant="destructive"
+          className="flex gap-2"
+          onClick={clearItems}
+        >
           <Trash size={16} /> Hapus Semua
         </Button>
       </div>
@@ -91,7 +110,7 @@ export default function RingkasanPenukaran({
         <div className="space-y-5">
           <div>
             <label className="block text-sm font-medium">Nama Admin</label>
-            <Input defaultValue="Park Jisung" disabled className="mt-2" />
+            <Input defaultValue={admin_name} disabled className="mt-2" />{" "}
           </div>
           <div>
             <label className="block text-sm font-medium">Email Penukar</label>
@@ -104,7 +123,9 @@ export default function RingkasanPenukaran({
         </div>
 
         <div className="mt-6">
-          <h2 className="font-semibold text-eb-primary-green-800">Item Ditukar</h2>
+          <h2 className="font-semibold text-eb-primary-green-800">
+            Item Ditukar
+          </h2>
           <Table className="mt-2">
             <TableHeader>
               <TableRow>
@@ -119,7 +140,11 @@ export default function RingkasanPenukaran({
               {addedItems.map((item) => (
                 <TableRow key={item.item_id} className="text-nowrap">
                   <TableCell>
-                    <Button variant="ghost" size="icon" onClick={() => removeItem(item.item_id)}>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => removeItem(item.item_id)}
+                    >
                       <Trash className="text-red-500" size={18} />
                     </Button>
                   </TableCell>
@@ -141,8 +166,16 @@ export default function RingkasanPenukaran({
                     <span>/gram</span>
                   </TableCell>
                   <TableCell>{item.name}</TableCell>
-                  <TableCell>Rp. {new Intl.NumberFormat("id-ID").format(item.purchase_price)}</TableCell>
-                  <TableCell>Rp. {new Intl.NumberFormat("id-ID").format(item.unit * item.purchase_price)}</TableCell>
+                  <TableCell>
+                    Rp.{" "}
+                    {new Intl.NumberFormat("id-ID").format(item.purchase_price)}
+                  </TableCell>
+                  <TableCell>
+                    Rp.{" "}
+                    {new Intl.NumberFormat("id-ID").format(
+                      item.unit * item.purchase_price
+                    )}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
