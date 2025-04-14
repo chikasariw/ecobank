@@ -7,6 +7,7 @@ import RingkasanPenukaran from "./ringkasan-penukaran";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getBarang } from "./action"; // Import fungsi fetch data
 import { TransactionItemData } from "./action"; // Import tipe data
+import GradientText from "@/components/ui/gradient-text";
 
 interface SetorClientProps {
   itemData: TransactionItemData[];
@@ -83,7 +84,7 @@ export default function SetorClient({
     <div>
       <Card className="w-full">
         <CardHeader>
-          <CardTitle>Setor Barang</CardTitle> {/* Judul untuk Card */}
+          <CardTitle>Setor <GradientText>Barang</GradientText></CardTitle> {/* Judul untuk Card */}
         </CardHeader>
         <CardContent className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {loading ? (
