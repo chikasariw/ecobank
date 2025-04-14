@@ -9,9 +9,11 @@ import type { TransactionItemData } from "./action";
 import { useMemo } from "react";
 
 interface DataBarangProps  {
+  image_url: string;
   itemData: TransactionItemData[];
   setAddedItems: (item: TransactionItemData, quantity: number) => void;
 }
+
 
 export default function DataBarang({ itemData, setAddedItems }: DataBarangProps ) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -53,11 +55,16 @@ export default function DataBarang({ itemData, setAddedItems }: DataBarangProps 
           filteredProducts.map((product) => (
             <Card key={product.item_id} className="rounded-3xl border border-eb-primary-gray-300">
               <div className="p-4 grid gap-1">
+              <img
+                      src={product.image_url} // Ganti dengan gambar jika ada di API
+                      alt={product.name}
+                      className="w-full h-40 object-cover rounded-lg mb-3"
+                    />
                 <h5 className="text-lg font-semibold text-eb-primary-gray-800">
                   {product.name}
                 </h5>
                 <p className="text-eb-primary-gray-600 text-md mb-2">
-                Rp. {new Intl.NumberFormat("id-ID").format(Number(product.purchase_price))}
+                Rp. {new Intl.NumberFormat("id-ID").format(Number(product.purchase_price))} <span className="text-sm ms-2">/gram</span>
                 </p>
                 <AddProductButton
                   onClick={() => handleAddItem(product, 1)}

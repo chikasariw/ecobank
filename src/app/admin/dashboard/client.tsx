@@ -10,10 +10,11 @@ import { TransactionHistory } from "./transaction-history";
 import { TotalAsset } from "./total-asset";
 import { ProfitCard } from "./profit-card";
 
-// Import fungsi-fungsi async dari file action.ts
+// Import fungsi async dari file action.ts
 import { getUserData, getBalance, getTransaction, getProfit, getBarang } from "./action";
 
-import { setPriority } from "os";
+// Import komponen Skeleton dari shadcn
+import { Skeleton } from "@/components/ui/skeleton";
 
 // Interface untuk user
 interface User {
@@ -43,7 +44,6 @@ interface ItemData {
 }
 
 export default function DashboardClient() {
-
   // State management
   const [user, setUser] = useState<User | null>(null);
   const [balance, setBalance] = useState<number | null>(null);
@@ -60,13 +60,12 @@ export default function DashboardClient() {
         setLoading(true);
 
         // Ambil semua data secara paralel
-        const [userData, userBalance, userProfit, userTransactions] =
-          await Promise.all([
-            getUserData(),
-            getBalance(),
-            getProfit("all"),
-            getTransaction(),
-          ]);
+        const [userData, userBalance, userProfit, userTransactions] = await Promise.all([
+          getUserData(),
+          getBalance(),
+          getProfit("all"),
+          getTransaction(),
+        ]);
 
         // Update state dengan data yang sudah diambil
         setUser(userData);
@@ -79,7 +78,7 @@ export default function DashboardClient() {
         setError("Gagal mengambil data pengguna.");
         setUser(null);
         setBalance(0);
-        setPriority(0);
+        setProfit(0);
         setTransactions([]);
       } finally {
         setLoading(false);
@@ -107,14 +106,45 @@ export default function DashboardClient() {
     fetchItems();
   }, []);
 
-  // Render loading state, error state, atau data yang sudah diambil  
+  // Komponen SkeletonCard sebagai placeholder loading card
+  const SkeletonCard = () => (
+    <div className="flex flex-col space-y-3 flex-1">
+      <Skeleton className="h-[125px] w-full rounded-xl" />
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-3/4" />
+        <Skeleton className="h-4 w-2/4" />
+      </div>
+    </div>
+  );
+
+  // Render loading state, error state, atau data yang sudah diambil
   return (
     <div>
       {loading ? (
-        <p className="text-center text-gray-500">Loading...</p>
+        // Tampilkan skeleton jika masih loading
+        <div className="space-y-4">
+          {/* Row pertama: WelcomeSection, ProfitCard, BalanceCard */}
+          <div className="lg:flex gap-3">
+            <Skeleton className="h-[200px] w-full lg:w-2/3 rounded-xl" />
+            <Skeleton className="h-[200px] w-full lg:w-1/3 rounded-xl" />
+            <Skeleton className="h-[200px] w-full lg:w-1/3 rounded-xl" />
+          </div>
+
+          {/* Row kedua: TransactionHistory & TotalAsset */}
+          <div className="lg:flex gap-3">
+            <div className="flex-1">
+              <Skeleton className="h-[300px] w-full rounded-xl" />
+            </div>
+            <div className="w-full lg:w-1/3">
+              <Skeleton className="h-[300px] w-full rounded-xl" />
+            </div>
+          </div>
+        </div>
       ) : error ? (
+        // Tampilkan error jika ada
         <p className="text-center text-red-500">{error}</p>
       ) : (
+        // Tampilkan konten utama jika data sudah siap
         <>
           <div className="lg:flex gap-3">
             <WelcomeSection user={user} />

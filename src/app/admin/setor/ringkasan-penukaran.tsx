@@ -49,6 +49,7 @@ export default function RingkasanPenukaran({
       unit: item.unit,
       purchase_price: Number(item.purchase_price),
       sub_total: item.unit * Number(item.purchase_price),
+      image_url: item.image_url,
     }));
   
     console.log("Data dikirim ke backend:", {
