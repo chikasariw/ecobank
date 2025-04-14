@@ -6,8 +6,8 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   return {
-    title: "Data Warga Hijau - EcoBank.",
-    description: "Halaman Data Warga Hijau EcoBank.",
+    title: "Tarik Tunai - EcoBank.",
+    description: "Halaman Tarik Tunai EcoBank.",
   };
 }
 

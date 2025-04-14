@@ -21,6 +21,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 import { getUser } from "./action"
 import type { userData } from "./action"
+import GradientText from "@/components/ui/gradient-text";
 
 interface ItemClientProps {
   userData: userData[];
@@ -58,7 +59,7 @@ export default function DataUserClient({ userData }: ItemClientProps) {
       <Card>
         <CardHeader>
           <CardTitle className="lg:flex lg:justify-between">
-            <p>Data <span className="text-eb-primary-tosca-700">Warga Hijau</span></p>
+            <p>Data <GradientText>Warga Hijau</GradientText></p>
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>

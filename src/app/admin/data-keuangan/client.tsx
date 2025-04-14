@@ -17,6 +17,7 @@ import { AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { getFinance } from "./action";
 import type { financeData } from "./action";
+import GradientText from "@/components/ui/gradient-text";
 
 interface ItemClientProps {
   financeData: financeData[];
@@ -56,7 +57,7 @@ export default function DataKeuanganClient({ financeData }: ItemClientProps) {
         <CardHeader>
           <CardTitle className="lg:flex lg:justify-between">
             <p>
-              Data <span className="text-eb-primary-tosca-700">Keuangan</span>
+              Data <GradientText>Keuangan</GradientText>
             </p>
             <Breadcrumb>
               <BreadcrumbList>

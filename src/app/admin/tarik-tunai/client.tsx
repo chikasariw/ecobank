@@ -20,6 +20,7 @@ import { AlertCircle } from "lucide-react";
 
 import { getUser } from "./action";
 import type { userData } from "./action";
+import GradientText from "@/components/ui/gradient-text";
 
 interface ItemClientProps {
   userData: userData[];
@@ -59,8 +60,8 @@ export default function DataPenggunaClient({ userData }: ItemClientProps) {
         <CardHeader>
           <CardTitle className="lg:flex lg:justify-between">
             <p>
-              Data{" "}
-              <span className="text-eb-primary-tosca-700">Warga Hijau</span>
+              Tarik{" "}
+              <GradientText>Tunai</GradientText>
             </p>
             <Breadcrumb>
               <BreadcrumbList>
@@ -71,7 +72,7 @@ export default function DataPenggunaClient({ userData }: ItemClientProps) {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Data Warga Hijau</BreadcrumbPage>
+                  <BreadcrumbPage>Tarik Tunai</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
