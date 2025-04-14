@@ -90,7 +90,8 @@ export default {
   				'100': 'var(--eb-primary-red-100)',
   				'200': 'var(--eb-primary-red-200)',
   				'300': 'var(--eb-primary-red-300)',
-  				DEFAULT: 'var(--eb-primary-red-300)',
+				'400': 'var(--eb-primary-red-400)',
+  				DEFAULT: 'var(--eb-primary-red-400)',
   				foreground: 'var(--eb-primary-red-100)',
   				container: 'var(--eb-primary-red-200)',
   				'container-foreground': 'var(--eb-primary-red-300)'

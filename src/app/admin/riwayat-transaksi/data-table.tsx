@@ -39,7 +39,6 @@ export interface TransactionData {
   balance: number;
 }
 
-
 interface DataTableProps<TData> {
   data: TData[];
   columns: ColumnDef<TransactionData>[];
@@ -99,6 +98,18 @@ export const DataTable = <TData extends TransactionData>({
       rowSelection,
     },
   });
+
+  // Pagination Logic
+  const currentPage = table.getState().pagination.pageIndex;
+  const pageCount = table.getPageCount();
+  const maxVisiblePages = 5;
+
+  let startPage = Math.max(0, currentPage - Math.floor(maxVisiblePages / 2));
+  let endPage = startPage + maxVisiblePages;
+  if (endPage > pageCount) {
+    endPage = pageCount;
+    startPage = Math.max(0, endPage - maxVisiblePages);
+  }
 
   return (
     <div className="w-full">
@@ -192,36 +203,38 @@ export const DataTable = <TData extends TransactionData>({
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
-          <ChevronLeft />
-          Sebelumnya
+          <ChevronLeft /> Sebelumnya
         </Button>
 
-        {Array.from({ length: table.getPageCount() }, (_, i) => {
-          if (
-            i < 2 ||
-            i > table.getPageCount() - 3 ||
-            (i >= table.getState().pagination.pageIndex - 1 &&
-              i <= table.getState().pagination.pageIndex + 1)
-          ) {
-            return (
-              <Button
-                key={i}
-                variant={
-                  table.getState().pagination.pageIndex === i
-                    ? "primary"
-                    : "outline"
-                }
-                size="icon"
-                onClick={() => table.setPageIndex(i)}
-              >
-                {i + 1}
-              </Button>
-            );
-          } else if (i === 2 || i === table.getPageCount() - 3) {
-            return <span key={i}>...</span>;
-          }
-          return null;
+        {startPage > 0 && (
+          <Button variant="ghost" size="icon" disabled>
+            ...
+          </Button>
+        )}
+
+        {Array.from({ length: endPage - startPage }, (_, i) => {
+          const pageNumber = startPage + i;
+          return (
+            <Button
+              key={pageNumber}
+              variant={
+                table.getState().pagination.pageIndex === pageNumber
+                  ? "primary"
+                  : "outline"
+              }
+              size="icon"
+              onClick={() => table.setPageIndex(pageNumber)}
+            >
+              {pageNumber + 1}
+            </Button>
+          );
         })}
+
+        {endPage < pageCount && (
+          <Button variant="ghost" size="icon" disabled>
+            ...
+          </Button>
+        )}
 
         <Button
           variant="link"
@@ -229,8 +242,7 @@ export const DataTable = <TData extends TransactionData>({
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
-          Selanjutnya
-          <ChevronRight />
+          Selanjutnya <ChevronRight />
         </Button>
       </div>
     </div>
