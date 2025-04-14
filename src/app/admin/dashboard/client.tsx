@@ -1,21 +1,29 @@
 "use client";
+
 import * as React from "react";
 import { useState, useEffect } from "react";
+
+// Import komponen UI
 import WelcomeSection from "./welcome-card";
 import { BalanceCard } from "./balance-card";
 import { TransactionHistory } from "./transaction-history";
 import { TotalAsset } from "./total-asset";
 import { ProfitCard } from "./profit-card";
-import { getUserData, getBalance, getTransaction, getProfit } from "./action"; // Sesuaikan path jika berbeda
-import { getBarang } from "./action";
-import { setPriority } from "os";
 
+// Import fungsi async dari file action.ts
+import { getUserData, getBalance, getTransaction, getProfit, getBarang } from "./action";
+
+// Import komponen Skeleton dari shadcn
+import { Skeleton } from "@/components/ui/skeleton";
+
+// Interface untuk user
 interface User {
   name: string;
   email: string;
   profile_url?: string;
 }
 
+// Interface untuk transaksi
 interface Transaction {
   transaction_id: string;
   total_amount: string;
@@ -28,7 +36,7 @@ interface Transaction {
   email: string;
 }
 
-// Definisi tipe data untuk props
+// Interface untuk barang
 interface ItemData {
   item_id: string;
   name: string;
@@ -36,6 +44,7 @@ interface ItemData {
 }
 
 export default function DashboardClient() {
+  // State management
   const [user, setUser] = useState<User | null>(null);
   const [balance, setBalance] = useState<number | null>(null);
   const [profit, setProfit] = useState<number | null>(null);
@@ -44,27 +53,32 @@ export default function DashboardClient() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // useEffect untuk mengambil data user, saldo, profit, dan transaksi saat komponen pertama kali dimuat
   useEffect(() => {
     async function fetchUserData() {
       try {
         setLoading(true);
-        const [userData, userBalance, userProfit, userTransactions] =
-          await Promise.all([
-            getUserData(),
-            getBalance(),
-            getProfit("all"),
-            getTransaction(),
-          ]);
+
+        // Ambil semua data secara paralel
+        const [userData, userBalance, userProfit, userTransactions] = await Promise.all([
+          getUserData(),
+          getBalance(),
+          getProfit("all"),
+          getTransaction(),
+        ]);
+
+        // Update state dengan data yang sudah diambil
         setUser(userData);
         setBalance(userBalance);
         setProfit(userProfit);
         setTransactions(userTransactions); // Pastikan data ada
       } catch (err) {
+        // Handle error
         console.error("Failed to fetch user data:", err);
         setError("Gagal mengambil data pengguna.");
         setUser(null);
         setBalance(0);
-        setPriority(0);
+        setProfit(0);
         setTransactions([]);
       } finally {
         setLoading(false);
@@ -74,6 +88,7 @@ export default function DashboardClient() {
     fetchUserData();
   }, []);
 
+  // useEffect untuk mengambil data barang
   useEffect(() => {
     async function fetchItems() {
       try {
@@ -91,13 +106,20 @@ export default function DashboardClient() {
     fetchItems();
   }, []);
 
+  // Komponen SkeletonCard sebagai placeholder loading card
+  const SkeletonCard = () => (
+    <div className="flex flex-col space-y-3 flex-1">
+      <Skeleton className="h-[125px] w-full rounded-xl" />
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-3/4" />
+        <Skeleton className="h-4 w-2/4" />
+      </div>
+    </div>
+  );
+
+  // Render loading state, error state, atau data yang sudah diambil
   return (
     <div>
-      {loading ? (
-        <p className="text-center text-gray-500">Loading...</p>
-      ) : error ? (
-        <p className="text-center text-red-500">{error}</p>
-      ) : (
         <>
           <div className="lg:flex gap-3">
             <WelcomeSection user={user} />
@@ -109,7 +131,6 @@ export default function DashboardClient() {
             <TotalAsset items={items} />
           </div>
         </>
-      )}
     </div>
   );
 }

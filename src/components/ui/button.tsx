@@ -14,6 +14,8 @@ const buttonVariants = cva(
           "bg-gradient-to-r from-eb-primary-green-600 to-eb-primary-green-400 text-eb-primary-green-100 font-bold hover:from-eb-primary-green-700 hover:to-eb-primary-green-600 rounded-3xl px-3",
         secondary:
           "bg-gradient-to-r from-eb-primary-yellow-600 to-eb-primary-yellow-400 text-eb-primary-green-700 font-bold hover:from-eb-primary-yellow-700 hover:to-eb-primary-yellow-600 rounded-3xl px-3",
+        baseprimary:
+          "bg-eb-primary-tosca-700 hover:bg-eb-primary-tosca-800 rounded-3xl px-3 text-eb-primary-green-100",
         primarycustom:
           "bg-gradient-to-r from-eb-primary-green-600 to-eb-primary-green-400 text-eb-primary-green-100 font-bold hover:from-eb-primary-green-700 hover:to-eb-primary-green-600 rounded-3xl",
         secondarycustom: 
@@ -21,7 +23,7 @@ const buttonVariants = cva(
         default:
           "bg-eb-primary-green-100 text-eb-primary-green-800 font-bold hover:bg-eb-primary-green-200 rounded-3xl px-3",
         destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/70 rounded-3xl px-3",
+          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive rounded-3xl px-3",
         prominent:
           "bg-eb-primary-gray-200 text-eb-primary-gray-800 hover:bg-eb-primary-gray-300 rounded-3xl px-3",
         outline:

@@ -16,6 +16,8 @@ import {
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { Skeleton } from "@/components/ui/skeleton"
+
 
 import { getUser } from "./action"
 import type { userData } from "./action"
@@ -72,18 +74,7 @@ export default function DataUserClient({ userData }: ItemClientProps) {
         </CardHeader>
         <CardContent>
           <div className="rounded-xl border border-eb-primary-gray-200 p-4">
-          {loading ? (
-              <p>Loading...</p>
-            ) : error ? (
-              <Alert variant="destructive">
-                <AlertCircle className="h-4 w-4" />
-                <AlertTitle>Error</AlertTitle>
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            ) : (
-              <DataTable columns={columns} data={data} />
-            )}
-
+            <DataTable columns={columns} data={data} />
           </div>
         </CardContent>
       </Card>

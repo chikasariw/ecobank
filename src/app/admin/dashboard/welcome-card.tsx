@@ -1,10 +1,13 @@
 "use client";
+
+// Tipe data user
 interface User {
   name: string;
   email: string;
   profile_url?: string;
 }
 
+// Komponen Selamat Datang 
 export default function WelcomeSection({ user }: { user: User | null }) {
   return (
     <div

@@ -1,5 +1,6 @@
 "use client";
 
+// Komponen kartu total keuntungan
 export function ProfitCard({ profit }: { profit: number | null }) {
   return (
     <div className="relative w-full lg:w-1/3 overflow-hidden rounded-3xl bg-eb-primary-gray-50 p-6 text-black mb-3">
@@ -14,6 +15,7 @@ export function ProfitCard({ profit }: { profit: number | null }) {
           Saldo yang sudah ditukarkan pengguna
         </p>
       </div>
+      
       <div className="text-4xl font-bold mt-6 mb-8">
         Rp.{" "}
         {profit !== null ? new Intl.NumberFormat("id-ID").format(profit) : "-"}

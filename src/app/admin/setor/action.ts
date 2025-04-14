@@ -28,6 +28,7 @@ export interface TransactionItemData {
   unit: number;
   purchase_price: number;
   sub_total: number;
+  image_url: string;
 }
 
 export interface TransactionData {

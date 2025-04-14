@@ -34,13 +34,16 @@ const chartData = [
 // Warna Gradien untuk Tiap Bar
 const gradientIds = ["gradientColor1", "gradientColor2", "gradientColor3"]
 
+// Konfigurasi untuk Chart
 const chartConfig = {
   barang: {
     label: "Barang",
     color: "var(--eb-primary-green-700)",
   },
 } satisfies ChartConfig
+ 
 
+// Komponen Barchart untuk menampilkan grafik batang
 export function Barchart() {
   return (
     <Card>

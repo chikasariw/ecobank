@@ -78,7 +78,7 @@ export default function SetorClient({ itemData, email }: SetorClientProps) {
           {loading ? (
             <p className="text-center text-gray-500">Loading...</p> // Indikator loading
           ) : (
-            <DataBarang itemData={data} setAddedItems={handleAddItem} />
+            <DataBarang itemData={data} setAddedItems={handleAddItem} image_url={""} />
           )}
           <RingkasanPenukaran 
             email={email} 

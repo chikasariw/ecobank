@@ -15,6 +15,7 @@ const barangSchema = z.object({
 export interface ItemData {
   item_id: string;
   name: string;
+  image_url: string;
   unit: string;
   purchase_price: string;
   selling_price: string | null;
