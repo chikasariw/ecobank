@@ -18,7 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Printer } from "lucide-react";
 import { getTransactionDetail } from "./action";
 import type { transactionDetail } from "./action";
 import html2canvas from "html2canvas";
@@ -77,13 +77,11 @@ export function DetailButton({ transactionId }: DetailButtonProps) {
             Informasi lengkap transaksi keuangan.
           </DialogDescription>
         </DialogHeader>
-        <hr className="border border-dashed mb-5" />
-
         {loading ? (
           <p className="text-center text-sm text-gray-500">Memuat data...</p>
         ) : transaction ? (
           <div className="space-y-5" ref={printRef}>
-            <hr className="border border-dashed my-5" />
+            <hr className="border border-dashed my-2" />
 
             <div>
               <h2 className="font-semibold text-eb-primary-green-800">
@@ -135,8 +133,8 @@ export function DetailButton({ transactionId }: DetailButtonProps) {
         )}
 
         <div className="flex justify-end mt-4">
-          <Button onClick={handlePrint} variant="outline">
-            Cetak Nota
+          <Button onClick={handlePrint} variant="baseprimary">
+            Cetak Nota <Printer/>
           </Button>
         </div>
       </DialogContent>
