@@ -37,8 +37,8 @@ export interface TransactionData {
   total_amount: number;
   created_at: string;
   balance: number;
+  admin_name: string;
 }
-
 
 interface DataTableProps<TData> {
   data: TData[];

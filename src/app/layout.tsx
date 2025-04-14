@@ -20,7 +20,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "EcoBank.",
   description: "EcoBank Website",
-  keywords: ["Eco", "Recycle", "Sampah", "Penukaran Sampah"],
+  keywords: ["EcoBank", "Eco", "Recycle", "Sampah", "Penukaran Sampah", "Grafika"],
   authors: [{ name: "EcoBank Team" }],
   applicationName: "EcoBank",
   icons: {
