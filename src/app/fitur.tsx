@@ -25,7 +25,7 @@ export default function Fitur() {
       </div>
       <div className="flex flex-1 relative items-center w-full mt-12">
         <div className="grid lg:grid-cols-8 md:grid-cols-1 gap-4 w-full">
-          <div className="col-span-4 relative bg-gradient-to-r from-eb-primary-gray-100 via-eb-primary-green-100 to-eb-primary-gray-200 rounded-3xl backdrop-blur-lg overflow-hidden">
+          <div className="col-span-8 md:col-span-4 relative bg-gradient-to-r from-eb-primary-gray-100 via-eb-primary-green-100 to-eb-primary-gray-200 rounded-3xl backdrop-blur-lg overflow-hidden">
             {/* Radial Background */}
             <div className="absolute inset-0 w-full h-full z-0">
               <div className="radial-yellow-card w-full h-full"></div>
@@ -95,8 +95,8 @@ export default function Fitur() {
             </div>
           </div> */}
 
-          <div className="lg:col-span-4 col-span-4 relative bg-gradient-to-r from-eb-primary-gray-100 via-eb-primary-green-100 to-eb-primary-gray-200 rounded-3xl backdrop-blur-md overflow-hidden order-last lg:order-none">
-            {/* Radial Background */}
+          <div className="col-span-8 md:col-span-4 relative bg-gradient-to-r from-eb-primary-gray-100 via-eb-primary-green-100 to-eb-primary-gray-200 rounded-3xl backdrop-blur-md overflow-hidden order-last lg:order-none">
+            {/* Radial Background */} 
             <div className="absolute inset-0 w-full h-full z-0">
               <div className="radial-yellow-card-right w-full h-full"></div>
               <div className="radial-yellow-card w-full h-full"></div>
@@ -114,7 +114,7 @@ export default function Fitur() {
               </div>
               <div className=" backdrop-blur-md h-56 overflow-hidden ">
                 <Image
-                  className="absolute -right-40 -bottom-2 md:-right-60 md:-bottom-28 lg:-bottom-16 rounded-lg "
+                  className="absolute -right-40 -bottom-2 md:-right-60 md:-bottom-28 lg:-bottom-16 rounded-md "
                   src="/content/data barang.png"
                   alt="Dashboard Warga Hijau"
                   width={900}
@@ -150,11 +150,11 @@ export default function Fitur() {
               </div>
               <div className=" backdrop-blur-md h-56 overflow-hidden ">
                 <Image
-                  className="absolute right-0 -bottom-4 md:right-48 md:-bottom-40 rounded-xl "
+                  className="absolute -right-8 -bottom-2 md:right-40 md:-bottom-52 rounded-md"
                   src="/content/riwayat-transaksi.png"
                   alt="Dashboard Warga Hijau"
-                  width={800}
-                  height={600}
+                  width={900}
+                  height={700}
                 />
               </div>
             </div>
