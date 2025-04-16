@@ -28,26 +28,34 @@ export function TotalAsset({ items = [] }: TotalAssetProps) {
         </CardHeader>
 
         <CardContent>
-          {items.slice(0, 5).map((ItemData) => ( // Maksimal 5 item
-            <div key={ItemData.item_id} className="flex items-center justify-between mb-4">
-
-              {/* Kiri: Ikon dan info nama barang */}
-              <div className="flex flex-row gap-3 items-center">
-                <div className="flex w-11 h-11 bg-eb-primary-green-100 rounded-full items-center justify-center">
-                  <Package className="text-eb-primary-green-400" />
+          <div className="space-y-3">
+            {items.slice(0, 5).map((item, index) => (
+              <div
+                key={item.item_id}
+                className={`flex items-center justify-between ${
+                  index < 4 ? "border-b pb-3" : ""
+                }`}
+              >
+                {/* Kiri: Ikon dan info nama barang */}
+                <div className="flex flex-row gap-4 items-center">
+                  <div className="flex bg-eb-primary-green-100 rounded-full items-center justify-center h-10 w-10">
+                    <Package className="text-eb-primary-green-500 h-5 w-5" />
+                  </div>
+                  <div className="flex flex-col">
+                    <h4 className="font-medium text-sm">{item.name}</h4>
+                    <p className="text-xs text-eb-primary-gray-600">
+                      Jumlah: {item.unit} gram
+                    </p>
+                  </div>
                 </div>
-                <div className="flex flex-col">
-                  <h4 className="font-medium text-md">{ItemData.name}</h4>
-                  <p className="text-xs text-eb-primary-gray-600">Jumlah: {ItemData.unit} gram</p>
-                </div>
-              </div>
 
-              {/* Kanan: jumlah barang */}
-              {/* <h4 className="font-semibold text-xl text-eb-primary-green-500">
+                {/* Kanan: jumlah barang */}
+                {/* <h4 className="font-semibold text-xl text-eb-primary-green-500">
                 {ItemData.unit} gram
               </h4> */}
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </CardContent>
       </Card>
     </div>

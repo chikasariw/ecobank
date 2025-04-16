@@ -65,6 +65,7 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
   const currentPage = table.getState().pagination.pageIndex;
   const pageCount = table.getPageCount();
   const maxVisiblePages = 5;
+  const itemsPerPage = 8;
 
   let startPage = Math.max(0, currentPage - Math.floor(maxVisiblePages / 2));
   let endPage = startPage + maxVisiblePages;
@@ -72,6 +73,8 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
     endPage = pageCount;
     startPage = Math.max(0, endPage - maxVisiblePages);
   }
+
+  
 
   return (
     <div className="w-full">
@@ -138,13 +141,14 @@ export function DataTable<TData>({ data, columns }: DataTableProps<TData>) {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  Tidak ada data.
                 </TableCell>
               </TableRow>
             )}
           </TableBody>
         </Table>
       </div>
+
       {/* Pagination */}
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button

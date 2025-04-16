@@ -41,17 +41,20 @@ export function TransactionHistory({ transactions }: TransactionHistoryProps) {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-3">
             {transactions.length === 0 ? (
-              <p className="text-center text-gray-500">Belum ada transaksi.</p>
+              <p className="text-center justify-center text-gray-500">Belum ada transaksi.</p>
             ) : (
               transactions.slice(0, 5).map((transaction, index) => {
                 const isNabung = transaction.type?.toLowerCase() === "deposit";
                 return (
                   <div
                     key={index}
-                    className="flex items-center justify-between border-b pb-3"
+                    className={`flex items-center justify-between ${
+                      index < 4 ? "border-b pb-3" : ""
+                    }`}
                   >
+                    
                     <div className="flex items-center gap-4">
                       <div className={`rounded-full p-3 ${isNabung ? "bg-eb-primary-green-100" : "bg-eb-primary-yellow-100"}`}>
                         {isNabung ? (

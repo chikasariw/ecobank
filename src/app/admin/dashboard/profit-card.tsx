@@ -12,11 +12,11 @@ export function ProfitCard({ profit }: { profit: number | null }) {
       <div className="space-y-1">
         <h2 className="text-md font-medium text-black">Total Keuntungan</h2>
         <p className="text-xs text-black">
-          Saldo yang sudah ditukarkan pengguna
+          Keuntungan yang telah diperoleh
         </p>
       </div>
       
-      <div className="text-4xl font-bold mt-6 mb-8">
+      <div className="text-3xl font-bold mt-6 mb-8">
         Rp.{" "}
         {profit !== null ? new Intl.NumberFormat("id-ID").format(profit) : "-"}
       </div>

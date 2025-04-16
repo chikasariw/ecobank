@@ -15,7 +15,7 @@ export function BalanceCard({ balance }: { balance: number | null }) {
           Saldo yang sudah ditukarkan pengguna
         </p>
       </div>
-      <div className="text-4xl font-bold mt-6 mb-8">
+      <div className="text-3xl font-bold mt-6 mb-8">
         Rp.{" "}
         {balance !== null
           ? new Intl.NumberFormat("id-ID").format(balance)

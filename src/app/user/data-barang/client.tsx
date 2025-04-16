@@ -105,7 +105,7 @@ export default function DataBarangClient({ itemData }: DataBarangClientProps) {
             )}
           </div>
 
-          {/* Pagination Controls */}
+          {/* Pagination */}
           {totalPages > 0 && (
             <div className="flex items-center justify-end gap-2 mt-6 flex-wrap">
               <Button

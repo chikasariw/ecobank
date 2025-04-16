@@ -81,7 +81,7 @@ export default function ProfileClient({ userData }: ProfileClientProps) {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Profile</BreadcrumbPage>
+                  <BreadcrumbPage>Profil</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -138,9 +138,9 @@ export default function ProfileClient({ userData }: ProfileClientProps) {
         </CardContent>
         <CardFooter className="flex justify-end gap-2">
           <FormButton>
-            <Button variant="primary">Simpan</Button>
+            <Button variant="primary" className="w-20">Simpan</Button>
           </FormButton>
-          <Button variant="ghost" type="reset">Batal</Button>
+          <Button variant="ghost" className="w-20" type="reset">Batal</Button>
         </CardFooter>
       </form>
     </Card>

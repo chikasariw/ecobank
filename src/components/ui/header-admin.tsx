@@ -7,11 +7,7 @@ import { Separator } from "@radix-ui/react-separator";
 import Link from "next/link";
 import Image from "next/image";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { Button } from "./button";
 import {
@@ -22,7 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut } from "lucide-react";
+import { LogOut, User } from "lucide-react";
 
 interface User {
   name: string;
@@ -57,40 +53,43 @@ export default function HeaderAdmin({ user }: { user: User | null }) {
                   <div className="flex items-center gap-2 ps-1 pe-2 py-2">
                     <Avatar>
                       <AvatarImage
-                        src={user?.profile_url || "/content/profile-default.jpg"}
+                        src={
+                          user?.profile_url || "/content/profile-default.jpg"
+                        }
                         alt={user?.name || "User"}
                       />
                       <AvatarFallback>
-                        {user?.name
-                          ? user.name.charAt(0).toUpperCase()
-                          : "U"}
+                        {user?.name ? user.name.charAt(0).toUpperCase() : "U"}
                       </AvatarFallback>
                     </Avatar>
                     <p>{user?.name || "Guest User"}</p>
                   </div>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="rounded-2xl" align="end">
+              <DropdownMenuContent className="rounded-2xl w-52" align="end">
                 <DropdownMenuLabel>
                   <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-medium">
+                    <span className="truncate text-md">
                       {user?.name || "Guest User"}
                     </span>
-                    <span className="truncate text-xs">
+                    <span className="truncate font-medium text-xs text-eb-primary-gray-600 pt-1">
                       {user?.email || "user@example.com"}
                     </span>
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="rounded-2xl" asChild>
-                  <Link href="/admin/profile">Profile</Link>
+                <DropdownMenuItem className="rounded-2xl text-eb-primary-gray-700 hover:text-eb-primary-gray-800">
+                  <User className="h-6 w-6 " />
+                  <Link className="text-md " href="/admin/profile">
+                    Profil
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="rounded-2xl">
-                  <Link href="/auth/login">
-                  Log out
+                <DropdownMenuItem className="rounded-2xl text-eb-primary-gray-700 hover:text-eb-primary-gray-800">
+                  <LogOut className="h-6 w-6" />
+                  <Link className="text-md" href="/auth/login">
+                    Keluar
                   </Link>
-                  <LogOut className="ml-auto h-6 w-6" />
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

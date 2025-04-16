@@ -13,11 +13,11 @@ export default function WelcomeSection({ user }: { user: User | null }) {
       style={{ backgroundImage: "url('/content/bg-nature.jpg')" }}
     >
       <div className="relative z-10 px-6 pt-5 rounded-2xl w-fit">
-        <h1 className="text-2xl font-bold text-white">
+        <h1 className="text-xl font-bold text-white">
           Hai {user?.name || "Guest User"}!
         </h1>
         <p className="mt-2 text-md text-white max-w-2xl">
-          Ubah sampah anorganik jadi cuan! Kelola penjualan dan pantau transaksimu langsung di Ecobank.
+          Ubah sampah anorganik jadi cuan! Pantau transaksimu langsung di Ecobank.
         </p>
       </div>
     </div>
