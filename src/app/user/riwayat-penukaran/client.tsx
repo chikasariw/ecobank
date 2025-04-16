@@ -27,11 +27,32 @@ export default function RiwayatPenukaranClient() {
   }, []);
 
   // Filter transaksi berdasarkan nama
-  const filteredTransactions = transactions.filter((transaction) =>
-    (transaction.created_at || "")
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase())
-  );
+
+  const filteredTransactions = transactions.filter((transaction) => {
+    const formattedDate = new Intl.DateTimeFormat("id-ID", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }).format(new Date(transaction.created_at || ""));
+
+    const labelType =
+      transaction.type?.toLowerCase() === "deposit" ? "nabung" : "ambil";
+
+    const combinedText = [
+      formattedDate,
+      transaction.type,
+      labelType,
+      transaction.total_amount.toString(),
+      transaction.current_balance.toString(),
+    ]
+      .join(" ")
+      .toLowerCase();
+
+    return combinedText.includes(searchQuery.toLowerCase());
+  });
 
   const totalPages = Math.ceil(filteredTransactions.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;

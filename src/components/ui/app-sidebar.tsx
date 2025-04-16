@@ -29,7 +29,7 @@ const data = {
   ],
   navMain: [
     {
-      title: "Dashboard",
+      title: "Beranda",
       url: "/admin/dashboard",
       icon: Home,
     },

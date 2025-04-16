@@ -78,19 +78,19 @@ export default function HeaderUser({ user }: { user: User | null }) {
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="rounded-2xl text-eb-primary-gray-700 hover:text-eb-primary-gray-800">
-                  <User className="h-6 w-6 " />
-                  <Link className="text-md " href="/user/profile">
+                <a href="/user/profile" className="flex rounded-2xl gap-2 text-eb-primary-gray-700 font-medium hover:text-eb-primary-gray-800 hover:font-semibold hover:bg-eb-primary-gray-200 py-2">
+                  <User className="ms-2 ps-1 h-5 w-5 text-sm text-center" />
+                  <Link className="text-sm font-medium" href="/user/profile">
                     Profil
                   </Link>
-                </DropdownMenuItem>
+                </a>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="rounded-2xl text-eb-primary-gray-700 hover:text-eb-primary-gray-800">
-                  <LogOut className="h-6 w-6" />
-                  <Link className="text-md" href="/auth/login">
+                <a href="/auth/login" className="flex rounded-2xl gap-2 text-eb-primary-gray-700 hover:text-eb-primary-gray-800 hover:font-semibold hover:bg-eb-primary-gray-200 py-2">
+                  <LogOut className="ms-2 ps-1 h-5 w-5 text-sm text-center" />
+                  <Link className="text-sm font-medium" href="/auth/login">
                     Keluar
                   </Link>
-                </DropdownMenuItem>
+                </a>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>

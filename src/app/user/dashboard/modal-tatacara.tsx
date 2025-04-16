@@ -33,19 +33,19 @@ export function ModalTataCara() {
           <DialogTitle className="text-lg font-bold">
             Tata Cara Penarikan{" "}
             <span className="bg-gradient-to-r from-eb-primary-green-800 to-eb-primary-green-600 bg-clip-text text-transparent">
-              Uang Tunai di ECOBank
+              Uang Tunai di EcoBank
             </span>
           </DialogTitle>
         </DialogHeader>
 
         <div className="grid gap-4 text-sm">
           <h5>
-            1. Pastikan saldo cukup – Cek saldo ECOBank-mu sebelum melakukan
+            1. Pastikan saldo cukup – Cek saldo EcoBank-mu sebelum melakukan
             penarikan.
           </h5>
           <h5>
             2. Kunjungi tempat penukaran – Datang langsung ke lokasi penukaran
-            ECOBank.
+            EcoBank.
           </h5>
           <h5>
             3. Ajukan penarikan – Informasikan ke admin jumlah saldo yang ingin
