@@ -153,45 +153,27 @@ export const DataTable = <TData extends financeData>({
 
   return (
     <div className="w-full">
-      <div className="flex flex-col items-start justify-start sm:flex-row sm:justify-between sm:items-center gap-2 py-4">
-        <div className="flex items-center space-x-8">
-          <div className="flex items-center space-x-2">
-            <span className="text-sm font-medium">Periode:</span>
-            <Select value={periode} onValueChange={setPeriode}>
-              <SelectTrigger className="px-4 rounded-3xl">
-                <SelectValue placeholder="Select periode" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Semua">Semua Data</SelectItem>
-                <SelectItem value="Tahunan">Tahunan</SelectItem>
-                <SelectItem value="Bulanan">Bulanan</SelectItem>
-                <SelectItem value="Mingguan">Mingguan</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-4">
+        <div className="overflow-x-auto">
+          <div className="flex items-center space-x-4 py-1">
+            <div className="flex items-center space-x-2">
+              <span className="text-sm font-medium">Periode:</span>
+              <Select value={periode} onValueChange={setPeriode}>
+                <SelectTrigger className="px-4 rounded-3xl">
+                  <SelectValue placeholder="Select periode" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Semua">Semua Data</SelectItem>
+                  <SelectItem value="Tahunan">Tahunan</SelectItem>
+                  <SelectItem value="Bulanan">Bulanan</SelectItem>
+                  <SelectItem value="Mingguan">Mingguan</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
-          {periode !== "Semua" && (
-            <>
-              {periode === "Tahunan" && (
-                <div className="flex items-center space-x-2">
-                  <span className="text-sm font-medium">Tahun:</span>
-                  <Select value={tahun} onValueChange={setTahun}>
-                    <SelectTrigger className="px-4 rounded-3xl">
-                      <SelectValue placeholder="Select year" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {years.map((year) => (
-                        <SelectItem key={year} value={year.toString()}>
-                          {year}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              )}
-
-              {periode === "Bulanan" && (
-                <>
+            {periode !== "Semua" && (
+              <>
+                {periode === "Tahunan" && (
                   <div className="flex items-center space-x-2">
                     <span className="text-sm font-medium">Tahun:</span>
                     <Select value={tahun} onValueChange={setTahun}>
@@ -207,88 +189,98 @@ export const DataTable = <TData extends financeData>({
                       </SelectContent>
                     </Select>
                   </div>
+                )}
+
+                {periode === "Bulanan" && (
+                  <>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-sm font-medium">Tahun:</span>
+                      <Select value={tahun} onValueChange={setTahun}>
+                        <SelectTrigger className="px-4 rounded-3xl">
+                          <SelectValue placeholder="Select year" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {years.map((year) => (
+                            <SelectItem key={year} value={year.toString()}>
+                              {year}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-sm font-medium">Bulan:</span>
+                      <Select value={bulan} onValueChange={setBulan}>
+                        <SelectTrigger className="px-4 rounded-3xl">
+                          <SelectValue placeholder="Select month" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {months.map((month) => (
+                            <SelectItem key={month.value} value={month.value}>
+                              {month.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </>
+                )}
+
+                {periode === "Mingguan" && (
                   <div className="flex items-center space-x-2">
-                    <span className="text-sm font-medium">Bulan:</span>
-                    <Select value={bulan} onValueChange={setBulan}>
-                      <SelectTrigger className="px-4 rounded-3xl">
-                        <SelectValue placeholder="Select month" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {months.map((month) => (
-                          <SelectItem key={month.value} value={month.value}>
-                            {month.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </>
-              )}
-
-              {periode === "Mingguan" && (
-                <div className="flex items-center space-x-2">
-                  <span className="text-sm font-medium">Rentang Tanggal:</span>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={`px-3 justify-start text-left font-normal ${
-                          !dateRange.from && "text-muted-foreground"
-                        }`}
-                      >
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        {dateRange.from ? (
-                          dateRange.to ? (
-                            <>
-                              {format(dateRange.from, "dd MMMM yyyy", {
+                    <span className="text-sm font-medium">Rentang Tanggal:</span>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className={`px-3 justify-start text-left font-normal ${
+                            !dateRange.from && "text-muted-foreground"
+                          }`}
+                        >
+                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          {dateRange.from ? (
+                            dateRange.to ? (
+                              <>
+                                {format(dateRange.from, "dd MMMM yyyy", {
+                                  locale: id,
+                                })}{" "}
+                                -{" "}
+                                {format(dateRange.to, "dd MMMM yyyy", {
+                                  locale: id,
+                                })}
+                              </>
+                            ) : (
+                              format(dateRange.from, "dd MMMM yyyy", {
                                 locale: id,
-                              })}{" "}
-                              -{" "}
-                              {format(dateRange.to, "dd MMMM yyyy", {
-                                locale: id,
-                              })}
-                            </>
+                              })
+                            )
                           ) : (
-                            format(dateRange.from, "dd MMMM yyyy", {
-                              locale: id,
-                            })
-                          )
-                        ) : (
-                          <span>Pilih tanggal</span>
-                        )}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        initialFocus
-                        mode="range"
-                        defaultMonth={dateRange.from}
-                        selected={{ from: dateRange.from, to: dateRange.to }}
-                        onSelect={(range) => {
-                          setDateRange({
-                            from: range?.from,
-                            to: range?.to,
-                          });
-                        }}
-                        numberOfMonths={2}
-                        locale={id}
-                      />
-                    </PopoverContent>
-                  </Popover>
-                </div>
-              )}
-            </>
-          )}
-
-          {/* <div className="relative max-w-md">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-            <Input
-              placeholder="Cari Tanggal..."
-              value={(table.getColumn("tanggaltransaksi")?.getFilterValue() as string) ?? ""}
-              onChange={(event) => table.getColumn("tanggaltransaksi")?.setFilterValue(event.target.value)}
-              className="w-full pl-12 pr-4 py-2 rounded-3xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-eb-primary-green-800 focus:border-eb-primary-green-800"
-            />
-          </div> */}
+                            <span>Pilih tanggal</span>
+                          )}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          initialFocus
+                          mode="range"
+                          defaultMonth={dateRange.from}
+                          selected={{ from: dateRange.from, to: dateRange.to }}
+                          onSelect={(range) => {
+                            setDateRange({
+                              from: range?.from,
+                              to: range?.to,
+                            });
+                          }}
+                          numberOfMonths={2}
+                          locale={id}
+                        />
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
         </div>
         <ModalAdd
           email={""}
@@ -297,6 +289,8 @@ export const DataTable = <TData extends financeData>({
           }}
         />
       </div>
+
+      {/* Table */}
       <div className="rounded-xl border">
         <Table>
           <TableHeader>
@@ -338,63 +332,70 @@ export const DataTable = <TData extends financeData>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  Tidak ada data.
                 </TableCell>
               </TableRow>
             )}
           </TableBody>
         </Table>
       </div>
+
       {/* Pagination */}
-            <div className="flex items-center justify-end space-x-2 py-4">
-              <Button
-                variant="link"
-                size="sm"
-                onClick={() => table.previousPage()}
-                disabled={!table.getCanPreviousPage()}
-              >
-                <ChevronLeft /> Sebelumnya
+      <div className="overflow-x-auto">
+        <div className="w-full inline-flex pt-4 pb-2 sm:pb-0">
+          <div className="w-max ml-auto flex items-center space-x-2 justify-center sm:justify-end">
+
+            <Button
+              variant="link"
+              size="sm"
+              onClick={() => table.previousPage()}
+              disabled={!table.getCanPreviousPage()}
+            >
+              <ChevronLeft /> Sebelumnya
+            </Button>
+
+            {startPage > 0 && (
+              <Button variant="ghost" size="icon" disabled>
+                ...
               </Button>
-      
-              {startPage > 0 && (
-                <Button variant="ghost" size="icon" disabled>
-                  ...
+            )}
+
+            {Array.from({ length: endPage - startPage }, (_, i) => {
+              const pageNumber = startPage + i;
+              return (
+                <Button
+                  key={pageNumber}
+                  variant={
+                    table.getState().pagination.pageIndex === pageNumber
+                      ? "primary"
+                      : "outline"
+                  }
+                  size="icon"
+                  onClick={() => table.setPageIndex(pageNumber)}
+                  className="!min-w-10 !h-10 text-sm"
+                >
+                  {pageNumber + 1}
                 </Button>
-              )}
-      
-              {Array.from({ length: endPage - startPage }, (_, i) => {
-                const pageNumber = startPage + i;
-                return (
-                  <Button
-                    key={pageNumber}
-                    variant={
-                      table.getState().pagination.pageIndex === pageNumber
-                        ? "primary"
-                        : "outline"
-                    }
-                    size="icon"
-                    onClick={() => table.setPageIndex(pageNumber)}
-                  >
-                    {pageNumber + 1}
-                  </Button>
-                );
-              })}
-      
-              {endPage < pageCount && (
-                <Button variant="ghost" size="icon" disabled>
-                  ...
-                </Button>
-              )}
-      
-              <Button
-                variant="link"
-                size="sm"
-                onClick={() => table.nextPage()}
-                disabled={!table.getCanNextPage()}
-              >
-                Selanjutnya <ChevronRight />
+              );
+            })}
+
+            {endPage < pageCount && (
+              <Button variant="ghost" size="icon" disabled>
+                ...
               </Button>
-            </div>
+            )}
+
+            <Button
+              variant="link"
+              size="sm"
+              onClick={() => table.nextPage()}
+              disabled={!table.getCanNextPage()}
+            >
+              Selanjutnya <ChevronRight />
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

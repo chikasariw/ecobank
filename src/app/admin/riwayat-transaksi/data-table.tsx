@@ -115,7 +115,7 @@ export const DataTable = <TData extends TransactionData>({
   return (
     <div className="w-full">
       {/* Search Input */}
-      <div className="flex items-center justify-between gap-4 py-4">
+      <div className="flex items-center justify-between gap-4 mb-4">
         <div className="relative w-full max-w-sm">
           <Search
             className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
@@ -174,7 +174,7 @@ export const DataTable = <TData extends TransactionData>({
                     colSpan={columns.length}
                     className="h-24 text-center"
                   >
-                    No results.
+                    Tidak ada data.
                   </TableCell>
                 </TableRow>
               )}
@@ -183,54 +183,60 @@ export const DataTable = <TData extends TransactionData>({
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <Button
-          variant="link"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          <ChevronLeft /> Sebelumnya
-        </Button>
+      <div className="overflow-x-auto">
+        <div className="w-full inline-flex pt-4 pb-2 sm:pb-0">
+          <div className="w-max ml-auto flex items-center space-x-2 justify-center sm:justify-end">
 
-        {startPage > 0 && (
-          <Button variant="ghost" size="icon" disabled>
-            ...
-          </Button>
-        )}
-
-        {Array.from({ length: endPage - startPage }, (_, i) => {
-          const pageNumber = startPage + i;
-          return (
             <Button
-              key={pageNumber}
-              variant={
-                table.getState().pagination.pageIndex === pageNumber
-                  ? "primary"
-                  : "outline"
-              }
-              size="icon"
-              onClick={() => table.setPageIndex(pageNumber)}
+              variant="link"
+              size="sm"
+              onClick={() => table.previousPage()}
+              disabled={!table.getCanPreviousPage()}
             >
-              {pageNumber + 1}
+              <ChevronLeft /> Sebelumnya
             </Button>
-          );
-        })}
 
-        {endPage < pageCount && (
-          <Button variant="ghost" size="icon" disabled>
-            ...
-          </Button>
-        )}
+            {startPage > 0 && (
+              <Button variant="ghost" size="icon" disabled>
+                ...
+              </Button>
+            )}
 
-        <Button
-          variant="link"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Selanjutnya <ChevronRight />
-        </Button>
+            {Array.from({ length: endPage - startPage }, (_, i) => {
+              const pageNumber = startPage + i;
+              return (
+                <Button
+                  key={pageNumber}
+                  variant={
+                    table.getState().pagination.pageIndex === pageNumber
+                      ? "primary"
+                      : "outline"
+                  }
+                  size="icon"
+                  onClick={() => table.setPageIndex(pageNumber)}
+                  className="!min-w-10 !h-10 text-sm"
+                >
+                  {pageNumber + 1}
+                </Button>
+              );
+            })}
+
+            {endPage < pageCount && (
+              <Button variant="ghost" size="icon" disabled>
+                ...
+              </Button>
+            )}
+
+            <Button
+              variant="link"
+              size="sm"
+              onClick={() => table.nextPage()}
+              disabled={!table.getCanNextPage()}
+            >
+              Selanjutnya <ChevronRight />
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
