@@ -15,7 +15,7 @@ const FAQ = () => {
     {
       question: "Bagaimana cara mulai jual sampah di EcoBank?",
       answer:
-        "Gampang banget! Daftar dulu di EcoBank, pilih sampah anorganik yang mau kamu jual, lalu ikuti petunjuknya. Dalam hitungan menit, sampahmu bisa jadi uang!",
+        "Gampang banget! Daftar dulu di EcoBank, pilih sampah anorganik yang mau kamu jual, lalu ikuti petunjuknya!",
     },
     {
       question: "Apakah ada jenis sampah tertentu yang tidak diterima di EcoBank?",

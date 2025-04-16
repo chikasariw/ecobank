@@ -108,7 +108,7 @@ export default function Home() {
             <p>Jangan biarkan sampahmu terbuang percuma.</p>
           </div>
           <div
-            className="absolute w-52 md:w-60 bg-white/60 px-6 py-4 rounded-3xl backdrop-blur-md shadow-[0_2px_8px_rgba(0,0,0,0.08)] top-20 md:top-20 lg:top-12 -left-3 md:left-40 lg:left-20"
+            className="absolute w-52 md:w-60 bg-white/60 px-6 py-4 rounded-3xl backdrop-blur-md shadow-[1px_6px_8px_rgba(0,0,0,0.09)] top-20 md:top-20 lg:top-12 -left-3 md:left-40 lg:left-20"
           >
             <h6 className="font-bold text-md md:text-base text-eb-primary-gray-800">
               Solusi Anorganik
