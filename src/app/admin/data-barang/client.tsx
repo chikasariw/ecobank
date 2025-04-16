@@ -55,7 +55,7 @@ export default function DataBarangClient({ itemData }: ItemClientProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4">
+        <CardTitle className="lg:flex lg:justify-between">
           <p>
             Data <GradientText>Barang</GradientText>
           </p>
