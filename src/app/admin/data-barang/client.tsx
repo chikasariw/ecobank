@@ -62,9 +62,7 @@ export default function DataBarangClient({ itemData }: ItemClientProps) {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink href="/admin/dashboard">
-                  EcoBank.
-                </BreadcrumbLink>
+                <BreadcrumbLink href="/admin/dashboard">EcoBank.</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
@@ -76,7 +74,7 @@ export default function DataBarangClient({ itemData }: ItemClientProps) {
       </CardHeader>
       <CardContent>
         <div className="rounded-xl border border-eb-primary-gray-200 p-4">
-            <DataTable columns={columns} data={data} />
+          <DataTable columns={columns} data={data} />
         </div>
       </CardContent>
     </Card>
