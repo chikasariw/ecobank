@@ -55,16 +55,14 @@ export default function DataBarangClient({ itemData }: ItemClientProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4">
+        <CardTitle className="lg:flex lg:justify-between">
           <p>
             Data <GradientText>Barang</GradientText>
           </p>
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink href="/admin/dashboard">
-                  EcoBank.
-                </BreadcrumbLink>
+                <BreadcrumbLink href="/admin/dashboard">EcoBank.</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
@@ -76,7 +74,7 @@ export default function DataBarangClient({ itemData }: ItemClientProps) {
       </CardHeader>
       <CardContent>
         <div className="rounded-xl border border-eb-primary-gray-200 p-4">
-            <DataTable columns={columns} data={data} />
+          <DataTable columns={columns} data={data} />
         </div>
       </CardContent>
     </Card>

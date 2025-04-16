@@ -79,7 +79,7 @@ export const DataTable = <TData extends userData>({
 
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between py-4">
+      <div className="flex items-center justify-between mb-4">
         <div className="relative justify-between w-full max-w-sm">
           <Search
             className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
@@ -95,6 +95,8 @@ export const DataTable = <TData extends userData>({
           />
         </div>
       </div>
+
+      {/* Table */}
       <div className="rounded-xl border">
         <div className="overflow-x-auto">
           <Table className="min-w-full">
@@ -106,9 +108,9 @@ export const DataTable = <TData extends userData>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                     </TableHead>
                   ))}
                 </TableRow>
@@ -137,7 +139,7 @@ export const DataTable = <TData extends userData>({
                     colSpan={columns.length}
                     className="h-24 text-center"
                   >
-                    No results.
+                    Tidak ada data.
                   </TableCell>
                 </TableRow>
               )}
@@ -145,55 +147,62 @@ export const DataTable = <TData extends userData>({
           </Table>
         </div>
       </div>
+
       {/* Pagination */}
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <Button
-          variant="link"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          <ChevronLeft /> Sebelumnya
-        </Button>
+      <div className="overflow-x-auto">
+          <div className="w-full inline-flex pt-4 pb-2 sm:pb-0">
+            <div className="w-max ml-auto flex items-center space-x-2 justify-center sm:justify-end">
 
-        {startPage > 0 && (
-          <Button variant="ghost" size="icon" disabled>
-            ...
-          </Button>
-        )}
+              <Button
+                variant="link"
+                size="sm"
+                onClick={() => table.previousPage()}
+                disabled={!table.getCanPreviousPage()}
+              >
+                <ChevronLeft /> Sebelumnya
+              </Button>
 
-        {Array.from({ length: endPage - startPage }, (_, i) => {
-          const pageNumber = startPage + i;
-          return (
-            <Button
-              key={pageNumber}
-              variant={
-                table.getState().pagination.pageIndex === pageNumber
-                  ? "primary"
-                  : "outline"
-              }
-              size="icon"
-              onClick={() => table.setPageIndex(pageNumber)}
-            >
-              {pageNumber + 1}
-            </Button>
-          );
-        })}
+              {startPage > 0 && (
+                <Button variant="ghost" size="icon" disabled>
+                  ...
+                </Button>
+              )}
 
-        {endPage < pageCount && (
-          <Button variant="ghost" size="icon" disabled>
-            ...
-          </Button>
-        )}
+              {Array.from({ length: endPage - startPage }, (_, i) => {
+                const pageNumber = startPage + i;
+                return (
+                  <Button
+                    key={pageNumber}
+                    variant={
+                      table.getState().pagination.pageIndex === pageNumber
+                        ? "primary"
+                        : "outline"
+                    }
+                    size="icon"
+                    onClick={() => table.setPageIndex(pageNumber)}
+                    className="!min-w-10 !h-10 text-sm"
+                  >
+                    {pageNumber + 1}
+                  </Button>
+                );
+              })}
 
-        <Button
-          variant="link"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Selanjutnya <ChevronRight />
-        </Button>
+              {endPage < pageCount && (
+                <Button variant="ghost" size="icon" disabled>
+                  ...
+                </Button>
+              )}
+
+              <Button
+                variant="link"
+                size="sm"
+                onClick={() => table.nextPage()}
+                disabled={!table.getCanNextPage()}
+              >
+                Selanjutnya <ChevronRight />
+              </Button>
+            </div>
+          </div>
       </div>
     </div>
   );

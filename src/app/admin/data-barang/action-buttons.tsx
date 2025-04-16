@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Pencil, Trash, CircleX } from "lucide-react";
+import { Pencil, Trash, CircleAlert } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { editBarang, deleteBarang } from "./action";
 import {
@@ -108,19 +108,19 @@ export function ActionButtons({ item }: { item: ItemData }) {
             <AlertDialogTitle className="hidden">
               Apakah Anda yakin ingin menghapus barang ini?
             </AlertDialogTitle>
-            <AlertDialogDescription>
+            <AlertDialogDescription asChild>
               <div className="flex flex-col items-center justify-center text-center gap-4 my-3">
                 <div className="bg-destructive text-destructive-foreground p-5 rounded-full">
-                  <CircleX className="w-16 h-16" />
+                  <CircleAlert className="w-16 h-16" />
                 </div>
-                {/* <p className="text-xl font-semibold">
+                <p className="text-base font-semibold text-eb-primary-gray-800">
                   Apakah Anda yakin ingin menghapus barang ini?
-                </p> */}
+                </p>
               </div>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter className="sm:justify-center">
-            <Button variant="ghost" onClick={() => setOpenDelete(false)}>
+            <Button variant="prominent" onClick={() => setOpenDelete(false)}>
               Batal
             </Button>
             <Button variant="destructive" onClick={handleDelete}>

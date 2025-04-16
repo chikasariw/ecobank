@@ -18,7 +18,7 @@ export const columns: ColumnDef<financeData>[] = [
       console.log("Tipe Transaksi:", type);
       const displayType =
         type === "Income"
-          ? "Pemasukkan"
+          ? "Pemasukan"
           : type === "Expenses"
           ? "Pengeluaran"
           : type;
